@@ -14,6 +14,7 @@ CREATE TABLE "user" (
 CREATE TABLE "art_item" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"user_id" serial NOT NULL,
+    "user_name" varchar(255),
 	"title" varchar(255) NOT NULL,
 	"latitude" numeric(9,6) NOT NULL,
 	"longitude" numeric(9,6) NOT NULL, 
