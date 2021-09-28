@@ -56,7 +56,7 @@ router.post('/', (req, res) => {
   RETURNING "id";`
 
   // FIRST QUERY MAKES ART_ITEM
-  pool.query(artItemQuery, [req.body.user_id, req.body.user_name, req.body.title, req.body.latitude, req.body.longitude,
+  pool.query(artItemQuery, [req.user.id, req.user.name, req.body.title, req.body.latitude, req.body.longitude,
   req.body.description, req.body.date, req.body.type])
     .then(result => {
       console.log('New art_item Id:', result.rows[0].id); //ID IS HERE!
