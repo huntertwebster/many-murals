@@ -23,7 +23,7 @@ router.post('/register', (req, res, next) => {
   const name = req.body.name;
   const description = req.body.description;
   const email_address = req.body.email_address;
-  const type = req.body.type;
+  // const type = req.body.type;
   const phone_number = req.body.phone_number;
   const profile_image = req.body.profile_image;
 

@@ -24,31 +24,32 @@ router.get('/', (req, res) => {
 
 
 // POST route to add to the gallery (from artists page)
-router.post('/', (req, res) => {
-  const user_name = req.body.user_name;
-  const title = req.body.title;
-  const latitude = req.body.latitude;
-  const longitude = req.body.longitude;
-  const description = req.body.description;
-  const date = req.body.date;
-  const type = req.body.type;
-  // needs the image!
+// router.post('/', (req, res) => {
+//   const user_name = req.body.user_name;
+//   const title = req.body.title;
+//   const latitude = req.body.latitude;
+//   const longitude = req.body.longitude;
+//   const description = req.body.description;
+//   const date = req.body.date;
+//   const type = req.body.type;
+//   // needs the image!
 
-  const queryText = `INSERT INTO "art_item" 
-  (user_name, title, latitude, longitude, description, date, type)
-  VALUES ($1, $2, $3, $4, $5, $6, $7)`;
-  pool
-    .query(queryText, [user_name, title, latitude, longitude, description, date, type])
-    .then(() => res.sendStatus(201))
-    .catch((err) => {
-      console.log('ERROR: Failed to POST to gallery', err);
-      res.sendStatus(500);
-    });
-});
+//   const queryText = `INSERT INTO "art_item" 
+//   (user_name, title, latitude, longitude, description, date, type)
+//   VALUES ($1, $2, $3, $4, $5, $6, $7)`;
+//   pool
+//     .query(queryText, [user_name, title, latitude, longitude, description, date, type])
+//     .then(() => res.sendStatus(201))
+//     .catch((err) => {
+//       console.log('ERROR: Failed to POST to gallery', err);
+//       res.sendStatus(500);
+//     });
+// });
 
 router.post('/', (req, res) => {
-  console.log(req.body);
+  console.log('This is the REQ.BODY!!:', req.body);
   // RETURNING "id" will give us back the id of the created art_item
+  console.log('This is my user!', req.user);
   const artItemQuery = `INSERT INTO "art_item"
   (user_id, user_name, title, latitude, longitude, description, date, type)
   VALUES($1, $2, $3, $4, $5, $6, $7, $8)
@@ -62,13 +63,13 @@ router.post('/', (req, res) => {
 
       const createdArtItemId = result.rows[0].id
 
-      // Now handle the genre reference
+      // Now handle the images reference
       const imagesQuery = `
-      INSERT INTO "images" ("art_item_id", "url")
-      VALUES  ($1, $2);
+      INSERT INTO "images" ("art_item_id", "url", "featured_image")
+      VALUES($1, $2, $3);
       `
       // SECOND QUERY ADDS GENRE FOR THAT NEW IMAGE
-      pool.query(imagesQuery, [createdArtItemId, req.body.url]).then(result => {
+      pool.query(imagesQuery, [createdArtItemId, req.body.url, req.body.featured_image]).then(result => {
         //Now that both are done, send back success!
         res.sendStatus(201);
       }).catch(err => {
