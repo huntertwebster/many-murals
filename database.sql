@@ -49,7 +49,15 @@ ALTER TABLE "art_item" ADD CONSTRAINT "art_item_fk0" FOREIGN KEY ("user_id") REF
 
 ALTER TABLE "image" ADD CONSTRAINT "image_fk0" FOREIGN KEY ("art_item_id") REFERENCES "art_item"("id");
 
+--query for gallery
+SELECT art_item.id, art_item.user_name, art_item.title, art_item.latitude, art_item.longitude, art_item.description, art_item.date, 
+array_agg(images) as images FROM public.user
+JOIN art_item ON public.user.id = art_item.user_id
+JOIN images on art_item.id = images.art_item_id
+GROUP BY art_item.id, art_item.user_id, art_item.title, art_item.latitude, art_item.longitude, art_item.description, art_item.date;
 
+-- query for artist data
+SELECT public.user.description, public.user.name FROM public.user;
 
 -- --fake data! (made for demonstration purpose only!!)
 
