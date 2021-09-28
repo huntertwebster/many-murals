@@ -58,7 +58,7 @@ router.post('/', (req, res) => {
         })
 });
 
-// DELETE art_item from the artist so the artist can delete their posts
+// DELETE ENTIRE POST from the artist page
 router.delete('/:id', (req, res) => {
     const queryText = 'DELETE FROM art_item WHERE id=$1';
     pool.query(queryText, [req.params.id])
@@ -68,6 +68,7 @@ router.delete('/:id', (req, res) => {
             res.sendStatus(500);
         });
 });
+
 
 // PUT art_item from the artist profile so the artist can edit their posts
 router.put('/:id', (req, res) => {

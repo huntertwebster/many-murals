@@ -14,13 +14,12 @@ CREATE TABLE "user" (
 CREATE TABLE "art_item" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"user_id" serial NOT NULL,
-    "user_name" varchar(255),
+	"user_name" varchar(255) NOT NULL,
 	"title" varchar(255) NOT NULL,
 	"latitude" numeric(9,6) NOT NULL,
 	"longitude" numeric(9,6) NOT NULL, 
 	"description" varchar(255) NOT NULL,
 	"date" DATE NOT NULL,
-	"images_id" integer NOT NULL,
 	"type" varchar(255) NOT NULL
 );
 
@@ -31,24 +30,9 @@ CREATE TABLE "images" (
 	"featured_image" BOOLEAN NOT NULL
 );
 
+ALTER TABLE "art_item" ADD CONSTRAINT "art_item_fk0" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE CASCADE;
 
---Select alls
-SELECT * FROM "user";
-SELECT * FROM "art_item";
-SELECT * FROM "image";
-
-
---Drop tables
-DROP TABLE "user";
-DROP TABLE "art_item";
-DROP TABLE "image";
-
-
---Alter tables
-
-ALTER TABLE "art_item" ADD CONSTRAINT "art_item_fk0" FOREIGN KEY ("user_id") REFERENCES "user"("id");
-
-ALTER TABLE "image" ADD CONSTRAINT "image_fk0" FOREIGN KEY ("art_item_id") REFERENCES "art_item"("id");
+ALTER TABLE "images" ADD CONSTRAINT "images_fk0" FOREIGN KEY ("art_item_id") REFERENCES "art_item"("id") ON DELETE CASCADE;
 
 --query for gallery
 SELECT art_item.id, art_item.user_name, art_item.title, art_item.latitude, art_item.longitude, art_item.description, art_item.date, 
