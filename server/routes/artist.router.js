@@ -38,9 +38,9 @@ router.post('/', (req, res) => {
 
             // Now handle the images reference
             const imagesQuery = `
-      INSERT INTO "images" ("art_item_id", "url", "featured_image")
-      VALUES($1, $2, $3);
-      `
+        INSERT INTO "images" ("art_item_id", "url", "featured_image")
+        VALUES($1, $2, $3);
+        `
             // SECOND QUERY ADDS GENRE FOR THAT NEW IMAGE
             pool.query(imagesQuery, [createdArtItemId, req.body.url, req.body.featured_image]).then(result => {
                 //Now that both are done, send back success!
@@ -51,7 +51,7 @@ router.post('/', (req, res) => {
                 res.sendStatus(500)
             })
 
-            // Catch for first query
+            // catch for first query
         }).catch(err => {
             console.log(err);
             res.sendStatus(500)
