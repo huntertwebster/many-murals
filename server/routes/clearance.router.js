@@ -1,10 +1,12 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
-
+const {
+    rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 
 // GET grants access to the user depending on their access
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
     const access = `SELECT art_item.id, art_item.user_name, art_item.title, art_item.latitude,
 art_item.longitude, art_item.description, art_item.date, jsonb_agg(images) as images FROM public.user
 JOIN art_item ON public.user.id = art_item.user_id

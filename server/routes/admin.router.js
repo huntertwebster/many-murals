@@ -1,9 +1,12 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {
+    rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 
 // ADMIN DELETE an entire art_item from the gallery and the artist page 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
     const queryText = 'DELETE FROM art_item WHERE id=$1';
     pool.query(queryText, [req.params.id])
         .then(() => { res.sendStatus(200); })
@@ -13,8 +16,19 @@ router.delete('/:id', (req, res) => {
         });
 });
 
+// DELETE individual picture from the artist page
+router.delete('/adminImage/:id', rejectUnauthenticated, (req, res) => {
+    const queryText = 'DELETE FROM images WHERE id=$1';
+    pool.query(queryText, [req.params.id])
+        .then(() => { res.sendStatus(200); })
+        .catch((err) => {
+            console.log('Error deleting from images', err);
+            res.sendStatus(500);
+        });
+});
+
 // ADMIN PUT to edit an art_item from the gallery and the artist page 
-router.put('/:id', (req, res) => {
+router.put('/:id', rejectUnauthenticated, (req, res) => {
     const updatedArt_Item = req.body;
     console.log('this is the req.params!', req.params);
 
@@ -45,7 +59,7 @@ router.put('/:id', (req, res) => {
         });
 });
 
-// router.put('/:id', (req, res) => {
+// router.put('/:id',rejectUnauthenticated, (req, res) => {
 //     const artistData = req.body;
 //     console.log('this is the req.params!', req.params);
 

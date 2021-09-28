@@ -1,6 +1,10 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {
+    rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
+
 
 //GETS all data for the artist display
 router.get('/', (req, res) => {
@@ -14,12 +18,11 @@ router.get('/', (req, res) => {
             console.log('ERROR: Get all artist data', err);
             res.sendStatus(500)
         })
-
 });
 
 
 // this is the POST within the artist profile to add an art piece
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
     console.log('This is the REQ.BODY!!:', req.body);
     // RETURNING "id" will give us back the id of the created art_item
     console.log('This is my user!', req.user);
@@ -59,7 +62,7 @@ router.post('/', (req, res) => {
 });
 
 // DELETE ENTIRE POST from the artist page
-router.delete('/:id', (req, res) => {
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
     const queryText = 'DELETE FROM art_item WHERE id=$1';
     pool.query(queryText, [req.params.id])
         .then(() => { res.sendStatus(200); })
@@ -70,7 +73,7 @@ router.delete('/:id', (req, res) => {
 });
 
 // DELETE individual picture from the artist page
-router.delete('/image/:id', (req, res) => {
+router.delete('/image/:id', rejectUnauthenticated, (req, res) => {
     const queryText = 'DELETE FROM images WHERE id=$1';
     pool.query(queryText, [req.params.id])
         .then(() => { res.sendStatus(200); })
@@ -82,7 +85,7 @@ router.delete('/image/:id', (req, res) => {
 
 
 // PUT art_item from the artist profile so the artist can edit their posts
-router.put('/:id', (req, res) => {
+router.put('/:id', rejectUnauthenticated, (req, res) => {
     const updatedArt_Item = req.body;
     console.log('this is the req.params!', req.params);
 
