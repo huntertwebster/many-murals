@@ -5,7 +5,7 @@ const router = express.Router();
 //GETS all data for the artist display
 router.get('/', (req, res) => {
     const query =
-        `SELECT public.user.description, public.user.name FROM public.user;`;
+        `SELECT public.user.description, public.user.name, public.user.profile_image FROM public.user;`;
     pool.query(query)
         .then(result => {
             res.send(result.rows);
@@ -65,6 +65,17 @@ router.delete('/:id', (req, res) => {
         .then(() => { res.sendStatus(200); })
         .catch((err) => {
             console.log('Error deleting from art_item', err);
+            res.sendStatus(500);
+        });
+});
+
+// DELETE individual picture from the artist page
+router.delete('/image/:id', (req, res) => {
+    const queryText = 'DELETE FROM images WHERE id=$1';
+    pool.query(queryText, [req.params.id])
+        .then(() => { res.sendStatus(200); })
+        .catch((err) => {
+            console.log('Error deleting from images', err);
             res.sendStatus(500);
         });
 });
