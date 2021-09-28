@@ -40,9 +40,52 @@ router.put('/:id', (req, res) => {
     pool.query(queryText, queryValues)
         .then(() => { res.sendStatus(200); })
         .catch((err) => {
-            console.log('Admin error editing an art_item!', err);
+            console.log('Error editing an art_item!', err);
             res.sendStatus(500);
         });
 });
 
+// router.put('/:id', (req, res) => {
+//     const artistData = req.body;
+//     console.log('this is the req.params!', req.params);
+
+//     const artItem = `UPDATE art_item
+//     SET "title" = $1, 
+//     "latitude" = $2, 
+//     "longitude" = $3, 
+//     "description" = $4, 
+//     "date" = $5, 
+//     "type" = $6 
+//     WHERE id=$7;`;
+
+
+//     const artistValues = [
+//         artistData.title,
+//         artistData.latitude,
+//         artistData.longitude,
+//         artistData.description,
+//         artistData.date,
+//         artistData.type,
+//         req.params.id
+//     ];
+
+//     pool.query(artItem, artistValues)
+//         .then(() => {
+//             const images = `UPDATE art_item SET "url" = $1`;
+//             const imagesValues = [
+//                 artistData.url
+//             ];
+//             pool.query(images, imagesValues)
+//                 .then(() => { res.sendStatus(200) })
+//                 .catch((err) => {
+//                     console.log('Error completeing Select image query', err)
+//                 })
+//         })
+//         .catch((err) => {
+//             console.log('Admin error editing an art_item!', err);
+//             res.sendStatus(500);
+//         });
+// });
+
 module.exports = router;
+
