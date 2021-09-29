@@ -27,7 +27,7 @@ CREATE TABLE "images" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"url" varchar(255) NOT NULL,
 	"art_item_id" integer NOT NULL,
-	"featured_image" BOOLEAN NOT NULL
+	"featured_image" BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 ALTER TABLE "art_item" ADD CONSTRAINT "art_item_fk0" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE CASCADE;
@@ -36,7 +36,7 @@ ALTER TABLE "images" ADD CONSTRAINT "images_fk0" FOREIGN KEY ("art_item_id") REF
 
 --query for gallery
 SELECT art_item.id, art_item.user_name, art_item.title, art_item.latitude, art_item.longitude, art_item.description, art_item.date, 
-array_agg(images) as images FROM public.user
+jsonb_agg(images) as images FROM public.user
 JOIN art_item ON public.user.id = art_item.user_id
 JOIN images on art_item.id = images.art_item_id
 GROUP BY art_item.id, art_item.user_id, art_item.title, art_item.latitude, art_item.longitude, art_item.description, art_item.date;
@@ -44,10 +44,29 @@ GROUP BY art_item.id, art_item.user_id, art_item.title, art_item.latitude, art_i
 -- query for artist data
 SELECT public.user.description, public.user.name FROM public.user;
 
--- --fake data! (made for demonstration purpose only!!)
 
--- -- user data
--- --1	
+--Select alls
+SELECT * FROM "user";
+SELECT * FROM "art_item";
+SELECT * FROM "image";
+
+
+--Drop tables
+DROP TABLE "user";
+DROP TABLE "art_item";
+DROP TABLE "images";
+
+
+--Alter tables
+
+
+
+
+
+--fake data! (made for demonstration purpose only!!)
+
+-- user data
+--1	
 -- INSERT INTO "public"."user"("id","name","description","email_address","type","username","password","phone_number","profile_image")
 -- VALUES
 -- (5,E'Jake Billiou',E'Jake is a midwestern artist, hailing from Ashley, ND and is currently creating in the hills of South Dakota',E'jakeb@gmail.com',E'artist',E'jake',E'$2a$10$ByEdRc1n.Os3c64GjU0UnexChMkvMMroycLlPdHLxn0tExBoYKcHG',7014483293,E'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500');
@@ -70,53 +89,53 @@ SELECT public.user.description, public.user.name FROM public.user;
 
 -- -- image data
 -- --1	
--- INSERT INTO "public"."image"("id","url","art_item_id","featured_image")
+-- INSERT INTO "public"."images"("id","url","art_item_id","featured_image")
 -- VALUES
 -- (1,E'https://i.pinimg.com/736x/b6/14/3a/b6143a815d7190e6b637c3369275c486.jpg',1,TRUE);
 
 -- --2	
--- INSERT INTO "public"."image"("id","url","art_item_id","featured_image")
+-- INSERT INTO "public"."images"("id","url","art_item_id","featured_image")
 -- VALUES
--- (2,E'	https://i.redd.it/f7izxglvk0u41.jpg	',2,FALSE);
+-- (2,E'https://i.redd.it/f7izxglvk0u41.jpg',2,FALSE);
 
 -- --3
--- INSERT INTO "public"."image"("id","url","art_item_id","featured_image")
+-- INSERT INTO "public"."images"("id","url","art_item_id","featured_image")
 -- VALUES
--- (3,E'	https://i.pinimg.com/originals/d6/15/a4/d615a4aba5e224456d974c5853b3630c.jpg',3,TRUE);
+-- (3,E'https://i.pinimg.com/originals/d6/15/a4/d615a4aba5e224456d974c5853b3630c.jpg',3,TRUE);
 
 -- --4	
--- INSERT INTO "public"."image"("id","url","art_item_id","featured_image")
+-- INSERT INTO "public"."images"("id","url","art_item_id","featured_image")
 -- VALUES
 -- (4,E'https://assets.bigcartel.com/product_images/202485230/COLO.jpg?auto=format&fit=max&h=1000&w=1000		',4,TRUE);
 
 -- --5	
--- INSERT INTO "public"."image"("id","url","art_item_id","featured_image")
+-- INSERT INTO "public"."images"("id","url","art_item_id","featured_image")
 -- VALUES
 -- (5,E'https://live.staticflickr.com/2896/14533879602_5975ce40e7_b.jpg',5,TRUE);
 
 
 -- -- art_item data 
 -- --1
--- INSERT INTO "public"."art_item"("id","user_id","title","latitude","longitude","description","date","image_id","type")
+-- INSERT INTO "public"."art_item"("id","user_id", "user_name","title","latitude","longitude","description","date","type")
 -- VALUES
--- (1,5,E'Eye on the Wall',46.897964,-96.819995,E'This is a Eye on the wall at NDSU ',E'2010-09-14',1,E'mural');
+-- (1,5,'Jake Billiou','Eye on the Wall',46.897964,-96.819995,E'This is a Eye on the wall at NDSU ',E'2010-09-14',E'mural');
 
 -- --2	
--- INSERT INTO "public"."art_item"("id","user_id","title","latitude","longitude","description","date","image_id","type")
+-- INSERT INTO "public"."art_item"("id","user_id","user_name","title","latitude","longitude","description","date","type")
 -- VALUES
--- (2,5,E'Birds and Bikes',46.907347,-96.783275,E'A summary of the relationship between birds and bikes	',E'2015-02-23',2,E'mural');
+-- (2,5,'Jake Billiou', 'Birds and Bikes',46.907347,-96.783275,E'A summary of the relationship between birds and bikes',E'2015-02-23',E'mural');
 
 -- --3	
--- INSERT INTO "public"."art_item"("id","user_id","title","latitude","longitude","description","date","image_id","type")
+-- INSERT INTO "public"."art_item"("id","user_id","user_name","title","latitude","longitude","description","date","type")
 -- VALUES
--- (3,6,E'Multicolored Flowers',46.886829,-96.825777,E'Flowers.. blooming.. on the wall',E'2019-04-12',3,E'mural');
+-- (3,6,'Maci Cherry', 'Multicolored Flowers',46.886829,-96.825777,E'Flowers.. blooming.. on the wall',E'2019-04-12',E'mural');
 
 -- --4	
--- INSERT INTO "public"."art_item"("id","user_id","title","latitude","longitude","description","date","image_id","type")
+-- INSERT INTO "public"."art_item"("id","user_id","user_name","title","latitude","longitude","description","date","type")
 -- VALUES
--- (4,7,E'Tongue OUT',46.857869,-96.826853,E'Let your tongue out! Let it out!!',E'2015-06-14',4,E'mural');
+-- (4,7,'Orry Ayo', 'Tongue OUT',46.857869,-96.826853,E'Let your tongue out! Let it out!!',E'2015-06-14',E'mural');
 
 -- --5
--- INSERT INTO "public"."art_item"("id","user_id","title","latitude","longitude","description","date","image_id","type")
+-- INSERT INTO "public"."art_item"("id","user_id","user_name","title","latitude","longitude","description","date","type")
 -- VALUES
--- (5,8,E'Bear Witness',46.911135,-96.786016,E'This bear is on the wall and it has many things going on with it, see if you can spot a few. I\'m making this description longer than the others for the sake of space on my web page yada yada there is a huge bear on the wall!! It\'s huge!!!',E'2019-06-05',5,E'mural');	
+-- (5,8,'Steven Jesh', 'Bear Witness',46.911135,-96.786016,E'This bear is on the wall and it has many things going on with it, see if you can spot a few. I\'m making this description longer than the others for the sake of space on my web page yada yada there is a huge bear on the wall!! It\'s huge!!!',E'2019-06-05',E'mural');	
