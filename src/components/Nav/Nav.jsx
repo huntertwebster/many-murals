@@ -28,6 +28,9 @@ function Nav() {
         <Link className="navLink" to="/gallery">
           Gallery
         </Link>
+        <Link className="navLink" to="/artists">
+          Our Artists
+        </Link>
         
         {/* If a user is logged in, show these links */}
         {user.id && (

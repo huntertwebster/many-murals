@@ -4,34 +4,29 @@ import { NavLink } from 'react-router-dom';
 // import CSS for the gallery here
 import { useHistory } from 'react-router';
 
-function GalleryPage() {
+function ArtistsPage() {
     const history = useHistory();
     const dispatch = useDispatch();
-    const gallery = useSelector(store => store.gallery);
+    const artists = useSelector(store => store.artists);
     // used for when clicked on a poster, movie data is recieved 
     // sends us to /details too
-
+    console.log(artists);
     // when page loads, get all the movies
     useEffect(() => {
-        dispatch({ type: 'FETCH_GALLERY' });
+        dispatch({ type: 'FETCH_ARTISTS' });
     }, []);
 
     return (
-        <main>
-            <h1>Welcome to the Gallery</h1>
-            
-            <section className="gallery">
-                {gallery.map(item => {
+        <main>    
+            <section className="artists">
+                {artists.map(artist => {
                     return (
-                        <div className="galleryItem" key={item.id}>
-                            <img src={item.images[0].url} alt={item.title}
+                        <div className="artistItem" key={artist.id}>
+                            <h1>Meet {artist.name}!</h1>
+                            <p>{artist.description}</p>
+                            <img src={artist.profile_image} alt={artist.name}
                                 // onClick={() => history.push(`/details/${item.id}`)}
                             />
-                            <h4>{item.title} by {item.user_name}</h4>
-                            <p>{item.description}</p>
-                            <p>Created on: {item.date}</p>
-                            <p>Lat: {item.latitude}</p>
-                            <p>Long: {item.longitude}</p>
                         </div>
                     );
                 })}
@@ -41,4 +36,4 @@ function GalleryPage() {
     );
 }
 
-export default GalleryPage;
+export default ArtistsPage;

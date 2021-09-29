@@ -19,9 +19,9 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-
 import './App.css';
 import GalleryPage from '../GalleryPage/GalleryPage';
+import ArtistsPage from '../ArtistsPage/ArtistsPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -55,6 +55,14 @@ function App() {
             path="/gallery"
           >
             <GalleryPage />
+
+          </Route>
+               <Route
+            // shows ArtistsPage at all times (logged in or not)
+            exact
+            path="/artists"
+          >
+            <ArtistsPage />
           </Route>
 
           {/* Visible to a artist after login */}
@@ -74,14 +82,6 @@ function App() {
             // logged in shows InfoPage else shows LoginPage
             exact
             path="/info"
-          >
-            <InfoPage />
-          </ProtectedRoute>
-
-          <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
-            exact
-            path="/profile"
           >
             <InfoPage />
           </ProtectedRoute>
