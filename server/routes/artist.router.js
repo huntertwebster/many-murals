@@ -4,7 +4,7 @@ const router = express.Router();
 const {
     rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
-
+const encryptLib = require('../modules/encryption');
 
 //GETS all data for the artist display
 router.get('/', (req, res) => {
@@ -23,37 +23,41 @@ router.get('/', (req, res) => {
 // create a put for updating artist info
 // PUT art_item from the artist profile so the artist can edit their posts
 router.put('/:id', rejectUnauthenticated, (req, res) => {
-    if (req.params.id === req.user.id || user.type === 'admin') {
-        const updatedArt_Item = req.body;
+    console.log('params id:', req.params.id);
+    console.log('user id:', req.user.id)
+    if (Number(req.params.id) === req.user.id || req.user.type === 'admin') {
+        const updateUserInfo = req.body;
+        const password = encryptLib.encryptPassword(req.body.password);
         console.log('this is the req.params!', req.params);
-
-        const queryText = `UPDATE art_item
-    SET "title" = $1, 
-    "latitude" = $2, 
-    "longitude" = $3, 
-    "description" = $4, 
-    "date" = $5, 
-    "type" = $6 
-    WHERE id=$7;`;
+        const queryText = `UPDATE "user"
+    SET "name" = $1,
+    "description" = $2,
+    "email_address" = $3, 
+    "username" = $4, 
+    "password" = $5, 
+    "phone_number" = $6,
+    "profile_image" = $7
+    WHERE id=$8;`;
 
         const queryValues = [
-            updatedArt_Item.title,
-            updatedArt_Item.latitude,
-            updatedArt_Item.longitude,
-            updatedArt_Item.description,
-            updatedArt_Item.date,
-            updatedArt_Item.type,
+            updateUserInfo.name,
+            updateUserInfo.description,
+            updateUserInfo.email_address,
+            updateUserInfo.username,
+            updateUserInfo.encryptLib.encryptPassword(req.body.password),
+            updateUserInfo.phone_number,
+            updateUserInfo.profile_image,
             req.params.id
         ];
 
         pool.query(queryText, queryValues)
             .then(() => { res.sendStatus(200); })
             .catch((err) => {
-                console.log('Error editing an art_item!', err);
+                console.log('Error editing a user profile!', err);
                 res.sendStatus(500);
             });
     } else {
-        res.sendStatus('ERROR: you are not authorized to delete this picture!')
+        res.sendStatus('ERROR: you are not authorized to edit this user profile!')
     }
 });
 

@@ -67,11 +67,14 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 
 // DELETE ENTIRE POST from the gallery by the artist
 router.delete('/:id/:art_item_user_id', rejectUnauthenticated, (req, res) => {
-  console.log('params:', req.params.id);
-  console.log('user:', req.user.id);
-  console.log('user_id:', req.params.art_item_user_id);
+  console.log('art item id:', req.params.id);
+  console.log('user id:', req.user.id);
+  console.log('user id that made the art item:', req.params.art_item_user_id);
 
   if (Number(req.params.art_item_user_id) === req.user.id || req.user.type === 'admin') {
+    console.log('after art item id:', req.params.id);
+    console.log('after user id:', req.user.id);
+    console.log('after user id that made the art item:', req.params.art_item_user_id);
     const queryText = 'DELETE FROM art_item WHERE id=$1';
     pool.query(queryText, [req.params.id])
       .then(() => { res.sendStatus(200); })
@@ -85,8 +88,8 @@ router.delete('/:id/:art_item_user_id', rejectUnauthenticated, (req, res) => {
 });
 
 // DELETE individual picture from the artist page
-router.delete('/image/:id', rejectUnauthenticated, (req, res) => {
-  if (req.params.id === req.user.id || req.user.type === 'admin') {
+router.delete('/image/:id/:art_item_user_id', rejectUnauthenticated, (req, res) => {
+  if (Number(req.params.art_item_user_id) === req.user.id || req.user.type === 'admin') {
     const queryText = 'DELETE FROM images WHERE id=$1';
     pool.query(queryText, [req.params.id])
       .then(() => { res.sendStatus(200); })
@@ -101,8 +104,8 @@ router.delete('/image/:id', rejectUnauthenticated, (req, res) => {
 
 
 // PUT art_item from the artist profile so the artist can edit their posts
-router.put('/:id', rejectUnauthenticated, (req, res) => {
-  if (req.params.id === req.user.id || req.user.type === 'admin') {
+router.put('/:id/:art_item_user_id', rejectUnauthenticated, (req, res) => {
+  if (Number(req.params.art_item_user_id) === req.user.id || req.user.type === 'admin') {
     const updatedArt_Item = req.body;
     console.log('this is the req.params!', req.params);
 
