@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
 
 // create a put for updating artist info
 // PUT art_item from the artist profile so the artist can edit their posts
-router.put('/:id', rejectUnauthenticated, (req, res) => {
+router.put('/:id', rejectUnauthenticated, (req, res, next) => {
     console.log('params id:', req.params.id);
     console.log('user id:', req.user.id)
     if (Number(req.params.id) === req.user.id || req.user.type === 'admin') {
@@ -44,7 +44,7 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
             updateUserInfo.description,
             updateUserInfo.email_address,
             updateUserInfo.username,
-            updateUserInfo.encryptLib.encryptPassword(req.body.password),
+            password,
             updateUserInfo.phone_number,
             updateUserInfo.profile_image,
             req.params.id
