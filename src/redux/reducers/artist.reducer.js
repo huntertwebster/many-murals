@@ -1,5 +1,3 @@
-import { combineReducers } from 'redux';
-
 //reducer to store the artist information 
 const artists = (state = [], action) => {
     switch (action.type) {
