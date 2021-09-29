@@ -17,7 +17,7 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
 });
 
 // DELETE individual picture from the artist page
-router.delete('/adminImage/:id', rejectUnauthenticated, (req, res) => {
+router.delete('/single/:id', rejectUnauthenticated, (req, res) => {
     const queryText = 'DELETE FROM images WHERE id=$1';
     pool.query(queryText, [req.params.id])
         .then(() => { res.sendStatus(200); })
