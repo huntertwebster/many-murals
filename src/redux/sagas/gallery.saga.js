@@ -32,10 +32,11 @@ function* updatePost(action) {
 
 // deletes an entire post from the the gallery made from the artist profile
 function* deletePost(action) {
+    console.log("----Inside the DELETE_POST SAGA----", action);
     try {
 
         // passes all items from the server to the payload 
-        yield axios.delete(`/api/gallery/${action.payload}`);
+        yield axios.delete(`/api/gallery/${action.payload.id}/${action.payload.user_id}`);
 
         // automatically log items in after shelf
         yield put({ type: 'FETCH_GALLERY' });

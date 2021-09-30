@@ -20,9 +20,13 @@ function PostsByArtist() {
   
   
   function deleteHandler(post) {
+    console.log('THis is my post:' , post)
         dispatch({
             type: 'DELETE_POST',
-            payload: post.id
+          payload: {
+            id: post.id,
+            user_id: post.user_id
+            }
         })
   }
   
