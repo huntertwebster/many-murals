@@ -46,24 +46,23 @@ function PostsByArtist() {
                         
                       {profile.map(post => {
                         return (
-                            <>
-                        <div className="galleryItem" key={post.id}>
-                            <img src={post.images[0].url} alt={post.title}
-                                // onClick={() => history.push(`/details/${item.id}`)}
-                            />
-                            <h4>{post.title} by {post.profile_name}</h4>
-                            <p>{post.description}</p>
-                            <p>Created on: {post.date}</p>
-                            <p>Latitude: {post.latitude}</p>
-                            <p>Longitude: {post.longitude}</p>
+                          <>
+                            <div className="galleryItem" key={post.id}>
+                              <img src={post.images[0].url} alt={post.title}
+                              // onClick={() => history.push(`/details/${item.id}`)}
+                              />
+                              <h4>{post.title} by {post.profile_name}</h4>
+                              <p>{post.description}</p>
+                              <p>Created on: {post.date}</p>
+                              <p>Latitude: {post.latitude}</p>
+                              <p>Longitude: {post.longitude}</p>
                             </div>
                             <button onClick={() => deleteHandler(post)}>Delete</button>
                             <button onClick={() => navToEditPage()}>Edit</button>
-                            </>
-                          )
-                        
-             })}
-             </>
+                          </>
+                        );
+                      })}
+                    </>
             </section>
         </main>
     </div>

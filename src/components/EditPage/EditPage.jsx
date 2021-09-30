@@ -9,20 +9,32 @@ function EditPost() {
     const dispatch = useDispatch();
     const history = useHistory();
     const [inputPost, setInputPost] = useState({ title: '', latitude: '', longitude: '', description: '', date: '', type: 'mural', url: '', featured_image: false });
-    
+
 
   function editHandler(post) {
-    console.log('This is my post:' , post)
+    console.log('This is my post:' , post )
         dispatch({
             type: 'UPDATE_POST',
           payload: {
-            id: post.id,
-            user_id: post.user_id
+              title: inputPost.title,
+              latitude : inputPost.latitude,
+              longitude: inputPost.longitude,
+              description : inputPost.description,
+              date: inputPost.date,
+              type : inputPost.type,
+            //   url : url,
+            //   featured_image : featured_image
             }
         })
     // history.push('/profile');
   }
-
+    
+ useEffect(() => {
+      dispatch({ type: 'FETCH_PROFILE' });
+      dispatch({ type: 'FETCH_GALLERY' });
+ }, []);
+    
+    
     return (
         <div>
             <p>Edit your post!</p>
@@ -46,11 +58,11 @@ function EditPost() {
                 <input onChange={(event) => setInputPost({ ...inputPost, type: event.target.value })}
                     type='text' placeholder='What type of art?' value={inputPost.type} />
 
-                <input onChange={(event) => setInputPost({ ...inputPost, url: event.target.value })}
+                {/* <input onChange={(event) => setInputPost({ ...inputPost, url: event.target.value })}
                     type='text' placeholder='Url!' value={inputPost.url} />
                             
                 <input onChange={(event) => setInputPost({ ...inputPost, featured_image: event.target.value })}
-                    type='text' placeholder='Give a description!' value={inputPost.featured_image} />
+                    type='text' placeholder='Give a description!' value={inputPost.featured_image} /> */}
                                 
                 {/* button to submit post */}
                 <button onClick={editHandler} type="submit" value="Submit">Edit</button>
