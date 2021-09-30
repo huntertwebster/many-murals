@@ -18,13 +18,16 @@ function ProfilePage() {
     <div className="container">
           
           <main>
-            
+            <p>Hello {profile.user_name} welcome to your profile!</p>
             <section className="profile">
                 {profile.map(artist => {
                     return (
+                        <>
+                        <p>Below are your current posts!</p>
+                        
                         <div className="galleryItem" key={artist.id}>
-                            <p>Hello {artist.user_name} welcome to your profile!</p>
-                            Below are your current posts!
+                           
+                            
                             <img src={artist.images[0].url} alt={artist.title}
                                 // onClick={() => history.push(`/details/${item.id}`)}
                             />
@@ -33,7 +36,9 @@ function ProfilePage() {
                             <p>Created on: {artist.date}</p>
                             <p>Lat: {artist.latitude}</p>
                             <p>Long: {artist.longitude}</p>
-                        </div>
+                            </div>
+                            
+                        </>
                     );
                 })}
             </section>
