@@ -46,7 +46,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
       // Now handle the images reference
       const imagesQuery = `
         INSERT INTO "images" ("art_item_id", "url", "featured_image")
-        VALUES($1, $2, $3);
+        VALUES($1, $2, false);
         `
       // SECOND QUERY ADDS GENRE FOR THAT NEW IMAGE
       pool.query(imagesQuery, [createdArtItemId, req.body.url, req.body.featured_image]).then(result => {
@@ -104,12 +104,20 @@ router.delete('/image/:id/:art_item_user_id', rejectUnauthenticated, (req, res) 
 
 
 // PUT art_item from the artist profile so the artist can edit their posts
-router.put('/:id/', rejectUnauthenticated, (req, res) => {
+router.put('/:id', rejectUnauthenticated, (req, res) => {
+  const query = `SELECT * FROM art_item WHERE art_item.id = $1;`
+  let container = [];
+  let userId = req.params.id;
+  pool.query(query, [userId])
+    .then(result => {
+      container = result.rows[0];
+    })
+
   // if (req.user.type === 'admin') {
   const updatedArt_Item = req.body;
   console.log('this is the req.params!', req.params);
   //only let someone let the owner update their art
-  const queryText = `UPDATE art_item
+  const art_Item_query = `UPDATE art_item
     SET "title" = $1, 
     "latitude" = $2, 
     "longitude" = $3, 
@@ -128,8 +136,12 @@ router.put('/:id/', rejectUnauthenticated, (req, res) => {
     req.params.id
   ];
 
-  pool.query(queryText, queryValues)
-    .then(() => { res.sendStatus(200); })
+  pool.query(art_Item_query, queryValues)
+    .then(() => {
+
+      const imagesQuery = `UPDATE "images" ("url", "featured_image")
+        VALUES($1, $2);`
+    })
     .catch((err) => {
       console.log('Error editing an art_item!', err);
       res.sendStatus(500);

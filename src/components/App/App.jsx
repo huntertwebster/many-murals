@@ -24,6 +24,7 @@ import GalleryPage from '../GalleryPage/GalleryPage';
 import ArtistsPage from '../ArtistsPage/ArtistsPage';
 import ProfilePage from '../ProfilePage/ProfilePage';
 import EditPost from '../EditPage/EditPage';
+import AdminView from '../AdminView/AdminView';
 
 
 function App() {
@@ -97,6 +98,13 @@ function App() {
             <EditPost/>
           </ProtectedRoute>
 
+          <ProtectedRoute
+            // logged in shows Edit else shows Edit
+            exact
+            path="/adminView"
+          >
+            <AdminView/>
+          </ProtectedRoute>
           <Route
             exact
             path="/login"

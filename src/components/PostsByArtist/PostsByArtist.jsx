@@ -50,7 +50,7 @@ function PostsByArtist() {
                               <img src={post.images[0].url} alt={post.title}
                               // onClick={() => history.push(`/details/${item.id}`)}
                               />
-                              <h4>{post.title} by {post.profile_name}</h4>
+                              <h4>{post.title} {post.profile_name}</h4>
                               <p>{post.description}</p>
                               <p>Created on: {post.date}</p>
                               <p>Latitude: {post.latitude}</p>
