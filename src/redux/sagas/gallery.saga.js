@@ -16,12 +16,12 @@ function* fetchGallery() {
 };
 
 //updating an entire post from the artists profile
-function* updatePost(action) {
+function* editPost(action) {
     console.log("----Inside the UPDATE_POST SAGA----", action);
     try {
         // NEEDS A BODY ??
         // passes all items from the server to the payload 
-        yield axios.put(`/api/gallery/${action.payload.id}/${action.payload.user_id}`);
+        yield axios.put(`/api/gallery/${action.payload.id}`, action.payload);
 
         // automatically log items in after shelf
         yield put({ type: 'FETCH_GALLERY' });
@@ -70,7 +70,6 @@ function* deletePicture(action) {
 function* addPost(action) {
     console.log("----Inside the ADD_POST SAGA----", action);
     try {
-        // NEEDS A BODY ??
         yield axios.post('/api/gallery', action.payload);
         yield put({ type: 'FETCH_GALLERY' });
         yield put({ type: 'FETCH_PROFILE' });
@@ -82,7 +81,7 @@ function* addPost(action) {
 //watcher saga for gallery
 function* gallerySaga() {
     yield takeLatest('FETCH_GALLERY', fetchGallery);
-    yield takeLatest('EDIT_POST', updatePost);
+    yield takeLatest('EDIT_POST', editPost);
     yield takeLatest('DELETE_POST', deletePost);
     yield takeLatest('DELETE_PICTURE', deletePicture);
     yield takeLatest('ADD_POST', addPost);

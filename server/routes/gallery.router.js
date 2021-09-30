@@ -104,12 +104,12 @@ router.delete('/image/:id/:art_item_user_id', rejectUnauthenticated, (req, res) 
 
 
 // PUT art_item from the artist profile so the artist can edit their posts
-router.put('/:id/:art_item_user_id', rejectUnauthenticated, (req, res) => {
-  if (Number(req.params.art_item_user_id) === req.user.id || req.user.type === 'admin') {
-    const updatedArt_Item = req.body;
-    console.log('this is the req.params!', req.params);
-
-    const queryText = `UPDATE art_item
+router.put('/:id/', rejectUnauthenticated, (req, res) => {
+  // if (req.user.type === 'admin') {
+  const updatedArt_Item = req.body;
+  console.log('this is the req.params!', req.params);
+  //only let someone let the owner update their art
+  const queryText = `UPDATE art_item
     SET "title" = $1, 
     "latitude" = $2, 
     "longitude" = $3, 
@@ -118,25 +118,25 @@ router.put('/:id/:art_item_user_id', rejectUnauthenticated, (req, res) => {
     "type" = $6 
     WHERE id=$7;`;
 
-    const queryValues = [
-      updatedArt_Item.title,
-      updatedArt_Item.latitude,
-      updatedArt_Item.longitude,
-      updatedArt_Item.description,
-      updatedArt_Item.date,
-      updatedArt_Item.type,
-      req.params.id
-    ];
+  const queryValues = [
+    updatedArt_Item.title,
+    updatedArt_Item.latitude,
+    updatedArt_Item.longitude,
+    updatedArt_Item.description,
+    updatedArt_Item.date,
+    updatedArt_Item.type,
+    req.params.id
+  ];
 
-    pool.query(queryText, queryValues)
-      .then(() => { res.sendStatus(200); })
-      .catch((err) => {
-        console.log('Error editing an art_item!', err);
-        res.sendStatus(500);
-      });
-  } else {
-    res.sendStatus('ERROR: you are not authorized to update this post!')
-  }
+  pool.query(queryText, queryValues)
+    .then(() => { res.sendStatus(200); })
+    .catch((err) => {
+      console.log('Error editing an art_item!', err);
+      res.sendStatus(500);
+    });
+  // } else {
+  //   res.sendStatus('ERROR: you are not authorized to update this post!')
+  // }
 });
 
 

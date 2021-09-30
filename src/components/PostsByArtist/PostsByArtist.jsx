@@ -6,7 +6,6 @@ import { useState } from "react";
 // import CSS for the profile here
 import { useHistory } from 'react-router';
 
-// this page contains a post, delete, and update for the artist. all actions effect both the artist profile and the gallery
 
 function PostsByArtist() {
   const history = useHistory();
