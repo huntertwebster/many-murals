@@ -15,13 +15,14 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
+import InfoPage from '../ProfilePage/ProfilePage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import './App.css';
 import GalleryPage from '../GalleryPage/GalleryPage';
 import ArtistsPage from '../ArtistsPage/ArtistsPage';
+import ProfilePage from '../ProfilePage/ProfilePage';
 
 function App() {
   const dispatch = useDispatch();
@@ -79,11 +80,11 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
+            // logged in shows Profile else shows LoginPage
             exact
-            path="/info"
+            path="/profile"
           >
-            <InfoPage />
+            <ProfilePage />
           </ProtectedRoute>
 
           <Route

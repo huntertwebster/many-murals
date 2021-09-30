@@ -9,6 +9,7 @@ function AboutPage() {
   return (
     <div className="container">
       <div>
+        <h1>Hello and welcome to <em>Many Murals</em></h1>
         <p>There are so many murals in Fargo, and not a great method of finding them. My project Many Murals is meant to make the method of finding the location of the murals, finding the artists that do them, and contacting the artists an easy process. Many Murals is my 2 week solo project for Emerging Digital Academy demonstrating a build of a CRUD app using react.js and other technologies. </p>
       </div>
     </div>

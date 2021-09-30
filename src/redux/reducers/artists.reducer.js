@@ -8,7 +8,4 @@ const artists = (state = [], action) => {
     }
 };
 
-
-
-
 export default artists;

@@ -5,7 +5,7 @@ const {
     rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
 
-// GET grants access to the user depending on their access
+// GETs data for an individual artist 
 router.get('/', rejectUnauthenticated, (req, res) => {
     const access = `SELECT art_item.id, art_item.user_name, art_item.title, art_item.latitude,
 art_item.longitude, art_item.description, art_item.date, jsonb_agg(images) as images FROM public.user
