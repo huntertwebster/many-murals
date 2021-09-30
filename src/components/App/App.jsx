@@ -24,6 +24,7 @@ import GalleryPage from '../GalleryPage/GalleryPage';
 import ArtistsPage from '../ArtistsPage/ArtistsPage';
 import ProfilePage from '../ProfilePage/ProfilePage';
 
+
 function App() {
   const dispatch = useDispatch();
 
@@ -80,7 +81,7 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows Profile else shows LoginPage
+            // logged in shows Profile else shows Profile
             exact
             path="/profile"
           >

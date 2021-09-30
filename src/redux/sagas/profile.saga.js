@@ -5,12 +5,12 @@ import axios from 'axios';
 function* fetchProfile() {
     // get gallery from the DB
     try {
-        const gallery = yield axios.get('/api/clearance');
-        console.log('THE PROFILE DATA :', gallery.data);
-        yield put({ type: 'SET_PROFILE', payload: gallery.data });
+        const profile = yield axios.get('/api/clearance');
+        console.log('THE PROFILE DATA :', profile.data);
+        yield put({ type: 'SET_PROFILE', payload: profile.data });
 
     } catch {
-        console.log('get GALLERY error');
+        console.log('get PROFILE error');
     }
 
 };
