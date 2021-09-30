@@ -1,10 +1,15 @@
 import React from 'react';
 import { useState } from "react";
 import { useDispatch } from 'react-redux';
+import { useEffect} from 'react';
 function Form() {
     const dispatch = useDispatch();
     const [inputPost, setInputPost] = useState({ title: '', latitude: '', longitude: '', description: '', date: '', type: 'mural', url: '', featured_image: false });
 
+  useEffect(() => {
+      dispatch({ type: 'FETCH_PROFILE' });
+      dispatch({ type: 'FETCH_GALLERY' });
+    }, []);
 
     const handleSubmit = (event) => {
         console.log("Title input is:", inputPost.title);
@@ -45,10 +50,10 @@ function Form() {
             type='text' placeholder='Date!' value={inputPost.date} />
                                 
         <input onChange={(event) => setInputPost({ ...inputPost, type: event.target.value })}
-            type='text' placeholder='What type of art?!' value={inputPost.type} />
+            type='text' placeholder='What type of art?' value={inputPost.type} />
 
         <input onChange={(event) => setInputPost({ ...inputPost, url: event.target.value })}
-            type='text' placeholder='Give a description!' value={inputPost.url} />
+            type='text' placeholder='Url!' value={inputPost.url} />
                             
         <input onChange={(event) => setInputPost({ ...inputPost, featured_image: event.target.value })}
             type='text' placeholder='Give a description!' value={inputPost.featured_image} />

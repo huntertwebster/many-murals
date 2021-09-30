@@ -39,6 +39,7 @@ function* deletePost(action) {
 
         // automatically log items in after shelf
         yield put({ type: 'FETCH_GALLERY' });
+        yield put({ type: 'FETCH_PROFILE' });
 
     } catch (error) {
         console.log('deletePost: Error with delete item of gallery:', error);
@@ -54,6 +55,7 @@ function* deletePicture(action) {
 
         // automatically log items in after shelf
         yield put({ type: 'FETCH_GALLERY' });
+        yield put({ type: 'FETCH_PROFILE' });
 
     } catch (error) {
         console.log('deletePicture: Error with delete picture of gallery:', error);
@@ -68,6 +70,7 @@ function* addPost(action) {
         // NEEDS A BODY ??
         yield axios.post('/api/gallery', action.payload);
         yield put({ type: 'FETCH_GALLERY' });
+        yield put({ type: 'FETCH_PROFILE' });
     } catch (err) {
         console.log("addPost: Error FETCHING GALLERY for POST", err);
     }
