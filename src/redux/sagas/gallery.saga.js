@@ -17,16 +17,18 @@ function* fetchGallery() {
 
 //updating an entire post from the artists profile
 function* updatePost(action) {
+    console.log("----Inside the UPDATE_POST SAGA----", action);
     try {
         // NEEDS A BODY ??
         // passes all items from the server to the payload 
-        yield axios.put(`/api/gallery/${action.payload}`);
+        yield axios.put(`/api/gallery/${action.payload.id}/${action.payload.user_id}`);
 
         // automatically log items in after shelf
         yield put({ type: 'FETCH_GALLERY' });
+        yield put({ type: 'FETCH_PROFILE' });
 
     } catch (error) {
-        console.log('updatePost: Error with delete item of gallery:', error);
+        console.log('updatePost: Error with update item of gallery:', error);
     }
 }
 

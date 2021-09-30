@@ -4,15 +4,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState } from "react";
 // import { NavLink } from 'react-router-dom';
 // import CSS for the profile here
-// import { useHistory } from 'react-router';
+import { useHistory } from 'react-router';
 
 // this page contains a post, delete, and update for the artist. all actions effect both the artist profile and the gallery
 
 function PostsByArtist() {
-    
-    const dispatch = useDispatch();
-    const profile = useSelector(store => store.profile);
-    console.log('This is the data for one user:', profile)
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const profile = useSelector(store => store.profile);
+  console.log('This is the data for one user:', profile)
     
     useEffect(() => {
         dispatch({ type: 'FETCH_PROFILE' });
@@ -20,7 +20,7 @@ function PostsByArtist() {
   
   
   function deleteHandler(post) {
-    console.log('THis is my post:' , post)
+    console.log('This is my post:' , post)
         dispatch({
             type: 'DELETE_POST',
           payload: {
@@ -28,6 +28,12 @@ function PostsByArtist() {
             user_id: post.user_id
             }
         })
+  }
+
+
+
+  function navToEditPage() {
+    history.push('/edit');
   }
   
   return (
@@ -52,6 +58,7 @@ function PostsByArtist() {
                             <p>Longitude: {post.longitude}</p>
                             </div>
                             <button onClick={() => deleteHandler(post)}>Delete</button>
+                            <button onClick={() => navToEditPage()}>Edit</button>
                             </>
                           )
                         

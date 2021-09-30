@@ -23,6 +23,7 @@ import './App.css';
 import GalleryPage from '../GalleryPage/GalleryPage';
 import ArtistsPage from '../ArtistsPage/ArtistsPage';
 import ProfilePage from '../ProfilePage/ProfilePage';
+import EditPost from '../EditPage/EditPage';
 
 
 function App() {
@@ -86,6 +87,14 @@ function App() {
             path="/profile"
           >
             <ProfilePage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows Edit else shows Edit
+            exact
+            path="/edit"
+          >
+            <EditPost/>
           </ProtectedRoute>
 
           <Route
