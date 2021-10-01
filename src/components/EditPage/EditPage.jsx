@@ -8,27 +8,27 @@ import { useSelector } from 'react-redux';
 
 function EditPost() {
     const dispatch = useDispatch();
-    // const history = useHistory();
-   
+    const history = useHistory();
     const gallery = useSelector(store => store.gallery);
-    const [editPost, setEditPost] = useState({ title: 'dog', latitude: '46.915024', longitude: '-96.819524', description: 'big cow big fish', date: '2012-12-12', type: 'mural', url: 'https://www.sonomamag.com/wp-content/uploads/2020/03/maxfield-bala-sonoma-2-scaled.jpg', featured_image: false });
-    
+    const profile = useSelector(store => store.profile);
     let params = useParams();
     console.log('these be the params:', params)
-
+    
     // using paramaters 
     let editId = params.editId; 
     console.log(editId);
-   let item = gallery.find(item => item.id === Number(editId));
+    let item = gallery.find(item => item.id === Number(editId));
+
     console.log(`found item: `, item);
     const imageId = item?.images[0].id;
     console.log('this is the image ID:', imageId);
-     console.log('this is the art_item_id:', item?.id);
-//    Bail out early with a message if the book isnt found
+    console.log('this is the art_item_id:', item?.id);
+    //    Bail out early with a message if the book isnt found
     // if (!item) {
-    //     return <h2>Invalid Art Item ID</h2>;
-    // }
-
+        //     return <h2>Invalid Art Item ID</h2>;
+        // }
+        
+    const [editPost, setEditPost] = useState({ title: item.title, latitude: item.latitude, longitude: item.longitude, description: item.description, date: item.date, type: item.type, url: item.url, featured_image: item.featured_image });
     //create a map to look over all the images when there are multiple images to be able to update multiple 
     
     function editHandler() {
@@ -48,7 +48,7 @@ function EditPost() {
               image_id: imageId
             }
         })
-    // history.push('/profile');
+    history.push('/profile');
   }
     
  useEffect(() => {
