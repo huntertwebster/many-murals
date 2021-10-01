@@ -16,6 +16,7 @@ function* fetchArtists() {
 };
 
 
+
 //updating artist profile data
 function* updateProfile(action) {
     try {
@@ -31,11 +32,26 @@ function* updateProfile(action) {
     }
 }
 
+// deletes an artist
+function* deleteArtist(action) {
+    console.log("----Inside the DELETE_ARTIST SAGA----", action);
+    try {
+
+        // passes all items from the server to the payload 
+        yield axios.delete(`/api/deleteArtist/${action.payload}`);
+        yield put({ type: 'FETCH_ARTISTS' });
+
+    } catch (error) {
+        console.log('deleteArtist: Error with deleting artist:', error);
+    }
+}
+
 
 // watcher saga for my artist saga
 function* artistSaga() {
     yield takeLatest('FETCH_ARTISTS', fetchArtists);
     yield takeLatest('EDIT_PROFILE', updateProfile);
+    yield takeLatest('DELETE_ARTIST', deleteArtist);
 }
 
 

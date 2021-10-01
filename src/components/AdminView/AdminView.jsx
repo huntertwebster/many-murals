@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 // import CSS for the profile here
 // import { useHistory } from 'react-router';
 
+// let result = result1.filter(o1 => result2.some(o2 => o1.id === o2.id));
 
 
 function AdminView() {
@@ -15,13 +16,23 @@ const history = useHistory();
 const dispatch = useDispatch();
 const artists = useSelector(store => store.artists);
 const gallery = useSelector(store => store.gallery);
-    const result = gallery.filter(item => item.length(gallery.id))
+    const result = gallery.filter(o1 => artists.some(o2 => o1.id === o2.id))
     console.log('This is the number of items in the gallery:', Number(result));
+
+
     useEffect(() => {
         dispatch({ type: 'FETCH_ARTISTS' });
-        dispatch({ type: 'FETCH_GALLERY' });
     }, []);
     
+ function deleteArtist(id) {
+    console.log('This is the artist:' , id)
+        dispatch({
+            type: 'DELETE_ARTIST',
+          payload: artists[1].id
+        })
+  }
+
+
 return (
       <main>    
           <section className="artists">
@@ -33,7 +44,9 @@ return (
                         <div className="artistItem" key={artist.id}>
                             <ul>
                                 <li>{artist.name}: {result}</li>
-                                    {/* display the number of items each artist has */}
+                                {/* display the number of items each artist has */}
+
+                                <button onClick={() => deleteArtist(artist)}>Delete</button>
                             </ul>
                             
                         </div>
@@ -45,35 +58,3 @@ return (
 }
 
 export default AdminView;
-
-
-// const history = useHistory();
-//     const dispatch = useDispatch();
-//     const artists = useSelector(store => store.artists);
-//     // used for when clicked on a poster, movie data is recieved 
-//     // sends us to /details too
-//     console.log(artists);
-//     // when page loads, get all the movies
-//     useEffect(() => {
-//         dispatch({ type: 'FETCH_ARTISTS' });
-//     }, []);
-
-//     return (
-//         <main>    
-//             <section className="artists">
-//                 {artists.map(artist => {
-//                     return (
-//                         <div className="artistItem" key={artist.id}>
-//                             <h1>Meet {artist.name}!</h1>
-//                             <p>{artist.description}</p>
-//                             <img src={artist.profile_image} alt={artist.name}
-//                                 // onClick={() => history.push(`/details/${item.id}`)}
-//                             />
-//                         </div>
-//                     );
-//                 })}
-//             </section>
-//         </main>
-
-//     );
-// }

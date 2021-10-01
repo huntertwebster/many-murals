@@ -46,7 +46,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
       // Now handle the images reference
       const imagesQuery = `
         INSERT INTO "images" ("art_item_id", "url", "featured_image")
-        VALUES($1, $2, false);
+        VALUES($1, $2, $3);
         `
       // SECOND QUERY ADDS GENRE FOR THAT NEW IMAGE
       pool.query(imagesQuery, [createdArtItemId, req.body.url, req.body.featured_image]).then(result => {
@@ -115,7 +115,7 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
 
   // if (req.user.type === 'admin') {
   const updatedArt_Item = req.body;
-  console.log('this is the req.params!', req.params);
+  console.log('PUT ROUTER: this is the req.params!', req.params);
   //only let someone let the owner update their art
   const art_Item_query = `UPDATE art_item
     SET "title" = $1, 

@@ -9,7 +9,7 @@ const encryptLib = require('../modules/encryption');
 //GETS all data for the artist display
 router.get('/', (req, res) => {
     const query =
-        `SELECT public.user.description, public.user.name, public.user.profile_image FROM public.user;`;
+        `SELECT public.user.id, public.user.description, public.user.name, public.user.profile_image FROM public.user;`;
     pool.query(query)
         .then(result => {
             res.send(result.rows);
@@ -64,19 +64,14 @@ router.put('/:id', rejectUnauthenticated, (req, res, next) => {
 
 
 // DELETE artist profile (admin)
-router.delete('/deleteArtist/:id', rejectUnauthenticated, (req, res) => {
-    if (req.params.id === req.user.id || user.type === 'admin') {
-        const queryText = 'DELETE FROM user WHERE id=$1';
-        pool.query(queryText, [req.params.id])
-            .then(() => { res.sendStatus(200); })
-            .catch((err) => {
-                console.log('Error deleting artist from user', err);
-                res.sendStatus(500);
-            });
-    }
-    else {
-        res.sendStatus('ERROR: you are not authorized to delete this user!')
-    }
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
+    const queryText = 'DELETE FROM "user" WHERE id=$1;';
+    pool.query(queryText, [req.params.id])
+        .then(() => { res.sendStatus(200); })
+        .catch((err) => {
+            console.log('Error deleting artist from user', err);
+            res.sendStatus(500);
+        });
 });
 
 

@@ -3,19 +3,32 @@ import { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router';
-
+import { useParams } from 'react-router';
+import { useSelector } from 'react-redux';
 
 function EditPost() {
     const dispatch = useDispatch();
     const history = useHistory();
+    const params = useParams();
+    const gallery = useSelector(store => store.gallery);
     const [editPost, setEditPost] = useState({ title: 'dog', latitude: '46.915024', longitude: '-96.819524', description: 'big cow big fish', date: '2012-12-12', type: 'mural', url: 'https://www.sonomamag.com/wp-content/uploads/2020/03/maxfield-bala-sonoma-2-scaled.jpg', featured_image: false });
+        
+        
+    let { editId } = params; // :bookId is set up in App.js
+    console.log(editId);
+   let item = gallery.find(item => item.id === Number(editId));
+   console.log(`found item: `, item);
 
+   // Bail out early with a message if the book isnt found
+    // if (!item) {
+    //     return <h2>Invalid Movie ID</h2>;
+    // }
 
   function editHandler(event) {
         dispatch({
             type: 'EDIT_POST',
             payload: {
-                id: 13,
+                id: item,
                 //!!!!useparams on the id so it is the one of the picture that i click on!!!!
               title: editPost.title,
               latitude : editPost.latitude,
@@ -27,7 +40,7 @@ function EditPost() {
               featured_image : editPost.featured_image
             }
         })
-    // history.push('/profile');
+    history.push('/profile');
   }
     
  useEffect(() => {
