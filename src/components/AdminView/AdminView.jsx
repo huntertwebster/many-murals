@@ -26,11 +26,11 @@ const gallery = useSelector(store => store.gallery);
     
  function deleteArtist(id) {
     console.log('This is the artist:' , id)
-        dispatch({
-            type: 'DELETE_ARTIST',
-          payload: artists[1].id
-        })
-  }
+     dispatch({
+         type: 'DELETE_ARTIST',
+         payload: id
+     });
+  };
 
 
 return (
@@ -46,7 +46,7 @@ return (
                                 <li>{artist.name}: {result}</li>
                                 {/* display the number of items each artist has */}
 
-                                <button onClick={() => deleteArtist(artist)}>Delete</button>
+                                <button onClick={() => deleteArtist(artist.id)}>Delete</button>
                             </ul>
                             
                         </div>

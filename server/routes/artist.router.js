@@ -65,11 +65,11 @@ router.put('/:id', rejectUnauthenticated, (req, res, next) => {
 
 // DELETE artist profile (admin)
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
-    const queryText = 'DELETE FROM "user" WHERE id=$1;';
+    const queryText = `DELETE FROM "user" WHERE "id" = $1;`;
     pool.query(queryText, [req.params.id])
         .then(() => { res.sendStatus(200); })
         .catch((err) => {
-            console.log('Error deleting artist from user', err);
+            console.log('DELETE ROUTER: Error deleting artist from user', err);
             res.sendStatus(500);
         });
 });

@@ -36,11 +36,10 @@ function* updateProfile(action) {
 function* deleteArtist(action) {
     console.log("----Inside the DELETE_ARTIST SAGA----", action);
     try {
-
         // passes all items from the server to the payload 
-        yield axios.delete(`/api/deleteArtist/${action.payload}`);
+        console.log('this is the delete artist payload:', action.payload)
+        yield axios.delete(`/api/artist/${action.payload}`);
         yield put({ type: 'FETCH_ARTISTS' });
-
     } catch (error) {
         console.log('deleteArtist: Error with deleting artist:', error);
     }
