@@ -115,6 +115,8 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
 
   // if (req.user.type === 'admin') {
   const updatedArt_Item = req.body;
+  const art_item_id = req.params.id;
+  console.log('PUT ROUTER: REQ.BODY: ', req.body)
   console.log('PUT ROUTER: this is the req.params!', req.params);
   //only let someone let the owner update their art
   const art_Item_query = `UPDATE art_item
@@ -133,7 +135,7 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
     updatedArt_Item.description,
     updatedArt_Item.date,
     updatedArt_Item.type,
-    req.params.id
+    art_item_id
   ];
 
   pool.query(art_Item_query, queryValues)
@@ -144,14 +146,15 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
       // const createdArtItemId = result.rows[0].id
 
       // Now handle the images reference
-      const imagesQuery = `INSERT INTO "images" ("id", "art_item_id", "url", "featured_image")
-       VALUES($1, $2, $3, $4);`;
+      const imagesQuery = `UPDATE "images"
+      SET "url" = $1,
+      "featured_image" = $2
+       WHERE "id" = $3;`;
 
       const imagesValues = [
-        req.params.id,
-        updatedArt_Item.art_item_id,
         updatedArt_Item.url,
-        updatedArt_Item.featured_image
+        updatedArt_Item.featured_image,
+        updatedArt_Item.image_id
       ]
 
       // SECOND QUERY UPDATES IMAGE FOR THAT ART_ITEM

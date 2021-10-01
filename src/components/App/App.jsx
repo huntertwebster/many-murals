@@ -25,7 +25,7 @@ import ArtistsPage from '../ArtistsPage/ArtistsPage';
 import ProfilePage from '../ProfilePage/ProfilePage';
 import EditPost from '../EditPage/EditPage';
 import AdminView from '../AdminView/AdminView';
-
+import Map from '../Map/Map';
 
 function App() {
   const dispatch = useDispatch();
@@ -61,13 +61,22 @@ function App() {
             <GalleryPage />
 
           </Route>
-               <Route
+          <Route
             // shows ArtistsPage at all times (logged in or not)
             exact
             path="/artists"
           >
             <ArtistsPage />
           </Route>
+          <Route
+            // shows ArtistsPage at all times (logged in or not)
+            exact
+            path="/map"
+          >
+            <Map />
+          </Route>
+
+          
 
           {/* Visible to a artist after login */}
           {/* For protected routes, the view could show one of several things on the same route.
@@ -93,7 +102,7 @@ function App() {
           <ProtectedRoute
             // logged in shows Edit else shows Edit
             exact
-            path="/edit/:postId"
+            path="/edit/:editId"
           >
             <EditPost/>
           </ProtectedRoute>

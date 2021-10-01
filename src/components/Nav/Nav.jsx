@@ -33,9 +33,12 @@ function Nav() {
         <Link className="navLink" to="/artists">
           Our Artists
         </Link>
-         <Link className="navLink" to="/login">
-            Login / Register
+          <Link className="navLink" to="/map">
+            Map
           </Link>
+         {/* <Link className="navLink" to="/login">
+            Login / Register
+          </Link> */}
         
         {/* If a user is logged in, show these links */}
         {user.id && (

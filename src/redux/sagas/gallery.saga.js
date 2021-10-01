@@ -23,7 +23,7 @@ function* editPost(action) {
         // passes all items from the server to the payload 
         yield axios.put(`/api/gallery/${action.payload.id}`, action.payload);
 
-        // automatically log items in after shelf
+        // automatically refresh gallery and profile
         yield put({ type: 'FETCH_GALLERY' });
         yield put({ type: 'FETCH_PROFILE' });
 

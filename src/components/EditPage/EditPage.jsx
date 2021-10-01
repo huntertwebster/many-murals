@@ -3,33 +3,38 @@ import { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router';
-import { useParams } from 'react-router';
+import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 function EditPost() {
     const dispatch = useDispatch();
-    const history = useHistory();
-    const params = useParams();
+    // const history = useHistory();
+   
     const gallery = useSelector(store => store.gallery);
     const [editPost, setEditPost] = useState({ title: 'dog', latitude: '46.915024', longitude: '-96.819524', description: 'big cow big fish', date: '2012-12-12', type: 'mural', url: 'https://www.sonomamag.com/wp-content/uploads/2020/03/maxfield-bala-sonoma-2-scaled.jpg', featured_image: false });
-        
+    
+    let params = useParams();
+    console.log('these be the params:', params)
 
     // using paramaters 
-    let { editId } = params; // :bookId is set up in App.js
+    let editId = params.editId; 
     console.log(editId);
    let item = gallery.find(item => item.id === Number(editId));
-   console.log(`found item: `, item);
+    console.log(`found item: `, item);
+    console.log('this is the image id:', JSON.stringify(item))
 
-   // Bail out early with a message if the book isnt found
+//    Bail out early with a message if the book isnt found
     // if (!item) {
-    //     return <h2>Invalid Movie ID</h2>;
+    //     return <h2>Invalid Art Item ID</h2>;
     // }
 
-  function editHandler(id) {
+    //create a map to look over all the images when there are multiple images to be able to update multiple 
+    
+    function editHandler() {
         dispatch({
             type: 'EDIT_POST',
             payload: {
-              id: item,
+            //   id: editPost.id,
                 //!!!!useparams on the id so it is the one of the picture that i click on!!!!
               title: editPost.title,
               latitude : editPost.latitude,
@@ -38,10 +43,11 @@ function EditPost() {
               date: editPost.date,
               type : editPost.type,
               url : editPost.url,
-              featured_image : editPost.featured_image
+              featured_image: editPost.featured_image,
+            //   image_id: req.params.id
             }
         })
-    history.push('/profile');
+    // history.push('/profile');
   }
     
  useEffect(() => {
@@ -77,7 +83,7 @@ function EditPost() {
                     type='text' placeholder='Url!' value={editPost.url} />
                             
                 <input onChange={(event) => setEditPost({ ...editPost, featured_image: event.target.value })}
-                    type='text' placeholder='Give a description!' value={editPost.featured_image} />
+                    type='text' placeholder='Featured image?' value={editPost.featured_image} />
                                 
                 <button type="submit" value="Submit">Edit</button>
             </form>
