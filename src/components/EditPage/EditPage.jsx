@@ -21,8 +21,9 @@ function EditPost() {
     console.log(editId);
    let item = gallery.find(item => item.id === Number(editId));
     console.log(`found item: `, item);
-    console.log('this is the image id:', JSON.stringify(item))
-
+    const imageId = item?.images[0].id;
+    console.log('this is the image ID:', imageId);
+     console.log('this is the art_item_id:', item?.id);
 //    Bail out early with a message if the book isnt found
     // if (!item) {
     //     return <h2>Invalid Art Item ID</h2>;
@@ -34,8 +35,8 @@ function EditPost() {
         dispatch({
             type: 'EDIT_POST',
             payload: {
-            //   id: editPost.id,
                 //!!!!useparams on the id so it is the one of the picture that i click on!!!!
+              id: item.id,
               title: editPost.title,
               latitude : editPost.latitude,
               longitude: editPost.longitude,
@@ -44,7 +45,7 @@ function EditPost() {
               type : editPost.type,
               url : editPost.url,
               featured_image: editPost.featured_image,
-            //   image_id: req.params.id
+              image_id: imageId
             }
         })
     // history.push('/profile');
