@@ -48,7 +48,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
         INSERT INTO "images" ("art_item_id", "url", "featured_image")
         VALUES($1, $2, $3);
         `
-      // SECOND QUERY ADDS GENRE FOR THAT NEW IMAGE
+      // SECOND QUERY ADDS ART_ITEM FOR THAT NEW IMAGE
       pool.query(imagesQuery, [createdArtItemId, req.body.url, req.body.featured_image]).then(result => {
         //Now that both are done, send back success!
         res.sendStatus(201);
@@ -105,13 +105,13 @@ router.delete('/image/:id/:art_item_user_id', rejectUnauthenticated, (req, res) 
 
 // PUT art_item from the artist profile so the artist can edit their posts
 router.put('/:id', rejectUnauthenticated, (req, res) => {
-  const query = `SELECT * FROM art_item WHERE art_item.id = $1;`
-  let container = [];
-  let userId = req.params.id;
-  pool.query(query, [userId])
-    .then(result => {
-      container = result.rows[0];
-    })
+  // const query = `SELECT * FROM art_item WHERE art_item.id = $1;`
+  // let container = [];
+  // let userId = req.params.id;
+  // pool.query(query, [userId])
+  //   .then(result => {
+  //     container = result.rows[0];
+  //   })
 
   // if (req.user.type === 'admin') {
   const updatedArt_Item = req.body;
@@ -139,8 +139,31 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
   pool.query(art_Item_query, queryValues)
     .then(() => {
 
-      const imagesQuery = `UPDATE "images" ("url", "featured_image")
-        VALUES($1, $2);`
+      // console.log('New art_item Id:', result.rows[0].id); //ID IS HERE!
+
+      // const createdArtItemId = result.rows[0].id
+
+      // Now handle the images reference
+      const imagesQuery = `INSERT INTO "images" ("id", "art_item_id", "url", "featured_image")
+       VALUES($1, $2, $3, $4);`;
+
+      const imagesValues = [
+        req.params.id,
+        updatedArt_Item.art_item_id,
+        updatedArt_Item.url,
+        updatedArt_Item.featured_image
+      ]
+
+      // SECOND QUERY UPDATES IMAGE FOR THAT ART_ITEM
+      pool.query(imagesQuery, imagesValues).then(result => {
+        //Now that both are done, send back success!
+        res.sendStatus(201);
+      }).catch(err => {
+        // catch for second query
+        console.log(err);
+        res.sendStatus(500)
+      })
+
     })
     .catch((err) => {
       console.log('Error editing an art_item!', err);

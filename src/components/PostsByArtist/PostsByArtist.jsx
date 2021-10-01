@@ -31,9 +31,9 @@ function PostsByArtist() {
 
 
 
-  function navToEditPage() {
-    history.push('/edit');
-  }
+  // function navToEditPage() {
+  //   history.push('/edit');
+  // }
   
   return (
     <div className="container">
@@ -57,7 +57,7 @@ function PostsByArtist() {
                               <p>Longitude: {post.longitude}</p>
                             </div>
                             <button onClick={() => deleteHandler(post)}>Delete</button>
-                            <button onClick={() => navToEditPage()}>Edit</button>
+                            <button onClick={() => history.push(`/edit/${post.id}`)}>Edit Post</button>
                           </>
                         );
                       })}

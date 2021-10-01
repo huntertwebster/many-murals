@@ -93,7 +93,7 @@ function App() {
           <ProtectedRoute
             // logged in shows Edit else shows Edit
             exact
-            path="/edit"
+            path="/edit/:postId"
           >
             <EditPost/>
           </ProtectedRoute>

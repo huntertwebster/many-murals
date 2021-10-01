@@ -13,7 +13,8 @@ function EditPost() {
     const gallery = useSelector(store => store.gallery);
     const [editPost, setEditPost] = useState({ title: 'dog', latitude: '46.915024', longitude: '-96.819524', description: 'big cow big fish', date: '2012-12-12', type: 'mural', url: 'https://www.sonomamag.com/wp-content/uploads/2020/03/maxfield-bala-sonoma-2-scaled.jpg', featured_image: false });
         
-        
+
+    // using paramaters 
     let { editId } = params; // :bookId is set up in App.js
     console.log(editId);
    let item = gallery.find(item => item.id === Number(editId));
@@ -24,11 +25,11 @@ function EditPost() {
     //     return <h2>Invalid Movie ID</h2>;
     // }
 
-  function editHandler(event) {
+  function editHandler(id) {
         dispatch({
             type: 'EDIT_POST',
             payload: {
-                id: item,
+              id: item,
                 //!!!!useparams on the id so it is the one of the picture that i click on!!!!
               title: editPost.title,
               latitude : editPost.latitude,
@@ -78,7 +79,6 @@ function EditPost() {
                 <input onChange={(event) => setEditPost({ ...editPost, featured_image: event.target.value })}
                     type='text' placeholder='Give a description!' value={editPost.featured_image} />
                                 
-                {/* button to submit post */}
                 <button type="submit" value="Submit">Edit</button>
             </form>
         </div>

@@ -20,16 +20,16 @@ router.get('/', (req, res) => {
         })
 });
 
-// create a put for updating artist info
+
 // PUT art_item from the artist profile so the artist can edit their posts
-router.put('/:id', rejectUnauthenticated, (req, res, next) => {
-    console.log('params id:', req.params.id);
+router.put('/:id', rejectUnauthenticated, (req, res) => {
+    console.log('THESE ARE MY PARAMS id:', req.params.id);
     console.log('user id:', req.user.id)
-    if (Number(req.params.id) === req.user.id || req.user.type === 'admin') {
-        const updateUserInfo = req.body;
-        const password = encryptLib.encryptPassword(req.body.password);
-        console.log('this is the req.params!', req.params);
-        const queryText = `UPDATE "user"
+    // if (Number(req.params.id) === req.user.id || req.user.type === 'admin') {
+    const updateUserInfo = req.body;
+    const password = encryptLib.encryptPassword(req.body.password);
+    console.log('this is the req.params!', req.params.id);
+    const queryText = `UPDATE "user"
     SET "name" = $1,
     "description" = $2,
     "email_address" = $3, 
@@ -39,26 +39,27 @@ router.put('/:id', rejectUnauthenticated, (req, res, next) => {
     "profile_image" = $7
     WHERE id=$8;`;
 
-        const queryValues = [
-            updateUserInfo.name,
-            updateUserInfo.description,
-            updateUserInfo.email_address,
-            updateUserInfo.username,
-            password,
-            updateUserInfo.phone_number,
-            updateUserInfo.profile_image,
-            req.params.id
-        ];
+    const queryValues = [
+        updateUserInfo.name,
+        updateUserInfo.description,
+        updateUserInfo.email_address,
+        updateUserInfo.username,
+        password,
+        updateUserInfo.phone_number,
+        updateUserInfo.profile_image,
+        req.params.id
+    ];
 
-        pool.query(queryText, queryValues)
-            .then(() => { res.sendStatus(200); })
-            .catch((err) => {
-                console.log('Error editing a user profile!', err);
-                res.sendStatus(500);
-            });
-    } else {
-        res.sendStatus('ERROR: you are not authorized to edit this user profile!')
-    }
+    pool.query(queryText, queryValues)
+        .then(() => {
+            res.sendStatus(200)
+        }).catch((err) => {
+            console.log('Error editing a user profile!', err);
+            res.sendStatus(500);
+        });
+    // } else {
+    //     res.sendStatus('ERROR: you are not authorized to edit this user profile!')
+    // }
 });
 
 
