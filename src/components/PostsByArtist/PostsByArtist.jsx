@@ -29,8 +29,6 @@ function PostsByArtist() {
         })
   }
 
-
-
   // function navToEditPage() {
   //   history.push('/edit');
   // }

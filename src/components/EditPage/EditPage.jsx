@@ -10,7 +10,8 @@ function EditPost() {
     const dispatch = useDispatch();
     const history = useHistory();
     const gallery = useSelector(store => store.gallery);
-    const profile = useSelector(store => store.profile);
+    // const profile = useSelector(store => store.profile);
+    // const artists = useSelector(store = store.artists);
     let params = useParams();
     console.log('these be the params:', params)
     
@@ -24,11 +25,14 @@ function EditPost() {
     console.log('this is the image ID:', imageId);
     console.log('this is the art_item_id:', item?.id);
     //    Bail out early with a message if the book isnt found
-    // if (!item) {
-        //     return <h2>Invalid Art Item ID</h2>;
-        // }
+    if (!item) {
+            return <h2>Invalid Art Item ID</h2>;
+        }
         
-    const [editPost, setEditPost] = useState({ title: item.title, latitude: item.latitude, longitude: item.longitude, description: item.description, date: item.date, type: item.type, url: item.url, featured_image: item.featured_image });
+    const [editPost, setEditPost] = useState({
+        title: item.title, latitude: item.latitude, longitude: item.longitude,
+        description: item.description, date: item.date
+    });
     //create a map to look over all the images when there are multiple images to be able to update multiple 
     
     function editHandler() {
@@ -42,9 +46,7 @@ function EditPost() {
               longitude: editPost.longitude,
               description : editPost.description,
               date: editPost.date,
-              type : editPost.type,
-              url : editPost.url,
-              featured_image: editPost.featured_image,
+          
               image_id: imageId
             }
         })
@@ -76,16 +78,6 @@ function EditPost() {
                             
                 <input onChange={(event) => setEditPost({ ...editPost, date: event.target.value })}
                     type='text' placeholder='Date!' value={editPost.date} />
-                                
-                <input onChange={(event) => setEditPost({ ...editPost, type: event.target.value })}
-                    type='text' placeholder='What type of art?' value={editPost.type} />
-
-                <input onChange={(event) => setEditPost({ ...editPost, url: event.target.value })}
-                    type='text' placeholder='Url!' value={editPost.url} />
-                            
-                <input onChange={(event) => setEditPost({ ...editPost, featured_image: event.target.value })}
-                    type='text' placeholder='Featured image?' value={editPost.featured_image} />
-                                
                 <button type="submit" value="Submit">Edit</button>
             </form>
         </div>

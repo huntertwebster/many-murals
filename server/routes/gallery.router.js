@@ -25,94 +25,84 @@ router.get('/', (req, res) => {
     })
 });
 
-// this is the POST within the artist profile to add an art piece to the gallery
+// POST for an individual picture
+router.post('/image', rejectUnauthenticated, (req, res) => {
+  const imageQuery = `INSERT INTO "images" ("art_item_id", "url", "featured_image")
+  VALUES($1, $2, $3); `
+  // QUERY MAKES IMAGE
+  pool.query(imageQuery, [req.body.art_item_id, req.body.url, req.body.featured_image])
+    .then(result => { res.sendStatus(201) })
+    .catch(err => {
+      console.log('Error uploading picture', err);
+      res.sendStatus(500)
+    });
+});
+
+// DELETE individual picture from the artist page
+router.delete('/image/:id', (req, res) => {
+  // if (Number(req.params.art_item_user_id) === req.user.id || req.user.type === 'admin') {
+  const queryText = 'DELETE FROM images WHERE id=$1';
+  pool.query(queryText, [req.params.id])
+    .then(() => { res.sendStatus(200); })
+    .catch((err) => {
+      console.log('Error deleting an image', err);
+      res.sendStatus(500);
+    });
+  // } else {
+  //   res.sendStatus('ERROR: you are not authorized to delete this picture!')
+  // }
+});
+
+
+// POST for art_piece
 router.post('/', rejectUnauthenticated, (req, res) => {
   console.log('This is the REQ.BODY!!:', req.body);
   // RETURNING "id" will give us back the id of the created art_item
   console.log('This is my user!', req.user);
   const artItemQuery = `INSERT INTO "art_item"
-  (user_id, user_name, title, latitude, longitude, description, date, type)
-  VALUES($1, $2, $3, $4, $5, $6, $7, $8)
+  (user_id, user_name, title, latitude, longitude, description, date)
+  VALUES($1, $2, $3, $4, $5, $6, $7)
   RETURNING "id";`
 
   // FIRST QUERY MAKES ART_ITEM
   pool.query(artItemQuery, [req.user.id, req.user.name, req.body.title, req.body.latitude, req.body.longitude,
-  req.body.description, req.body.date, req.body.type])
-    .then(result => {
-      console.log('New art_item Id:', result.rows[0].id); //ID IS HERE!
-
-      const createdArtItemId = result.rows[0].id
-
-      // Now handle the images reference
-      const imagesQuery = `
-        INSERT INTO "images" ("art_item_id", "url", "featured_image")
-        VALUES($1, $2, $3);
-        `
-      // SECOND QUERY ADDS ART_ITEM FOR THAT NEW IMAGE
-      pool.query(imagesQuery, [createdArtItemId, req.body.url, req.body.featured_image]).then(result => {
-        //Now that both are done, send back success!
-        res.sendStatus(201);
-      }).catch(err => {
-        // catch for second query
-        console.log(err);
-        res.sendStatus(500)
-      })
-
-      // catch for first query
-    }).catch(err => {
+  req.body.description, req.body.date])
+    .then(result => { res.sendStatus(201); })
+    // catch for first query
+    .catch(err => {
       console.log(err);
       res.sendStatus(500)
-    })
+    });
 });
+
 
 // DELETE ENTIRE POST from the gallery by the artist
-router.delete('/:id/:art_item_user_id', rejectUnauthenticated, (req, res) => {
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
   console.log('art item id:', req.params.id);
   console.log('user id:', req.user.id);
-  console.log('user id that made the art item:', req.params.art_item_user_id);
 
-  if (Number(req.params.art_item_user_id) === req.user.id || req.user.type === 'admin') {
-    console.log('after art item id:', req.params.id);
-    console.log('after user id:', req.user.id);
-    console.log('after user id that made the art item:', req.params.art_item_user_id);
-    const queryText = 'DELETE FROM art_item WHERE id=$1';
-    pool.query(queryText, [req.params.id])
-      .then(() => { res.sendStatus(200); })
-      .catch((err) => {
-        console.log('Error deleting from art_item', err);
-        res.sendStatus(500);
-      });
-  } else {
-    res.sendStatus('ERROR: you are not authorized to delete this post!')
-  }
+
+  // if (Number(req.params.id) === req.user.id || req.user.type === 'admin') {
+  console.log('after art item id:', req.params.id);
+  console.log('after user id:', req.user.id);
+  const queryText = 'DELETE FROM art_item WHERE id=$1';
+  pool.query(queryText, [req.params.id])
+    .then(() => { res.sendStatus(200); })
+    .catch((err) => {
+      console.log('Error deleting from art_item', err);
+      res.sendStatus(500);
+    });
+  // } else {
+  //   res.sendStatus('ERROR: you are not authorized to delete this post!')
+  // }
 });
 
-// DELETE individual picture from the artist page
-router.delete('/image/:id/:art_item_user_id', rejectUnauthenticated, (req, res) => {
-  if (Number(req.params.art_item_user_id) === req.user.id || req.user.type === 'admin') {
-    const queryText = 'DELETE FROM images WHERE id=$1';
-    pool.query(queryText, [req.params.id])
-      .then(() => { res.sendStatus(200); })
-      .catch((err) => {
-        console.log('Error deleting from images', err);
-        res.sendStatus(500);
-      });
-  } else {
-    res.sendStatus('ERROR: you are not authorized to delete this picture!')
-  }
-});
+
+
 
 
 // PUT art_item from the artist profile so the artist can edit their posts
 router.put('/:id', rejectUnauthenticated, (req, res) => {
-  // const query = `SELECT * FROM art_item WHERE art_item.id = $1;`
-  // let container = [];
-  // let userId = req.params.id;
-  // pool.query(query, [userId])
-  //   .then(result => {
-  //     container = result.rows[0];
-  //   })
-
   // if (req.user.type === 'admin') {
   const updatedArt_Item = req.body;
   const art_item_id = req.params.id;
@@ -124,9 +114,8 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
     "latitude" = $2, 
     "longitude" = $3, 
     "description" = $4, 
-    "date" = $5, 
-    "type" = $6 
-    WHERE id=$7;`;
+    "date" = $5
+    WHERE id=$6;`;
 
   const queryValues = [
     updatedArt_Item.title,
@@ -134,40 +123,10 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
     updatedArt_Item.longitude,
     updatedArt_Item.description,
     updatedArt_Item.date,
-    updatedArt_Item.type,
     art_item_id
   ];
 
   pool.query(art_Item_query, queryValues)
-    .then(() => {
-
-      // console.log('New art_item Id:', result.rows[0].id); //ID IS HERE!
-
-      // const createdArtItemId = result.rows[0].id
-
-      // Now handle the images reference
-      const imagesQuery = `UPDATE "images"
-      SET "url" = $1,
-      "featured_image" = $2
-       WHERE "id" = $3;`;
-
-      const imagesValues = [
-        updatedArt_Item.url,
-        updatedArt_Item.featured_image,
-        updatedArt_Item.image_id
-      ]
-
-      // SECOND QUERY UPDATES IMAGE FOR THAT ART_ITEM
-      pool.query(imagesQuery, imagesValues).then(result => {
-        //Now that both are done, send back success!
-        res.sendStatus(201);
-      }).catch(err => {
-        // catch for second query
-        console.log(err);
-        res.sendStatus(500)
-      })
-
-    })
     .catch((err) => {
       console.log('Error editing an art_item!', err);
       res.sendStatus(500);

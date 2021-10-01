@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useEffect} from 'react';
 function Form() {
     const dispatch = useDispatch();
-    const [inputPost, setInputPost] = useState({ title: '', latitude: '', longitude: '', description: '', date: '', type: 'mural', url: '', featured_image: false });
+    const [inputPost, setInputPost] = useState({ title: '', latitude: '', longitude: '', description: '', date: '', url: '', featured_image: false });
 
   useEffect(() => {
       dispatch({ type: 'FETCH_PROFILE' });
@@ -48,9 +48,6 @@ function Form() {
                             
         <input onChange={(event) => setInputPost({ ...inputPost, date: event.target.value })}
             type='text' placeholder='Date!' value={inputPost.date} />
-                                
-        <input onChange={(event) => setInputPost({ ...inputPost, type: event.target.value })}
-            type='text' placeholder='What type of art?' value={inputPost.type} />
 
         <input onChange={(event) => setInputPost({ ...inputPost, url: event.target.value })}
             type='text' placeholder='Url!' value={inputPost.url} />
