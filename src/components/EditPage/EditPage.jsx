@@ -68,7 +68,8 @@ function EditPost() {
     function deletePicture(pic) {  
         console.log('This is my picture id:' , pic)
         dispatch({
-            type: 'DELETE_PICTURE'
+            type: 'DELETE_PICTURE',
+            payload: pic
         });
         };
 

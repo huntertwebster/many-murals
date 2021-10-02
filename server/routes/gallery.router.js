@@ -105,7 +105,7 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
   const updatedArt_Item = req.body;
   const art_item_id = req.params.id;
   console.log('PUT ROUTER: REQ.BODY: ', req.body)
-  console.log('PUT ROUTER: this is the req.params!', req.params);
+  console.log('PUT ROUTER: this is the req.params!', req.params.id);
   //only let someone let the owner update their art
   const art_Item_query = `UPDATE art_item
     SET "title" = $1, 

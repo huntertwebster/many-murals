@@ -48,7 +48,7 @@ function* deletePost(action) {
     console.log("----Inside the DELETE_POST SAGA----", action);
     try {
         // passes all items from the server to the payload 
-        yield axios.delete(`/api/gallery/${action.payload.id}/${action.payload.user_id}`);
+        yield axios.delete(`/api/gallery/${action.payload.id}`);
         // automatically console.log items after action
         yield put({ type: 'FETCH_GALLERY' });
         yield put({ type: 'FETCH_PROFILE' });
@@ -56,7 +56,7 @@ function* deletePost(action) {
         console.log('DELETE_POST: Error with delete post from gallery:', error);
     }
 }
-
+// /${action.payload.user_id}
 
 // ADD PICTURE: posts an individual PICTURE to the DB
 function* addPicture(action) {

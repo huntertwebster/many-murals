@@ -13,7 +13,7 @@ function PostsByArtist() {
   const dispatch = useDispatch();
   const profile = useSelector(store => store.profile);
   console.log('This is the data for one user:', profile)
-  
+
  useEffect(() => {
         dispatch({ type: 'FETCH_PROFILE' });
 }, []);
@@ -52,6 +52,7 @@ function PostsByArtist() {
                               <p>Created on: {post.date}</p>
                               <p>Latitude: {post.latitude}</p>
                               <p>Longitude: {post.longitude}</p>
+                              <p>post ID: {post.id}</p>
                               <p>PICTURE ID: {post.images[0].id}</p>
                             </div>
                             <button onClick={() => deleteHandler(post)}>Delete this post</button>
