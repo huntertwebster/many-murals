@@ -7,12 +7,16 @@ import { useState } from "react";
 import { useHistory } from 'react-router';
 
 
+
 function PostsByArtist() {
   const history = useHistory();
   const dispatch = useDispatch();
   const profile = useSelector(store => store.profile);
   console.log('This is the data for one user:', profile)
- 
+  
+ useEffect(() => {
+        dispatch({ type: 'FETCH_PROFILE' });
+}, []);
   
   // deletes the entire post
   function deleteHandler(post) {
@@ -27,9 +31,6 @@ function PostsByArtist() {
   }
 
 
-useEffect(() => {
-        dispatch({ type: 'FETCH_PROFILE' });
-}, []);
   
   return (
     <div className="container">

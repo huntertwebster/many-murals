@@ -25,7 +25,7 @@ function* addPost(action) {
         yield put({ type: 'FETCH_GALLERY' });
         yield put({ type: 'FETCH_PROFILE' });
     } catch (error) {
-        console.log("ADD_POST: Error with posting an item to the gallery:", error);
+        console.log('ADD_POST: Error with posting an item to the gallery:', error);
     }
 };
 

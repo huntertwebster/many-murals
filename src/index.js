@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import rootSaga from './redux/sagas/_root.saga';
 import store from './redux/store';
-
+import rootSaga from './redux/sagas/_root.saga';
 import App from './components/App/App';
 
 ReactDOM.render(
