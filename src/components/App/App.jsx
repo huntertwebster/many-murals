@@ -107,6 +107,7 @@ function App() {
             <EditPost/>
           </ProtectedRoute>
 
+
           <ProtectedRoute
             // logged in shows Edit else shows Edit
             exact

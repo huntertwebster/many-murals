@@ -12,12 +12,9 @@ function PostsByArtist() {
   const dispatch = useDispatch();
   const profile = useSelector(store => store.profile);
   console.log('This is the data for one user:', profile)
-    
-    useEffect(() => {
-        dispatch({ type: 'FETCH_PROFILE' });
-    }, []);
+ 
   
-  
+  // deletes the entire post
   function deleteHandler(post) {
     console.log('This is my post:' , post)
         dispatch({
@@ -29,9 +26,10 @@ function PostsByArtist() {
         })
   }
 
-  // function navToEditPage() {
-  //   history.push('/edit');
-  // }
+
+useEffect(() => {
+        dispatch({ type: 'FETCH_PROFILE' });
+}, []);
   
   return (
     <div className="container">
@@ -53,9 +51,11 @@ function PostsByArtist() {
                               <p>Created on: {post.date}</p>
                               <p>Latitude: {post.latitude}</p>
                               <p>Longitude: {post.longitude}</p>
+                              <p>PICTURE ID: {post.images[0].id}</p>
                             </div>
-                            <button onClick={() => deleteHandler(post)}>Delete</button>
+                            <button onClick={() => deleteHandler(post)}>Delete this post</button>
                             <button onClick={() => history.push(`/edit/${post.id}`)}>Edit Post</button>
+                        
                           </>
                         );
                       })}

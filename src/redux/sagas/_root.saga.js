@@ -15,11 +15,12 @@ import profileSaga from './profile.saga';
 // and login triggers setting the user
 export default function* rootSaga() {
   yield all([
-    gallerySaga(), // stores all the art data
-    profileSaga(), // stores all the artist's data
     artistSaga(), // stores all data on the artist
+    profileSaga(), // stores all the data on the artist's information 
+    gallerySaga(), // stores all the data on the art
     loginSaga(), // login saga is now registered
-    registrationSaga(), // stores information regarding registering an account
-    userSaga(), // stores information regarding clearance and authorization 
+    registrationSaga(),
+    userSaga(),
+
   ]);
 }

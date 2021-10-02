@@ -10,60 +10,74 @@ function EditPost() {
     const dispatch = useDispatch();
     const history = useHistory();
     const gallery = useSelector(store => store.gallery);
-    // const profile = useSelector(store => store.profile);
+    const profile = useSelector(store => store.profile);
     // const artists = useSelector(store = store.artists);
     let params = useParams();
     console.log('these be the params:', params)
+
+     useEffect(() => {
+      dispatch({ type: 'FETCH_PROFILE' });
+      dispatch({ type: 'FETCH_GALLERY' });
+     }, []);
+       const [editPost, setEditPost] = useState({
+        title: item?.title, latitude: item?.latitude, longitude: item?.longitude,
+        description: item?.description, date: item?.date
+    });
     
-    // using paramaters 
+    // GALLERY: using paramaters 
     let editId = params.editId; 
     console.log(editId);
     let item = gallery.find(item => item.id === Number(editId));
-
     console.log(`found item: `, item);
     const imageId = item?.images[0].id;
+    const imageUrl = item?.images[0].url;
     console.log('this is the image ID:', imageId);
     console.log('this is the art_item_id:', item?.id);
-    //    Bail out early with a message if the book isnt found
-    if (!item) {
-            return <h2>Invalid Art Item ID</h2>;
-        }
+    console.log('this is the image url:', imageUrl)
+
+    //    Bail out early with a message if the item isnt found
+    // if (!item) {
+    //         return <h2>Invalid Art Item ID</h2>;
+    //     }
         
-    const [editPost, setEditPost] = useState({
-        title: item.title, latitude: item.latitude, longitude: item.longitude,
-        description: item.description, date: item.date
-    });
-    //create a map to look over all the images when there are multiple images to be able to update multiple 
+       
+
+  
+
     
+    // create a map to look over all the images when there are multiple images to be able to update multiple 
+    
+    
+    // edits the post
     function editHandler() {
         dispatch({
             type: 'EDIT_POST',
             payload: {
-                //!!!!useparams on the id so it is the one of the picture that i click on!!!!
-              id: item.id,
-              title: editPost.title,
-              latitude : editPost.latitude,
-              longitude: editPost.longitude,
-              description : editPost.description,
-              date: editPost.date,
-          
-              image_id: imageId
+                title: editPost.title,
+                latitude : editPost.latitude,
+                longitude: editPost.longitude,
+                description : editPost.description,
+                date: editPost.date,
+                image_id: imageId
             }
         })
-    history.push('/profile');
-  }
+        // history.push('/profile');
+    }
     
- useEffect(() => {
-      dispatch({ type: 'FETCH_PROFILE' });
-      dispatch({ type: 'FETCH_GALLERY' });
- }, []);
+    // deletes the picutre
+    function deletePicture(pic) {  
+        console.log('This is my picture id:' , pic)
+        dispatch({
+            type: 'DELETE_PICTURE'
+        });
+        };
+
     
     
     return (
         <div>
             <p>Edit your post!</p>
             <form onSubmit={editHandler}>
-                {/* create a form for my post */}
                 <input onChange={(event) => setEditPost({ ...editPost, title: event.target.value })}
                     type='text' placeholder='Title!' value={editPost.title} />
                             
@@ -78,8 +92,20 @@ function EditPost() {
                             
                 <input onChange={(event) => setEditPost({ ...editPost, date: event.target.value })}
                     type='text' placeholder='Date!' value={editPost.date} />
+                
                 <button type="submit" value="Submit">Edit</button>
             </form>
+            <>
+                {profile.map(post => {
+                    return(
+                    <>
+                            <p>PICTURE ID: {post.images[0].id}</p>
+                            <p>PICTURE URL: {post.images[0].url}</p>
+                           
+                            <button onClick={() => deletePicture(post.images[0].url)}>Delete Picture</button>
+                    </>
+                )})}
+            </>
         </div>
     );
 }

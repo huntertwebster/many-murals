@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // GET GALLERY: fetches all gallery items from the DB
 function* fetchGallery() {
-    console.log("----Inside the FETCH_GALLERY SAGA----", action);
+    console.log("----Inside the FETCH_GALLERY SAGA----");
     try {
         // passes all items from the server to the payload
         const gallery = yield axios.get('/api/gallery');
@@ -11,7 +11,7 @@ function* fetchGallery() {
         // automatically console.log items after action
         yield put({ type: 'SET_GALLERY', payload: gallery.data });
     } catch (error) {
-        console.log('fetchGallery: Error with getting all items from the gallery:', error);
+        console.log('FETCH_GALLERY: Error with getting all items from the gallery:', error);
     }
 
 };
@@ -25,7 +25,7 @@ function* addPost(action) {
         yield put({ type: 'FETCH_GALLERY' });
         yield put({ type: 'FETCH_PROFILE' });
     } catch (error) {
-        console.log("addPost: Error with posting an item to the gallery:", error);
+        console.log("ADD_POST: Error with posting an item to the gallery:", error);
     }
 };
 
@@ -39,7 +39,7 @@ function* editPost(action) {
         yield put({ type: 'FETCH_GALLERY' });
         yield put({ type: 'FETCH_PROFILE' });
     } catch (error) {
-        console.log('updatePost: Error with update item of gallery:', error);
+        console.log('EDIT_POST: Error with update item of gallery:', error);
     }
 }
 
@@ -53,7 +53,7 @@ function* deletePost(action) {
         yield put({ type: 'FETCH_GALLERY' });
         yield put({ type: 'FETCH_PROFILE' });
     } catch (error) {
-        console.log('deletePost: Error with delete post from gallery:', error);
+        console.log('DELETE_POST: Error with delete post from gallery:', error);
     }
 }
 
@@ -68,7 +68,7 @@ function* addPicture(action) {
         yield put({ type: 'FETCH_GALLERY' });
         yield put({ type: 'FETCH_PROFILE' });
     } catch (error) {
-        console.log("addPost: Error with posting a picture to the gallery:", error);
+        console.log("ADD_PICTURE: Error with posting a picture to the gallery:", error);
     }
 };
 
@@ -77,12 +77,12 @@ function* deletePicture(action) {
     console.log("----Inside the DELETE_PICTURE SAGA----", action);
     try {
         // passes all items from the server to the payload 
-        yield axios.delete(`/api/gallery/${action.payload}`);
+        yield axios.delete(`/api/gallery/image/${action.payload}`);
         // automatically console.log items after action
         yield put({ type: 'FETCH_GALLERY' });
         yield put({ type: 'FETCH_PROFILE' });
     } catch (error) {
-        console.log('deletePicture: Error with delete picture of gallery:', error);
+        console.log('DELETE_PICTURE:  Error with delete picture of gallery:', error);
     }
 }
 

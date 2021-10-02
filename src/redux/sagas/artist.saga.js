@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // GET ARTISTS: fetches all artists from the DB
 function* fetchArtists() {
-    console.log("----Inside the FETCH_ARTISTS SAGA----", action);
+    console.log("----Inside the FETCH_ARTISTS SAGA----");
     try {
         // passes all items from the server to the payload
         const artists = yield axios.get('/api/artist');

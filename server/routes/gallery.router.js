@@ -41,11 +41,11 @@ router.post('/image', rejectUnauthenticated, (req, res) => {
 // DELETE individual picture from the artist page
 router.delete('/image/:id', (req, res) => {
   // if (Number(req.params.art_item_user_id) === req.user.id || req.user.type === 'admin') {
-  const queryText = 'DELETE FROM images WHERE id=$1';
+  const queryText = 'DELETE FROM "images" WHERE "id" = $1';
   pool.query(queryText, [req.params.id])
     .then(() => { res.sendStatus(200); })
-    .catch((err) => {
-      console.log('Error deleting an image', err);
+    .catch((error) => {
+      console.log('ROUTER, DELETE PICTURE: Error deleting an image', error);
       res.sendStatus(500);
     });
   // } else {
@@ -54,7 +54,7 @@ router.delete('/image/:id', (req, res) => {
 });
 
 
-// POST for art_piece
+// POST for art_item
 router.post('/', rejectUnauthenticated, (req, res) => {
   console.log('This is the REQ.BODY!!:', req.body);
   // RETURNING "id" will give us back the id of the created art_item
@@ -79,13 +79,11 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 // DELETE ENTIRE POST from the gallery by the artist
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
   console.log('art item id:', req.params.id);
-  console.log('user id:', req.user.id);
-
 
   // if (Number(req.params.id) === req.user.id || req.user.type === 'admin') {
   console.log('after art item id:', req.params.id);
   console.log('after user id:', req.user.id);
-  const queryText = 'DELETE FROM art_item WHERE id=$1';
+  const queryText = 'DELETE FROM "art_item" WHERE "id" =$1';
   pool.query(queryText, [req.params.id])
     .then(() => { res.sendStatus(200); })
     .catch((err) => {
@@ -127,6 +125,7 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
   ];
 
   pool.query(art_Item_query, queryValues)
+    .then(() => { res.sendStatus(200); })
     .catch((err) => {
       console.log('Error editing an art_item!', err);
       res.sendStatus(500);
