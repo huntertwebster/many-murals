@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { useHistory } from 'react-router';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import DeleteImage from '../DeleteImage/DeleteImage';
 
 function EditPost() {
     const dispatch = useDispatch();
@@ -19,21 +20,21 @@ function EditPost() {
       dispatch({ type: 'FETCH_PROFILE' });
       dispatch({ type: 'FETCH_GALLERY' });
      }, []);
-       const [editPost, setEditPost] = useState({
-        title: item?.title, latitude: item?.latitude, longitude: item?.longitude,
-        description: item?.description, date: item?.date
-    });
     
-    // // GALLERY: using paramaters 
-    // let editId = params.editId; 
-    // console.log(editId);
-    // let item = gallery.find(item => item.id === Number(editId));
-    // console.log(`found item: `, item);
-    // const imageId = item?.images[0].id;
+      
+    
+    // GALLERY: using paramaters 
+    let editId = params.editId; 
+    console.log(editId);
+    let item = gallery.find(item => item.id === Number(editId));
+    console.log(`found item to edit: `, item);
+    const imageId = item?.images[0].id;
+    const image = item?.images[0];
     // const imageUrl = item?.images[0].url;
-    // console.log('this is the image ID:', imageId);
-    // console.log('this is the art_item_id:', item?.id);
-    // console.log('this is the image url:', imageUrl)
+    console.log('this is the WHOLE IMAGE:', image);
+    console.log('this is the image ID:', imageId);
+    console.log('this is the art_item_id:', item?.id);
+
 
     //    Bail out early with a message if the item isnt found
     // if (!item) {
@@ -41,10 +42,10 @@ function EditPost() {
     //     }
         
        
-
-  
-
-    
+ const [editPost, setEditPost] = useState({
+        title: item?.title, latitude: item?.latitude, longitude: item?.longitude,
+        description: item?.description, date: item?.date
+    });
     // create a map to look over all the images when there are multiple images to be able to update multiple 
     
     
@@ -53,27 +54,17 @@ function EditPost() {
         dispatch({
             type: 'EDIT_POST',
             payload: {
+                id: item.id,
                 title: editPost.title,
                 latitude : editPost.latitude,
                 longitude: editPost.longitude,
                 description : editPost.description,
-                date: editPost.date
+                date: editPost.date,
             }
         })
-        // history.push('/profile');
+        history.push('/profile');
     }
-    
-    // deletes the picutre
-    function deletePicture(pic) {  
-        console.log('This is my picture id:' , pic)
-        dispatch({
-            type: 'DELETE_PICTURE',
-            payload: pic
-        });
-        };
 
-    
-    
     return (
         <div>
             <p>Edit your post!</p>
@@ -96,15 +87,6 @@ function EditPost() {
                 <button type="submit" value="Submit">Edit</button>
             </form>
             <>
-                {profile.map(post => {
-                    return(
-                    <>
-                            <p>PICTURE ID: {post.images[0].id}</p>
-                            <p>PICTURE URL: {post.images[0].url}</p>
-                           
-                            <button onClick={() => deletePicture(post.images)}>Delete Picture</button>
-                    </>
-                )})}
             </>
         </div>
     );

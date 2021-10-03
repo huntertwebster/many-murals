@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 // import CSS for the gallery here
 import { useHistory } from 'react-router';
-
 function ArtistsPage() {
     const history = useHistory();
     const dispatch = useDispatch();

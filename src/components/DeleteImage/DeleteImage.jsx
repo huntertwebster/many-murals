@@ -1,0 +1,55 @@
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { useHistory } from 'react-router';
+import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
+
+function DeleteImage() {
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const profile = useSelector(store => store.profile);
+    let params = useParams();
+    console.log('these be the params:', params)
+
+    //  useEffect(() => {
+    //   dispatch({ type: 'FETCH_PROFILE' });
+    //   dispatch({ type: 'FETCH_GALLERY' });
+    //  }, []);
+    
+      
+
+    // create a map to look over all the images when there are multiple images to be able to update multiple 
+    
+
+    // deletes the picutre
+    function deletePicture(image) {  
+        console.log('This is the picture I want to delete:', image)
+        dispatch({
+            type: 'DELETE_PICTURE',
+            payload: {
+                id: image[0].id,
+                art_item_id: image[0].art_item_id
+            }
+        });
+        };
+
+    
+    
+    return (
+        <div>
+           <p>Delete your images:</p>
+                {profile.map(post => {
+                    return(
+                    <>
+                            {/* <p>PICTURE ID: {post.images[0].id}</p>
+                           <img src={post.images[0].url} alt={post.title}
+                              /> */}
+                            <button onClick={() => deletePicture(post.images)}>Delete Picture</button>
+                    </>
+                )})}
+        </div>
+    );
+}
+export default DeleteImage;

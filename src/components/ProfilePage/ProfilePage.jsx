@@ -10,7 +10,7 @@ import ImageForm from '../ArtForm/imageForm';
 function ProfilePage() {
   return (
       <div className="container">
-          <PostsByArtist/>
+      <PostsByArtist/>
       <Form />
       <ImageForm/>
     </div>

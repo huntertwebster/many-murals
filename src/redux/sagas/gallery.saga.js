@@ -74,10 +74,10 @@ function* addPicture(action) {
 
 // DELETE PICTURE: deletes an individual PICTURE from the artists post
 function* deletePicture(action) {
-    console.log("----Inside the DELETE_PICTURE SAGA----", action);
+    console.log("----Inside the DELETE_PICTURE SAGA----", action.payload);
     try {
         // passes all items from the server to the payload 
-        yield axios.delete(`/api/gallery/image/${action.payload}`);
+        yield axios.delete(`/api/gallery/image/${action.payload.id}`);
         // automatically console.log items after action
         yield put({ type: 'FETCH_GALLERY' });
         yield put({ type: 'FETCH_PROFILE' });

@@ -7,10 +7,10 @@ function ImageForm() {
     const dispatch = useDispatch();
     const [inputImage, setInputImage] = useState({ art_item_id: '', url: '', featured_image: 'false'});
 
-  useEffect(() => {
-      dispatch({ type: 'FETCH_PROFILE' });
-      dispatch({ type: 'FETCH_GALLERY' });
-    }, []);
+//   useEffect(() => {
+//       dispatch({ type: 'FETCH_PROFILE' });
+//       dispatch({ type: 'FETCH_GALLERY' });
+//     }, []);
 
     const handleImageSubmit = (event) => {
         console.log("Url input is:", inputImage.url);
@@ -23,7 +23,6 @@ function ImageForm() {
             payload: inputImage
         })
         setInputImage('');
-        // history.push('/')
     };
 
     return (

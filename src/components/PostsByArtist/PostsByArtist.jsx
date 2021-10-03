@@ -5,6 +5,7 @@ import { useState } from "react";
 // import { NavLink } from 'react-router-dom';
 // import CSS for the profile here
 import { useHistory } from 'react-router';
+import DeleteImage from '../DeleteImage/DeleteImage';
 
 
 
@@ -15,12 +16,13 @@ function PostsByArtist() {
   console.log('This is the data for one user:', profile)
 
  useEffect(() => {
-        dispatch({ type: 'FETCH_PROFILE' });
+   dispatch({ type: 'FETCH_PROFILE' });
+   dispatch({ type: 'FETCH_GALLERY' });
 }, []);
   
   // deletes the entire post
   function deleteHandler(post) {
-    console.log('This is my post:' , post)
+    console.log('This is my post that I want to delete:' , post)
         dispatch({
             type: 'DELETE_POST',
           payload: {
@@ -55,10 +57,11 @@ function PostsByArtist() {
                               <p>post ID: {post.id}</p>
                               <p>PICTURE ID: {post.images[0].id}</p>
                             </div>
+                            <DeleteImage/> 
                             <button onClick={() => deleteHandler(post)}>Delete this post</button>
                             <button onClick={() => history.push(`/edit/${post.id}`)}>Edit Post</button>
-                        
                           </>
+                          
                         );
                       })}
                     </>
