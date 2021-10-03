@@ -25,7 +25,7 @@ import ArtistsPage from '../ArtistsPage/ArtistsPage';
 import ProfilePage from '../ProfilePage/ProfilePage';
 import EditPost from '../EditPage/EditPage';
 import AdminView from '../AdminView/AdminView';
-import Map from '../Map/Map';
+import Map from '../Map/Map'
 
 function App() {
   const dispatch = useDispatch();
@@ -69,7 +69,7 @@ function App() {
             <ArtistsPage />
           </Route>
           <Route
-            // shows ArtistsPage at all times (logged in or not)
+            // shows Map at all times (logged in or not)
             exact
             path="/map"
           >

@@ -24,16 +24,16 @@ function EditPost() {
         description: item?.description, date: item?.date
     });
     
-    // GALLERY: using paramaters 
-    let editId = params.editId; 
-    console.log(editId);
-    let item = gallery.find(item => item.id === Number(editId));
-    console.log(`found item: `, item);
-    const imageId = item?.images[0].id;
-    const imageUrl = item?.images[0].url;
-    console.log('this is the image ID:', imageId);
-    console.log('this is the art_item_id:', item?.id);
-    console.log('this is the image url:', imageUrl)
+    // // GALLERY: using paramaters 
+    // let editId = params.editId; 
+    // console.log(editId);
+    // let item = gallery.find(item => item.id === Number(editId));
+    // console.log(`found item: `, item);
+    // const imageId = item?.images[0].id;
+    // const imageUrl = item?.images[0].url;
+    // console.log('this is the image ID:', imageId);
+    // console.log('this is the art_item_id:', item?.id);
+    // console.log('this is the image url:', imageUrl)
 
     //    Bail out early with a message if the item isnt found
     // if (!item) {
@@ -57,8 +57,7 @@ function EditPost() {
                 latitude : editPost.latitude,
                 longitude: editPost.longitude,
                 description : editPost.description,
-                date: editPost.date,
-                image_id: imageId
+                date: editPost.date
             }
         })
         // history.push('/profile');
@@ -103,7 +102,7 @@ function EditPost() {
                             <p>PICTURE ID: {post.images[0].id}</p>
                             <p>PICTURE URL: {post.images[0].url}</p>
                            
-                            <button onClick={() => deletePicture(post.images[0].url)}>Delete Picture</button>
+                            <button onClick={() => deletePicture(post.images)}>Delete Picture</button>
                     </>
                 )})}
             </>

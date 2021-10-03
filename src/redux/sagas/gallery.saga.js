@@ -56,7 +56,7 @@ function* deletePost(action) {
         console.log('DELETE_POST: Error with delete post from gallery:', error);
     }
 }
-// /${action.payload.user_id}
+
 
 // ADD PICTURE: posts an individual PICTURE to the DB
 function* addPicture(action) {
@@ -82,7 +82,7 @@ function* deletePicture(action) {
         yield put({ type: 'FETCH_GALLERY' });
         yield put({ type: 'FETCH_PROFILE' });
     } catch (error) {
-        console.log('DELETE_PICTURE:  Error with delete picture of gallery:', error);
+        console.log('DELETE_PICTURE:  Error deleting a picture from the gallery:', error);
     }
 }
 
