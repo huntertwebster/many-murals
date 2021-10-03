@@ -30,13 +30,13 @@ function Map() {
   // getting data from the gallery store for latiude and longitude
   const gallery = useSelector(store => store.gallery);
   console.log('this is the gallery data:', gallery);
-  gallery.map(mural => {
-    { mural.latitude }
-    { mural.longitude }
-  },
-    console.log(mural.latitude),
-    console.log(mural.longitude)
-  );
+  // gallery.map(mural => {
+  //   { mural.latitude }
+  //   { mural.longitude }
+  // },
+  //   console.log(mural.latitude),
+  //   console.log(mural.longitude)
+  // );
   
                     
   console.log('this is the gallery lat:', gallery.latitude);
@@ -65,6 +65,7 @@ function Map() {
         mapContainerStyle={containerStyle}
         center={center}
         zoom={12}
+      
         // {gallery.map(mural => (
         //   <Marker
         //     key={mural.id}
