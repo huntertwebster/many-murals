@@ -3,6 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 // import CSS for the gallery here
 import { useHistory } from 'react-router';
+import Typography from '@mui/material/Typography';
+
+
+
 function ArtistsPage() {
     const history = useHistory();
     const dispatch = useDispatch();
@@ -21,10 +25,21 @@ function ArtistsPage() {
                 {artists.map(artist => {
                     return (
                         <div className="artistItem" key={artist.id}>
-                            <h1>Meet {artist.name}!</h1>
-                            <p>{artist.description}</p>
+
+                            <Typography
+                                variant="h6"
+                            >
+                             Meet {artist.name}!  
+                            </Typography>
+                            
+                            <Typography
+                                variant="p"
+                            >
+                            {artist.description}
+                            </Typography>
+
                             <img src={artist.profile_image} alt={artist.name}
-                                // onClick={() => history.push(`/details/${item.id}`)}
+                            
                             />
                         </div>
                     );

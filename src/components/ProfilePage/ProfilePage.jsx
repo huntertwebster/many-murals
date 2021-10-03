@@ -9,7 +9,6 @@ import ImageComponent from '../imageComponent/imageComponent';
 // import CSS for the profile here
 
 
-
 function ProfilePage() {
 
 const dispatch = useDispatch();
@@ -25,8 +24,7 @@ const dispatch = useDispatch();
       <PostsByArtist />
       <DeleteImage />
       <Form />
-      <ImageForm />
-      
+      <ImageForm /> 
     </div>
   );
 }
