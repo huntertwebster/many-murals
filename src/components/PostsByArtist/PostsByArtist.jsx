@@ -15,10 +15,10 @@ function PostsByArtist() {
   const profile = useSelector(store => store.profile);
   console.log('This is the data for one user:', profile)
 
- useEffect(() => {
-   dispatch({ type: 'FETCH_PROFILE' });
-   dispatch({ type: 'FETCH_GALLERY' });
-}, []);
+//  useEffect(() => {
+//    dispatch({ type: 'FETCH_PROFILE' });
+//    dispatch({ type: 'FETCH_GALLERY' });
+// }, []);
   
   // deletes the entire post
   function deleteHandler(post) {
@@ -52,17 +52,16 @@ function PostsByArtist() {
                               <h4>{post.title} {post.profile_name}</h4>
                               <p>{post.description}</p>
                               <p>Created on: {post.date}</p>
-                              <p>Latitude: {post.latitude}</p>
-                              <p>Longitude: {post.longitude}</p>
-                              <p>post ID: {post.id}</p>
-                              <p>PICTURE ID: {post.images[0].id}</p>
                             </div>
-                            <DeleteImage/> 
-                            <button onClick={() => deleteHandler(post)}>Delete this post</button>
-                            <button onClick={() => history.push(`/edit/${post.id}`)}>Edit Post</button>
+                            <button onClick={() => deleteHandler(post)}>Delete {post.title}</button>
+                            <button onClick={() => history.push(`/edit/${post.id}`)}>Edit {post.title}</button>
+                            {/* <DeleteImage /> */}
+                            <br />
+                            <br />
                           </>
                           
                         );
+                        
                       })}
                     </>
             </section>

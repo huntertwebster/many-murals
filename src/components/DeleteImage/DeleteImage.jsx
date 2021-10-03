@@ -42,11 +42,13 @@ function DeleteImage() {
            <p>Delete your images:</p>
                 {profile.map(post => {
                     return(
-                    <>
+                        <>
+                            
                             {/* <p>PICTURE ID: {post.images[0].id}</p>
                            <img src={post.images[0].url} alt={post.title}
                               /> */}
-                            <button onClick={() => deletePicture(post.images)}>Delete Picture</button>
+                            <button onClick={() => deletePicture(post.images)}>Delete {post.title}'s Image</button>
+                            <br />
                     </>
                 )})}
         </div>

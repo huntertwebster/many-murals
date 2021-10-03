@@ -6,11 +6,6 @@ function Form() {
     const dispatch = useDispatch();
     const [inputPost, setInputPost] = useState({ title: '', latitude: '', longitude: '', description: '', date: ''});
 
-  useEffect(() => {
-      dispatch({ type: 'FETCH_PROFILE' });
-      dispatch({ type: 'FETCH_GALLERY' });
-    }, []);
-
     const handleSubmit = (event) => {
         console.log("Title input is:", inputPost.title);
         console.log("Latitude input is:", inputPost.latitude);
@@ -28,7 +23,8 @@ function Form() {
     };
 
     return (
-    
+        <>
+        <p>Add a new post here: </p>
     <form onSubmit={handleSubmit}>
         {/* create a form for my post */}
         <input onChange={(event) => setInputPost({ ...inputPost, title: event.target.value })}
@@ -48,7 +44,8 @@ function Form() {
                                 
         {/* button to submit post */}
         <button onClick={handleSubmit} type="submit" value="Submit">Submit</button>
-    </form>
+            </form>
+            </>
     )
 }
 export default Form;
