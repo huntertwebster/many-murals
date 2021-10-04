@@ -17,12 +17,10 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import MoreIcon from '@mui/icons-material/MoreVert';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import BrushIcon from '@mui/icons-material/Brush';
-
+import ExploreIcon from '@mui/icons-material/Explore';
+import InfoIcon from '@mui/icons-material/Info';
 
 // MOBILE VIEW
 export default function Nav() {
@@ -89,7 +87,9 @@ export default function Nav() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
+      <Link className="navLink" to="/gallery">
       <MenuItem>
+        {/* gallery */}
         <IconButton size="large" aria-label="show 4 new mails" color="default">
           <Badge>
             <InsertPhotoIcon />
@@ -97,6 +97,10 @@ export default function Nav() {
         </IconButton>
         <p>Gallery</p>
       </MenuItem>
+        </Link>
+
+      {/* Our Artists */}
+      <Link className="navLink" to="/artists">
       <MenuItem>
         <IconButton size="large" color="default">
           <Badge>
@@ -105,6 +109,37 @@ export default function Nav() {
         </IconButton>
         <p>Our Artists</p>
       </MenuItem>
+      </Link> 
+
+    
+
+        {/* Map */}
+      <Link className="navLink" to="/map">
+      <MenuItem>
+        <IconButton size="large" color="default">
+          <Badge>
+            <ExploreIcon />
+          </Badge>
+        </IconButton>
+        <p>Map</p>
+      </MenuItem>
+      </Link>
+
+    {/* About */}
+      <Link className="navLink" to="/about">
+      <MenuItem>
+        <IconButton size="large" color="default">
+          <Badge>
+            <InfoIcon />
+          </Badge>
+        </IconButton>
+        <p>About</p>
+      </MenuItem>
+        </Link>
+
+      
+      {/* IF USER IS LOGGED IN SHOW */}
+      {/* Profile
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
           size="large"
@@ -116,7 +151,7 @@ export default function Nav() {
           <AccountCircle />
         </IconButton>
         <p>Profile</p>
-      </MenuItem>
+      </MenuItem> */}
     </Menu>
   );
 
@@ -133,15 +168,9 @@ export default function Nav() {
           boxShadow: 'none',
         }}
       >
+
+        {/* -----VISIBLE TO EVERYONE---- */}
         <Toolbar>
-          {/* <IconButton
-            size="large"
-            edge="start"
-            color="default"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-          >
-          </IconButton> */}
           <Typography
             variant="h6"
             noWrap
@@ -149,12 +178,12 @@ export default function Nav() {
             // sx={{ display: { xs: 'none', sm: 'block' } }}
             
           >
-            <Link to="/home"
+            <Link to="/gallery"
             style={{color: "black"}}>
             Many Murals
             </Link>
 
-          {/* -----VISIBLE TO EVERYONE---- */}
+          
           {/* About */}
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
@@ -201,8 +230,49 @@ export default function Nav() {
               </Link>
             </IconButton>
 
+            {/* Login */}
+              <IconButton
+              size="large"
+              edge="end"
+              style={{fontSize: "20px"}}
+              aria-controls={menuId}
+              aria-haspopup="true"
+            >
+              <Link className="navLink" to="/login">
+              Login
+              </Link>
+            </IconButton>
+
 
             {/* -----IF USER IS LOGGED IN---- */}
+            {user.id && (
+          <>
+                <IconButton
+              size="large"
+              edge="end"
+              style={{fontSize: "20px"}}
+              aria-controls={menuId}
+              aria-haspopup="true"
+            >
+              <Link className="navLink" to="/user">
+              Home
+              </Link>
+            </IconButton>
+
+            <IconButton
+              size="large"
+              edge="end"
+              style={{fontSize: "20px"}}
+              aria-controls={menuId}
+              aria-haspopup="true"
+            >
+              <Link className="navLink" to="/profile">
+              Profile
+              </Link>
+            </IconButton>
+            <LogOutButton className="navLink" />
+          </>
+        )}
             {/* Profile */}
             {/* <IconButton
               size="large"
