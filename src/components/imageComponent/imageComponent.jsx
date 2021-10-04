@@ -7,6 +7,8 @@ import { useState } from "react";
 import { useHistory } from 'react-router';
 import DeleteImage from '../DeleteImage/DeleteImage';
 
+//MUI
+
 
 
 function ImageComponent() {

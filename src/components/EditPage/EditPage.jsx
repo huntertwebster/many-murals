@@ -7,6 +7,13 @@ import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import DeleteImage from '../DeleteImage/DeleteImage';
 
+// MUI
+import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
+import SendIcon from '@mui/icons-material/Send';
+import Button from '@mui/material/Button';
+
+
 function EditPost() {
     const dispatch = useDispatch();
     const history = useHistory();
@@ -67,24 +74,87 @@ function EditPost() {
 
     return (
         <div>
-            <p>Edit your post!</p>
-            <form onSubmit={editHandler}>
-                <input onChange={(event) => setEditPost({ ...editPost, title: event.target.value })}
-                    type='text' placeholder='Title!' value={editPost.title} />
-                            
-                <input onChange={(event) => setEditPost({ ...editPost, latitude: event.target.value })}
-                    type='text' placeholder='Latitude!' value={editPost.latitude} />
-                            
-                <input onChange={(event) => setEditPost({ ...editPost, longitude: event.target.value })}
-                    type='text' placeholder='Longitude!' value={editPost.longitude} />
-                            
-                <input onChange={(event) => setEditPost({ ...editPost, description: event.target.value })}
-                    type='text' placeholder='Description!' value={editPost.description} />
-                            
-                <input onChange={(event) => setEditPost({ ...editPost, date: event.target.value })}
-                    type='text' placeholder='Date!' value={editPost.date} />
+            <Typography
+                variant="h6"
+                color="initial"
+            >Edit your post!
+            </Typography>
+           
+        <form onSubmit={editHandler}>
                 
-                <button type="submit" value="Submit">Edit</button>
+                {/* edit title */} 
+        <TextField
+          id="filled-textarea"
+          label="Title"
+          placeholder="Edit your mural's title.."
+          multiline
+          variant="filled"
+          onChange={(event) => setEditPost({ ...editPost, title: event.target.value })}
+          value={editPost.title}
+        />
+       
+                
+
+        {/* edit latitude */}
+        <TextField
+          id="filled-textarea"
+          label="Latitude"
+          placeholder="Edit the latitude.."
+          multiline
+          variant="filled"
+          onChange={(event) => setEditPost({ ...editPost, latitude: event.target.value })}
+          value={editPost.latitude}
+        />
+     
+                
+
+        {/* edit longitude */}
+        <TextField
+          id="filled-textarea"
+          label="Longitude"
+          placeholder="Edit the longitude.."
+          multiline
+          variant="filled"
+          onChange={(event) => setEditPost({ ...editPost, longitude: event.target.value })}
+          value={editPost.longitude}
+        />        
+       
+                
+
+        {/* edit description */}
+        <TextField
+          id="filled-multiline-static"
+          label="Description"
+          placeholder="Edit the description of your mural..."
+          multiline
+          rows={4}
+          type='text'
+          variant="filled"
+          onChange={(event) => setEditPost({ ...editPost, description: event.target.value })}
+          value={editPost.description}
+        />
+      
+
+        {/* edit date */}
+        <TextField
+          id="filled-textarea"
+          label="Date"
+          placeholder="Edit the date of creation.."
+          multiline
+          variant="filled"
+          onChange={(event) => setEditPost({ ...editPost, date: event.target.value })}
+          value={editPost.date}
+                />
+                <br />
+        <Button
+          variant="outlined"
+          color="inherit"
+          startIcon={<SendIcon />}
+          type="submit"
+          value="Submit">
+          Submit
+        </Button>
+                
             </form>
             <>
             </>

@@ -26,6 +26,8 @@ import ProfilePage from '../ProfilePage/ProfilePage';
 import EditPost from '../EditPage/EditPage';
 import AdminView from '../AdminView/AdminView';
 import Map from '../Map/Map'
+import CreateAPost from '../CreatePost/CreateAPost';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -107,13 +109,13 @@ function App() {
             <EditPost/>
           </ProtectedRoute>
 
-          {/* <ProtectedRoute
-            // logged in shows Edit else shows Edit
+          <ProtectedRoute
+            // logged in shows create else shows create
             exact
-            path="/delete/:imageId"
+            path="/create"
           >
-            <DeleteImage/>
-          </ProtectedRoute> */}
+            <CreateAPost/>
+          </ProtectedRoute>
 
 
           <ProtectedRoute

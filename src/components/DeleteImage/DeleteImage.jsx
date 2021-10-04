@@ -5,6 +5,12 @@ import { useHistory } from 'react-router';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
+//MUI
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+
 
 function DeleteImage() {
     const dispatch = useDispatch();
@@ -39,16 +45,24 @@ function DeleteImage() {
     
     return (
         <div>
-           <p>Delete your images:</p>
+            <br />
+            <Typography variant="p">
+              Delete your images:
+            </Typography>
+           
                 {profile.map(post => {
                     return(
                         <>
                             
-                            {/* <p>PICTURE ID: {post.images[0].id}</p>
-                           <img src={post.images[0].url} alt={post.title}
-                              /> */}
-                            <button onClick={() => deletePicture(post.images)}>Delete {post.title}'s Image</button>
-                            <br />
+                            <br/>
+                            <Button
+                              variant=" outlined "
+                            startIcon={<DeleteIcon />}
+                              onClick={() => deletePicture(post.images)}>
+                              {post.title}
+                            </Button>
+                            {/* <button onClick={() => deletePicture(post.images)}>Delete {post.title}'s Image</button> */}
+                            
                     </>
                 )})}
         </div>
