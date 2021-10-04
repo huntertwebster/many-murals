@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-// import CSS for the gallery here
+import '../ArtistsPage/ArtistsPage.css';
 import { useHistory } from 'react-router';
 import Typography from '@mui/material/Typography';
 
-
+// MUI
+import Grid from '@mui/material/Grid';
+import { Container, Paper } from '@mui/material';
 
 function ArtistsPage() {
     const history = useHistory();
@@ -20,34 +22,65 @@ function ArtistsPage() {
     }, []);
 
     return (
-        <main>    
-            <section className="artists">
-                {artists.map(artist => {
-                    return (
-                        <div className="artistItem" key={artist.id}>
-
-                            <Typography
-                                variant="h6"
-                            >
-                             Meet {artist.name}!  
-                            </Typography>
+    <Container>
+        <Grid
+            container
+            spacing={3}
+            justify="center"
+            alignItems="center"
+            
+        >
+        {artists.map(artist => (
+                
+                <Grid item key={artist.id} xs={12} sm={6} md={4} lg={3}>
+                    <Paper  elevation={0}>
+                        <Typography
+                            variant="h6"
+                        >
+                            Meet {artist.name}!  
+                        </Typography>
                             
-                            <Typography
-                                variant="p"
-                            >
+                        <Typography
+                            variant="p"
+                        >
                             {artist.description}
-                            </Typography>
-
-                            <img src={artist.profile_image} alt={artist.name}
-                            
-                            />
-                        </div>
-                    );
-                })}
-            </section>
-        </main>
-
+                        </Typography>
+                    </Paper>
+            
+                    {/*  */}
+                        <Paper elevation={0}>
+                        <img className="imageOfArtist" src={artist.profile_image} alt={artist.name}/>   
+                        </Paper>
+                   </Grid>
+                    ))}  
+        </Grid>
+    </Container>
     );
 }
 
 export default ArtistsPage;
+
+{/* <Container>
+    <h1>Welcome to the Gallery</h1>
+        <Grid
+            container
+            spacing={3}
+            justify="center"
+            alignItems="center"
+            
+
+        >
+    {gallery.map(item => (
+        <Grid item key={item.id} xs={12} sm={6} md={4} lg={3}>
+            <Paper elevation={0}>
+                <img className="galleryImage" src={item.images[0].url} alt={item.title} />
+                <div className='artItemText'>
+                <h4>{item.title} by {item.user_name}</h4>
+                <p>{item.description}</p>
+                <p>{item.date}</p>
+                </div>
+            </Paper>
+        </Grid>
+    ))}
+    </Grid>
+    </Container> */}
