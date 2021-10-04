@@ -10,7 +10,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     const access = `SELECT art_item.id, art_item.user_id, art_item.user_name, art_item.title, art_item.latitude,
 art_item.longitude, art_item.description, art_item.date, jsonb_agg(images) as images FROM public.user
 JOIN art_item ON public.user.id = art_item.user_id
-JOIN images on art_item.id = images.art_item_id
+LEFT JOIN images on art_item.id = images.art_item_id
 WHERE "art_item"."user_id" = $1
 GROUP BY art_item.id, art_item.user_id, art_item.title, art_item.latitude, art_item.longitude, art_item.description, art_item.date;`
     console.log('req.user:', req.user.id);

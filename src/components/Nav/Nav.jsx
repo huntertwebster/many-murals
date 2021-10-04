@@ -287,7 +287,7 @@ export default function Nav() {
           </Box>
 
           {/* mobile view */}
-          <Box sx={{ display: { xs: 'flex', md: 'flex' } }}>
+          <Box sx={{ display: { xs: '12', md: '8' } }}>
             <IconButton
               size="large"
               aria-label="show more"

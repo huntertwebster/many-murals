@@ -5,7 +5,6 @@ import { useState } from "react";
 // import { NavLink } from 'react-router-dom';
 // import CSS for the profile here
 import { useHistory } from 'react-router';
-import DeleteImage from '../DeleteImage/DeleteImage';
 
 //MUI
 
@@ -23,9 +22,7 @@ function ImageComponent() {
     <div className="imageContainer">
         {profile.map(post => {
             <div className="galleryItem" key={post.id}>
-                <img src={post.images[0].url} alt={post.title}
-                // onClick={() => history.push(`/details/${item.id}`)}
-                />
+                <img src={post?.images[0]?.url} alt={post?.title}/>
             </div>
         })}
     </div>

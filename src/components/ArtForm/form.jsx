@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import { useHistory } from 'react-router';
 
 //MUI
 import Typography from '@mui/material/Typography';
@@ -9,8 +10,10 @@ import TextField from '@mui/material/TextField';
 import SendIcon from '@mui/icons-material/Send';
 import Button from '@mui/material/Button';
 
+
 function Form() {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const history = useHistory();
     const [inputPost, setInputPost] = useState({ title: '', latitude: '', longitude: '', description: '', date: ''});
 
     const handleSubmit = (event) => {
@@ -26,7 +29,7 @@ function Form() {
             payload: inputPost
         })
         setInputPost('');
-        // history.push('/')
+        history.push('/profile')
     };
 
     return (
@@ -94,7 +97,7 @@ function Form() {
         {/* date */}
         <TextField
           id="filled-textarea"
-          label="Date"
+          label="Date of creation"
           placeholder="Date of creation.."
           multiline
           variant="filled"

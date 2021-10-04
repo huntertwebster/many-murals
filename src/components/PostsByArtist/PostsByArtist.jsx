@@ -13,7 +13,7 @@ import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import AddIcon from '@mui/icons-material/Add';
-import  Container from '@mui/material/Container';
+import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
@@ -24,10 +24,10 @@ function PostsByArtist() {
   const profile = useSelector(store => store.profile);
   console.log('This is the data for one user:', profile)
 
-//  useEffect(() => {
-//    dispatch({ type: 'FETCH_PROFILE' });
-//    dispatch({ type: 'FETCH_GALLERY' });
-// }, []);
+ useEffect(() => {
+   dispatch({ type: 'FETCH_PROFILE' });
+   dispatch({ type: 'FETCH_GALLERY' });
+}, []);
   
   // deletes the entire post
   function deleteHandler(post) {
@@ -50,6 +50,8 @@ function PostsByArtist() {
       </Typography>
       <Typography>
         Below are your current posts.
+        <br />
+        <br />
          <Button
             style={{float: "right"}}
             variant="outlined"
@@ -73,7 +75,7 @@ function PostsByArtist() {
           {profile.map(post => (
                <Grid item key={post.id} xs={12} sm={6} md={4} lg={3}>
                 <Paper elevation = {0}>
-                  <img src={post.images[0].url} alt={post.title}
+                  <img src={post?.images[0]?.url} alt={post?.title}
                   // onClick={() => history.push(`/details/${item.id}`)}
                   />
                   <Typography
@@ -88,7 +90,7 @@ function PostsByArtist() {
                   Created on: {post.date}
                   </Typography>
                               
-                  <Stack direction="row" spacing={2}>
+                  <Stack direction="row" spacing={1}>
                   <Button
                   variant="outlined"
                   startIcon={<DeleteIcon />}
@@ -103,13 +105,23 @@ function PostsByArtist() {
                   startIcon={<EditIcon />}
                   onClick={() => history.push(`/edit/${post.id}`)}>
                   {post.title}
+                  </Button>
+                <Button
+                  style={{float: "right"}}
+                  variant="outlined"
+                  color="inherit"
+                  startIcon={<AddIcon />}
+                  onClick={() => history.push(`/addImage/${post.id}`)}
+                  type="submit"
+                  value="Submit">
+                  Add an Image
                 </Button>
                 </Stack>
                 </Paper>
-              </Grid>
-          ))}
+            </Grid>
             
-           
+          ))}
+        
         
       </Grid>
     </Container>

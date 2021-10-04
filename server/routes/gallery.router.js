@@ -27,6 +27,7 @@ router.get('/', (req, res) => {
 
 // POST for an individual picture
 router.post('/image', rejectUnauthenticated, (req, res) => {
+  console.log('body for add image', (req.body));
   const imageQuery = `INSERT INTO "images" ("art_item_id", "url", "featured_image")
   VALUES($1, $2, $3); `
   // QUERY MAKES IMAGE

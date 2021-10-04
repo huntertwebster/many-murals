@@ -27,7 +27,7 @@ import EditPost from '../EditPage/EditPage';
 import AdminView from '../AdminView/AdminView';
 import Map from '../Map/Map'
 import CreateAPost from '../CreatePost/CreateAPost';
-
+import ImageForm from '../ArtForm/imageForm';
 
 function App() {
   const dispatch = useDispatch();
@@ -115,6 +115,14 @@ function App() {
             path="/create"
           >
             <CreateAPost/>
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows image form
+            exact
+            path="/addImage/:addImageId"
+          >
+            <ImageForm/>
           </ProtectedRoute>
 
 
