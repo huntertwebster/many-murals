@@ -32,9 +32,9 @@ function Form() {
     return (
         <>
             <Typography
-                variant='p'
+                variant='h6'
             >
-            Add a new post here:    
+            Create a new post!  
             </Typography>
         
     <form onSubmit={handleSubmit}>     
@@ -112,7 +112,7 @@ function Form() {
           type="submit"
           value="Submit">
           Submit
-                </Button>
+        </Button>
             </form>
             </>
     )

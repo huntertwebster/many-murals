@@ -12,6 +12,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import AddIcon from '@mui/icons-material/Add';
 
 function PostsByArtist() {
   const history = useHistory();
@@ -99,6 +100,15 @@ function PostsByArtist() {
                         );
                         
                       })}
+                       <Button
+                        variant="outlined"
+                        color="inherit"
+                        startIcon={<AddIcon />}
+                        onClick={() => history.push(`/create`)}
+                        type="submit"
+                        value="Submit">
+                        Create a Post
+                      </Button>
                     </>
             </section>
         </main>

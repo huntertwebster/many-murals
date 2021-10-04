@@ -2,14 +2,12 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import Form from '../ArtForm/form';
-import PostsByArtist from '../PostsByArtist/PostsByArtist';
 import ImageForm from '../ArtForm/imageForm';
-import DeleteImage from '../DeleteImage/DeleteImage';
-import ImageComponent from '../imageComponent/imageComponent';
 // import CSS for the profile here
 
+import Box from '@mui/material/Box';
 
-function ProfilePage() {
+function CreateAPost() {
 
 const dispatch = useDispatch();
 
@@ -19,12 +17,14 @@ const dispatch = useDispatch();
  }, []);
   
   return (
-    <div className="container">
-      <ImageComponent/>
-      <PostsByArtist />
-      <DeleteImage />
+      <div className="container">
+          <Box>
+           <Form />
+      <ImageForm />    
+          </Box>
+      
     </div>
   );
 }
 
-export default ProfilePage;
+export default CreateAPost;

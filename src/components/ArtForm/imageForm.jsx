@@ -28,7 +28,13 @@ function ImageForm() {
     };
 
     return (
-    
+        <>
+    <Typography
+                variant='h6'
+            >
+            Add an image to your post!  
+            </Typography>
+            
     <form onSubmit={handleImageSubmit}>
         {/* Art Item ID */}
         <TextField
@@ -80,7 +86,8 @@ function ImageForm() {
         </Button>
         
         {/* <button onClick={handleImageSubmit} type="submit" value="Submit">Submit Image</button> */}
-    </form>
+            </form>
+            </>
     )
 }
 export default ImageForm;
