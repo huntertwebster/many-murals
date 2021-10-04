@@ -45,6 +45,7 @@ function DeleteImage() {
     
     return (
         <div>
+            <br />
             <Typography variant="p">
               Delete your images:
             </Typography>
@@ -53,9 +54,7 @@ function DeleteImage() {
                     return(
                         <>
                             
-                            {/* <p>PICTURE ID: {post.images[0].id}</p>
-                           <img src={post.images[0].url} alt={post.title}
-                              /> */}
+                            <br/>
                             <Button
                               variant=" outlined "
                             startIcon={<DeleteIcon />}
@@ -63,7 +62,7 @@ function DeleteImage() {
                               {post.title}
                             </Button>
                             {/* <button onClick={() => deletePicture(post.images)}>Delete {post.title}'s Image</button> */}
-                            <br />
+                            
                     </>
                 )})}
         </div>

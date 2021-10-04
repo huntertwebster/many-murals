@@ -9,6 +9,12 @@ function LogOutButton(props) {
       // because it's styled differently depending on where it is used, the className
       // is passed to it from it's parents through React props
       className={props.className}
+      style={{
+        backgroundColor: "white",
+        border: "1px",
+
+        color: "black"
+      }}
       onClick={() => dispatch({ type: 'LOGOUT' })}
     >
       Log Out
