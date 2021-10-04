@@ -5,12 +5,14 @@ import { useEffect } from 'react';
 import { useHistory } from 'react-router';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import Cloud from './cloud';
 
 //MUI
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import Button from '@mui/material/Button';
+
 
 
    
@@ -64,17 +66,8 @@ function ImageForm() {
     Add an image to your post!  
     </Typography>
             
-    <form onSubmit={handleImageSubmit}>
-        {/* Art Item ID */}
-        {/* <TextField
-          id="filled-textarea"
-          label="Art Item ID"
-          placeholder="Insert the art item Id.."
-          variant="filled"
-          onChange={(event) => setInputImage({ ...inputImage, art_item_id: event.target.value })}
-          value={inputImage.art_item_id}
-        />        */}
-         
+        <form onSubmit={handleImageSubmit}>
+                
         {/* Url */}
         <TextField
           id="filled-textarea"
@@ -85,7 +78,7 @@ function ImageForm() {
           onChange={(event) => setInputImage({ ...inputImage, url: event.target.value })}
           value={inputImage.url}
         />       
-            
+         <Cloud/>   
         {/* Featured Image  */}
         <TextField
           id="filled-textarea"
