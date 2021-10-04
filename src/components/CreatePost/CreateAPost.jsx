@@ -19,8 +19,7 @@ const dispatch = useDispatch();
   return (
       <div className="container">
           <Box>
-           <Form />
-      <ImageForm />    
+           <Form />   
           </Box>
       
     </div>

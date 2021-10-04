@@ -39,17 +39,14 @@ function ArtistsPage() {
                         >
                             Meet {artist.name}!  
                         </Typography>
-                            
-                        <Typography
+                        
+                    <img className="imageOfArtist" src={artist.profile_image} alt={artist.name} />
+                    
+                    <Typography
                             variant="p"
                         >
                             {artist.description}
                         </Typography>
-                    </Paper>
-            
-                    {/*  */}
-                        <Paper elevation={0}>
-                        <img className="imageOfArtist" src={artist.profile_image} alt={artist.name}/>   
                         </Paper>
                    </Grid>
                     ))}  

@@ -53,7 +53,7 @@ function ImageForm() {
             }
         })
         setInputImage({ url: '', featured_image: 'false' });
-        // history.push('/profile')
+        history.push('/profile')
     };
 
     return (

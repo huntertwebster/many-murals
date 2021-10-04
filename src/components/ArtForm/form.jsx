@@ -14,7 +14,7 @@ import Button from '@mui/material/Button';
 function Form() {
   const dispatch = useDispatch();
   const history = useHistory();
-    const [inputPost, setInputPost] = useState({ title: '', latitude: '', longitude: '', description: '', date: ''});
+    const [inputPost, setInputPost] = useState({ title: '', latitude: 0, longitude: 0, description: '', date: ''});
 
     const handleSubmit = (event) => {
         console.log("Title input is:", inputPost.title);
@@ -28,8 +28,8 @@ function Form() {
             type: 'ADD_POST',
             payload: inputPost
         })
-        setInputPost('');
-        history.push('/profile')
+        setInputPost({ title: '', latitude: 0, longitude: 0, description: '', date: ''});
+        // history.push('/profile')
     };
 
     return (

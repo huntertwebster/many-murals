@@ -13,6 +13,7 @@ const galleryRouter = require('./routes/gallery.router');
 const artistRouter = require('./routes/artist.router');
 // const adminRouter = require('./routes/admin.router');
 const clearanceRouter = require('./routes/clearance.router');
+const mapRouter = require('./routes/map.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -31,6 +32,7 @@ app.use('/api/gallery', galleryRouter);
 app.use('/api/artist', artistRouter);
 // app.use('/api/admin', adminRouter);
 app.use('/api/clearance', clearanceRouter);
+app.use('/api/map', mapRouter);
 
 // Serve static files
 app.use(express.static('build'));

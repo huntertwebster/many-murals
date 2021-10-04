@@ -1,0 +1,13 @@
+/* .map {
+    max-height: 100%;
+    max-width: 100%px;
+    justify-content: center;
+} */
+
+body {
+    font-family: 'Cormorant Garamond',
+        serif;
+    font-family: 'Roboto',
+        sans-serif;
+    margin: 0px;
+}
