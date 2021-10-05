@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useScript } from '../../../hooks/useScript';
-
-function Cloud(props) {
+// import useScript from 'react-script-hook';
+import { useScript } from '../../hooks/useScript';
+function CloudifyUploadForm(props) {
    const [state, setState] = useState({
       file_url: null,
       file_type: "image",
@@ -66,14 +66,14 @@ function Cloud(props) {
 
             File to upload: <button type="button" onClick={openWidget}>Pick File</button>
             <br />
-            File Type:
-            <select onChange={(e) => setState({...state, file_type: e.target.value })} value={state.file_type}>
+            {/* File Type: */}
+            {/* <select onChange={(e) => setState({...state, file_type: e.target.value })} value={state.file_type}>
                <option value="image">Image</option>
                <option value="audio">Audio</option>
-            </select>
+            </select> */}
             {state.file_url && <p>Uploaded Image URL: {state.file_url} <br /><img src={state.file_url} width={100}/></p>}
             <br />
-            Description: <input onChange={(e) => setState({...state, description: e.target.value })} value={state.description} />
+            {/* Description: <input onChange={(e) => setState({...state, description: e.target.value })} value={state.description} /> */}
 
             <div>
                <button type="submit">Submit Image</button>
@@ -83,4 +83,4 @@ function Cloud(props) {
    )
 }
 
-export default Cloud;
+export default CloudifyUploadForm;
