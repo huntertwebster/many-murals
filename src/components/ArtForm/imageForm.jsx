@@ -57,7 +57,7 @@ function ImageForm() {
         setInputImage({ url: '', featured_image: 'false' });
         history.push('/profile')
     };
-
+    
     return (
         <>
     <Typography
@@ -67,7 +67,7 @@ function ImageForm() {
     </Typography>
             
         <form onSubmit={handleImageSubmit}>
-                
+        {/* {'this is my input image:', inputImage.url}     */}
         {/* Url */}
         <TextField
           id="filled-textarea"
@@ -78,7 +78,10 @@ function ImageForm() {
           onChange={(event) => setInputImage({ ...inputImage, url: event.target.value })}
           value={inputImage.url}
         />       
-         <Cloud/>   
+        
+        {/* cloudinary */}
+        <Cloud setInputImage={setInputImage}/>
+        
         {/* Featured Image  */}
         <TextField
           id="filled-textarea"

@@ -27,38 +27,64 @@ router.get('/', (req, res) => {
 
 // POST for an individual picture
 router.post('/image', rejectUnauthenticated, (req, res) => {
-  console.log('body for add image', (req.body));
-  const imageQuery = `INSERT INTO "images" ("art_item_id", "url", "featured_image")
-  VALUES($1, $2, $3); `
-  // QUERY MAKES IMAGE
-  pool.query(imageQuery, [req.body.art_item_id, req.body.url, req.body.featured_image])
-    .then(result => { res.sendStatus(201) })
-    .catch(err => {
-      console.log('Error uploading picture', err);
-      res.sendStatus(500)
+  console.log('art item id:', req.params.id);
+  let userId = NaN;
+  const authText = `SELECT "user_id" FROM "art_item" WHERE "art_item"."id" = $1;`
+  console.log('PUT PARAMS:', req.params.id)
+  pool.query(authText, [req.params.id])
+    .then((result) => {
+      if (userId === req.user.id || req.user.type === 'admin') {
+        userId = result.rows[0].user_id
+        console.log('this is the user_id', userId)
+        console.log('body for add image', (req.body));
+        const imageQuery = `INSERT INTO "images" ("art_item_id", "url", "featured_image")
+        VALUES($1, $2, $3); `
+        // QUERY MAKES IMAGE
+        pool.query(imageQuery, [req.body.art_item_id, req.body.url, req.body.featured_image])
+          .then(result => { res.sendStatus(201) })
+          .catch(err => {
+            console.log('Error uploading picture', err);
+            res.sendStatus(500)
+          });
+      } else {
+        res.sendStatus((403), 'ERROR: you are not authorized to delete this picture!')
+      }
+    }).catch((err) => {
+      console.log('Could not find user_id with this art_item..', err);
     });
 });
 
 // DELETE individual picture from the artist page
-router.delete('/image/:id', (req, res) => {
-  // if (Number(req.params.art_item_user_id) === req.user.id || req.user.type === 'admin') {
-  console.log('these are my params in image delete', (req.params.id));
-  const queryText = 'DELETE FROM "images" WHERE "id" = $1';
-  pool.query(queryText, [req.params.id])
-    .then(() => { res.sendStatus(200); })
-    .catch((error) => {
-      console.log('ROUTER, DELETE PICTURE: Error deleting an image', error);
-      res.sendStatus(500);
+router.delete('/image/:id', rejectUnauthenticated, (req, res) => {
+  console.log('image id:', req.params.id);
+  let userId = NaN;
+  const authText = `SELECT "user_id" FROM "art_item" WHERE "art_item"."id" = (SELECT "art_item_id" FROM "images" WHERE "images"."id" = $1);`
+  pool.query(authText, [req.params.id])
+    .then((result) => {
+      userId = result.rows[0].user_id
+      console.log('this is the user_id', userId)
+      console.log('this is the result', result.rows)
+      console.log('these are my params in image delete', (req.params.id));
+      if (userId === req.user.id || req.user.type === 'admin') {
+        const queryText = 'DELETE FROM "images" WHERE "id" = $1';
+        pool.query(queryText, [req.params.id])
+          .then((result) => { res.sendStatus(200); })
+          .catch((error) => {
+            console.log('ROUTER, DELETE PICTURE: Error deleting an image', error);
+            res.sendStatus(500);
+          });
+      } else {
+        res.sendStatus((403), 'ERROR: you are not authorized to delete this picture!')
+      }
+    }).catch((err) => {
+      console.log('Could not find user_id with this art_item..', err);
     });
-  // } else {
-  //   res.sendStatus('ERROR: you are not authorized to delete this picture!')
-  // }
 });
 
 
 // POST for art_item
 router.post('/', rejectUnauthenticated, (req, res) => {
-  console.log('This is the REQ.BODY!!:', req.body);
+
   // RETURNING "id" will give us back the id of the created art_item
   console.log(' user!', req.user);
   const artItemQuery = `INSERT INTO "art_item"
@@ -66,7 +92,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   VALUES($1, $2, $3, $4, $5, $6, $7)
   RETURNING "id";`
 
-  // FIRST QUERY MAKES ART_ITEM
+  // QUERY MAKES ART_ITEM
   pool.query(artItemQuery, [req.user.id, req.user.name, req.body.title, req.body.latitude, req.body.longitude,
   req.body.description, req.body.date])
     .then(result => { res.sendStatus(201); })
@@ -81,18 +107,27 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 // DELETE ENTIRE POST from the gallery by the artist
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
   console.log('art item id:', req.params.id);
-
-  // if (Number(req.params.id) === req.user.id || req.user.type === 'admin') {
-  const queryText = 'DELETE FROM "art_item" WHERE "id" =$1';
-  pool.query(queryText, [req.params.id])
-    .then(() => { res.sendStatus(200); })
-    .catch((err) => {
-      console.log('Error deleting from art_item', err);
-      res.sendStatus(500);
+  let userId = NaN;
+  const authText = `SELECT "user_id" FROM "art_item" WHERE "art_item"."id" = $1;`
+  console.log('PUT PARAMS:', req.params.id)
+  pool.query(authText, [req.params.id])
+    .then((result) => {
+      userId = result.rows[0].user_id
+      console.log('this is the user_id', userId)
+      if (userId === req.user.id || req.user.type === 'admin') {
+        const queryText = 'DELETE FROM "art_item" WHERE "id" =$1';
+        pool.query(queryText, [req.params.id])
+          .then(() => { res.sendStatus(204); })
+          .catch((err) => {
+            console.log('Error deleting from art_item', err);
+            res.sendStatus(500);
+          });
+      } else {
+        res.sendStatus((403), 'ERROR: you are not authorized to delete this post!')
+      }
+    }).catch((err) => {
+      console.log('Could not find user_id with this art_item..', err);
     });
-  // } else {
-  //   res.sendStatus('ERROR: you are not authorized to delete this post!')
-  // }
 });
 
 
@@ -101,13 +136,22 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
 
 // PUT art_item from the artist profile so the artist can edit their posts
 router.put('/:id', rejectUnauthenticated, (req, res) => {
-  // if (req.user.type === 'admin') {
-  const updatedArt_Item = req.body;
-  const art_item_id = req.params.id;
-  console.log('PUT ROUTER: REQ.BODY: ', updatedArt_Item)
-  console.log('PUT ROUTER: this is the req.params!', art_item_id);
-  //only let someone let the owner update their art
-  const art_Item_query = `UPDATE art_item
+
+  //validating if art item is users
+  let userId = NaN;
+  const authText = `SELECT "user_id" FROM "art_item" WHERE "art_item"."id" = $1;`
+  console.log('PUT PARAMS:', req.params.id)
+  pool.query(authText, [req.params.id])
+    .then((result) => {
+      userId = result.rows[0].user_id
+      console.log('this is the user_id', userId)
+      if (userId === req.user.id || req.user.type === 'admin') {
+        const updatedArt_Item = req.body;
+        const art_item_id = req.params.id;
+        console.log('PUT ROUTER: REQ.BODY: ', updatedArt_Item)
+        console.log('PUT ROUTER: this is the req.params!', art_item_id);
+        //only let someone let the owner update their art
+        const art_Item_query = `UPDATE art_item
     SET "title" = $1, 
     "latitude" = $2, 
     "longitude" = $3, 
@@ -115,24 +159,27 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
     "date" = $5
     WHERE "id" = $6`;
 
-  const queryValues = [
-    updatedArt_Item.title,
-    updatedArt_Item.latitude,
-    updatedArt_Item.longitude,
-    updatedArt_Item.description,
-    updatedArt_Item.date,
-    art_item_id
-  ];
+        const queryValues = [
+          updatedArt_Item.title,
+          updatedArt_Item.latitude,
+          updatedArt_Item.longitude,
+          updatedArt_Item.description,
+          updatedArt_Item.date,
+          art_item_id
+        ];
 
-  pool.query(art_Item_query, queryValues)
-    .then(() => { res.sendStatus(200); })
-    .catch((err) => {
-      console.log('Error editing an art_item!', err);
-      res.sendStatus(500);
+        pool.query(art_Item_query, queryValues)
+          .then(() => { res.sendStatus(200); })
+          .catch((err) => {
+            console.log('Error editing an art_item!', err);
+            res.sendStatus(500);
+          });
+      } else {
+        res.sendStatus((403), 'ERROR: you are not authorized to update this post!')
+      }
+    }).catch((err) => {
+      console.log('Could not find user_id with this art_item..', err);
     });
-  // } else {
-  //   res.sendStatus('ERROR: you are not authorized to update this post!')
-  // }
 });
 
 

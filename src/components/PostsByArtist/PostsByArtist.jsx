@@ -6,6 +6,7 @@ import { useState } from "react";
 // import CSS for the profile here
 import { useHistory } from 'react-router';
 import DeleteImage from '../DeleteImage/DeleteImage';
+import moment from 'moment';
 
 //MUI
 import Typography from '@mui/material/Typography';
@@ -19,6 +20,9 @@ import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 
 function PostsByArtist() {
+  //for moment.js
+  const moment = require('moment');
+
   const history = useHistory();
   const dispatch = useDispatch();
   const profile = useSelector(store => store.profile);
@@ -41,7 +45,7 @@ function PostsByArtist() {
         })
   }
 
-
+  
   
   return (
     <Container>
@@ -63,6 +67,9 @@ function PostsByArtist() {
             Create a Post
           </Button>
       </Typography>
+
+      
+
          <Grid
             container
             spacing={3}
@@ -70,12 +77,13 @@ function PostsByArtist() {
             alignItems="center"
         >
                         
+          
                         
-                        
-          {profile.map(post => (
+        {profile.map(post => (
+                
                <Grid item key={post.id} xs={12} sm={6} md={4} lg={3}>
                 <Paper elevation = {0}>
-                  <img src={post?.images[0]?.url} alt={post?.title}
+                  <img src={post?.images[0]?.url} alt={"Please upload an image of your mural!"}
                   // onClick={() => history.push(`/details/${item.id}`)}
                   />
                   <Typography
@@ -85,9 +93,14 @@ function PostsByArtist() {
                 
                   <Typography
                   variant = "p">
-                  {post.description}
+                {post.description}
+                
+                
                   <br />
-                  Created on: {post.date}
+                Created {moment(`${post.date}`).fromNow()}
+                <br />
+                
+                
                   </Typography>
                               
                   <Stack direction="row" spacing={1}>

@@ -4,9 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useScript } from '../../hooks/useScript';
 function CloudifyUploadForm(props) {
    const [state, setState] = useState({
-      file_url: null,
-      file_type: "image",
-      description: ''
+      file_url: null
    });
 
    const dispatch = useDispatch();
@@ -30,57 +28,50 @@ function CloudifyUploadForm(props) {
                   ...state,
                   file_url: result.info.secure_url
                })
+            props.setInputImage({ url: state.file_url, featured_image: 'false' })
             }
          },
       ).open();
    }
 
-   const onSubmit = (event) => {
-      event.preventDefault();
-      if (state.file_url) {
-         dispatch({
-            type: 'SEND_UPLOAD',
-            payload: state
-         });
-
-         setState({
-            file_url: null,
-            file_type: "image",
-            description: '',
-         });
+//    const onSubmit = (event) => {
+//       event.preventDefault();
+//       if (state.file_url) {
+//         //  dispatch({
+//         //     type: 'SEND_UPLOAD',
+//         //     payload: state
+//         //  });
          
-      } else {
-         dispatch({ 
-            type: 'SET_ALERT', 
-            payload: { message: 'Please select a file for upload', alert: 'alert-error' } 
-         });
-      }
-   }
+//          setState({
+//             file_url: null
+//          });
+         
+//       } else {
+//          dispatch({ 
+//             type: 'SET_ALERT', 
+//             payload: { message: 'Please select a file for upload', alert: 'alert-error' } 
+//          });
+//       }
+//    }
 
    return (
       <>
-         <form onSubmit={onSubmit}>
-            <h2>Upload New File</h2>
+         {/* <form onSubmit={onSubmit}> */}
+            <h2>Upload your mural</h2>
             { /* This just sets up the window.cloudinary widget */ }
             {useScript('https://widget.cloudinary.com/v2.0/global/all.js')}
-
             File to upload: <button type="button" onClick={openWidget}>Pick File</button>
             <br />
-            {/* File Type: */}
-            {/* <select onChange={(e) => setState({...state, file_type: e.target.value })} value={state.file_type}>
-               <option value="image">Image</option>
-               <option value="audio">Audio</option>
-            </select> */}
-            {state.file_url && <p>Uploaded Image URL: {state.file_url} <br /><img src={state.file_url} width={100}/></p>}
+            {state.file_url && <p>Uploaded Image URL: {state.file_url} <br />The mural you're posting: <img src={state.file_url} width={100}/></p>}
             <br />
-            {/* Description: <input onChange={(e) => setState({...state, description: e.target.value })} value={state.description} /> */}
-
             <div>
-               <button type="submit">Submit Image</button>
+               {/* <button type="submit">Submit Image</button> */}
             </div>
-         </form>
+         {/* </form> */}
       </>
    )
 }
 
 export default CloudifyUploadForm;
+
+

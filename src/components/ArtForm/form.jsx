@@ -14,7 +14,7 @@ import Button from '@mui/material/Button';
 function Form() {
   const dispatch = useDispatch();
   const history = useHistory();
-    const [inputPost, setInputPost] = useState({ title: '', latitude: 0, longitude: 0, description: '', date: ''});
+    const [inputPost, setInputPost] = useState({ title: '', latitude: '', longitude: '', description: '', date: ''});
 
     const handleSubmit = (event) => {
         console.log("Title input is:", inputPost.title);
@@ -29,7 +29,7 @@ function Form() {
             payload: inputPost
         })
         setInputPost({ title: '', latitude: 0, longitude: 0, description: '', date: ''});
-        // history.push('/profile')
+        history.push('/profile')
     };
 
     return (
@@ -42,7 +42,8 @@ function Form() {
         
     <form onSubmit={handleSubmit}>     
         {/* title */} 
-        <TextField
+          <TextField
+          required
           id="filled-textarea"
           label="Title"
           placeholder="Your mural's title.."
@@ -55,7 +56,8 @@ function Form() {
                 
 
         {/* latitude */}
-        <TextField
+          <TextField
+          required
           id="filled-textarea"
           label="Latitude"
           placeholder="Insert the latitude.."
@@ -68,7 +70,8 @@ function Form() {
                 
 
         {/* longitude */}
-        <TextField
+          <TextField
+          required
           id="filled-textarea"
           label="Longitude"
           placeholder="Insert the longitude.."
@@ -81,7 +84,8 @@ function Form() {
                 
 
         {/* description */}
-        <TextField
+          <TextField
+          required
           id="filled-multiline-static"
           label="Description"
           placeholder="Give a description of your mural..."
@@ -95,11 +99,13 @@ function Form() {
       
 
         {/* date */}
-        <TextField
+          <TextField
+          required
           id="filled-textarea"
           label="Date of creation"
           placeholder="Date of creation.."
           multiline
+          type="date"
           variant="filled"
           onChange={(event) => setInputPost({ ...inputPost, date: event.target.value })}
           value={inputPost.date}
