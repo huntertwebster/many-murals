@@ -6,13 +6,13 @@ import { useHistory } from 'react-router';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useScript } from '../../hooks/useScript';
-
+import '../ArtForm/imageForm.css';
 //MUI
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import Button from '@mui/material/Button';
-
+import SendIcon from '@mui/icons-material/Send';
 
 
    
@@ -85,58 +85,67 @@ function ImageForm() {
 
 
     return (
-        <>
+        <div className="addImage">
+            
      {useScript('https://widget.cloudinary.com/v2.0/global/all.js')}       
     <Typography
         variant='h6'
     >
     Add an image to your post!  
     </Typography>
-            
-        <form onSubmit={handleImageSubmit}>
-        {/* {'this is my input image:', inputImage.url}     */}
-        {/* Url */}
-        {/* <TextField
-          id="filled-textarea"
-          label="Url"
-          placeholder="Insert the url.."    
-          multiline
-          variant="filled"
-          onChange={(event) => setInputImage({ ...inputImage, url: event.target.value })}
-          value={inputImage.url}
-                /> */}
-                
-        File to upload: <button type="button" onClick={openWidget}>Pick File</button>
             <br />
-                {inputImage.url && <p>Uploaded Image URL: {inputImage.url} <br />The mural you're posting: <img src={inputImage.url} width={100} /></p>}
+        <form onSubmit={handleImageSubmit}>
+
+        
                 
-     
+    
         
         {/* Featured Image  */}
-        {/* <TextField
+            <TextField
+                required
           id="filled-textarea"
-          label="Your featured image.."
+          label="Do you want this displayed first?"
           placeholder="Do you want this to be the cover?"
           variant="filled"
           onChange={(event) => setInputImage({ ...inputImage, featured_image: event.target.value })}
           value={inputImage.featured_image}
-        />        */}
+                />
 
-        {/* button to submit image  */}
+
         <Button
         variant="outlined"
         color="primary"
         startIcon={<InsertPhotoIcon />}
+        onClick={openWidget}
+        type="button"
+        value="Submit"
+        size="small"
+        >
+        Choose File
+        </Button>
+            <br />
+                {inputImage.url && <p>The mural you're posting: <br /> <img src={inputImage.url} width={100} /></p>}
+
+
+
+        {/* button to submit image  */}
+        <Button
+        // style={{float: "left"}}
+        variant="outlined"
+        color="primary"
+        startIcon={<SendIcon />}
         onClick={handleImageSubmit}
         type="submit"
         value="Submit"
+        size="small"
         >
-        Submit Image
+        Submit
         </Button>
         
         {/* <button onClick={handleImageSubmit} type="submit" value="Submit">Submit Image</button> */}
             </form>
-            </>
+        </div>
+    
     )
 }
 export default ImageForm;

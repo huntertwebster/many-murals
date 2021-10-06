@@ -7,9 +7,12 @@ function UserPage() {
   const user = useSelector((store) => store.user);
   return (
     <div className="container">
-      <h1>Welcome, {user.username}!</h1>
+      <h1>Hello, {user.name}!</h1>
       
-      <p>Your ID is: {user.id}</p>
+      <p>Your username is: {user.username}</p>
+      <p>Your email is: {user.email_address}</p>
+      <p>Your phone number is: {user.phone_number}</p>
+ 
       <LogOutButton className="btn" />
     </div>
   );

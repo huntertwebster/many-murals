@@ -79,7 +79,7 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
     console.log('art item id:', req.params.id);
     let userId = NaN;
-    const authText = `SELECT "user_id" FROM "art_item" WHERE "art_item"."id" = $1;`
+    const authText = `SELECT * FROM "user" WHERE "id" = $1;`
     console.log('PUT PARAMS:', req.params.id)
     pool.query(authText, [req.params.id])
         .then((result) => {

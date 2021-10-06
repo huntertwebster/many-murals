@@ -6,10 +6,8 @@ function RegisterForm() {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [email_address, setEmail_Address] = useState('');
-  // const [type, setType] = useState('');
   const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [phone_number, setPhone_Number] = useState('');
+  const [password, setPassword] = useState('')
   const [profile_image, setProfile_Image] = useState('');
   
   const errors = useSelector((store) => store.errors);
@@ -24,10 +22,8 @@ function RegisterForm() {
         name: name,
         description: description,
         email_address: email_address,
-        // type: type,
         username: username,
         password: password,
-        phone_number: phone_number,
         profile_image: profile_image
       },
     });

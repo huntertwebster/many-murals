@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import '../GalleryPage/GalleryPage.css';
 import { useHistory } from 'react-router';
-
+import moment from 'moment';
 // MUI
 import Grid from '@mui/material/Grid';
 import { Container, Paper } from '@mui/material';
@@ -12,6 +12,7 @@ function GalleryPage() {
     const history = useHistory();
     const dispatch = useDispatch();
     const gallery = useSelector(store => store.gallery);
+    const moment = require('moment');
     // used for when clicked on a poster, movie data is recieved 
     // sends us to /details too
 
@@ -22,7 +23,7 @@ function GalleryPage() {
 
     return ( 
     <Container>
-    <h1>Welcome to the Gallery</h1>
+    <h1>Welcome to Many Murals</h1>
         <Grid
             container
             spacing={3}
@@ -38,7 +39,7 @@ function GalleryPage() {
                 <div className='artItemText'>
                 <h4>{item.title} by {item.user_name}</h4>
                 <p>{item.description}</p>
-                <p>{item.date}</p>
+                Created {moment(`${item.date}`).fromNow()}
                 </div>
             </Paper>
         </Grid>

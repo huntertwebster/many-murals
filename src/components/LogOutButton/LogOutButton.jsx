@@ -12,8 +12,8 @@ function LogOutButton(props) {
       style={{
         backgroundColor: "white",
         border: "1px",
-
-        color: "black"
+        color: "black",
+        fontFamily: "Cormorant Garamond"
       }}
       onClick={() => dispatch({ type: 'LOGOUT' })}
     >

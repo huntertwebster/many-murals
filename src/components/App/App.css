@@ -6,10 +6,18 @@ body,
 
 body {
   font-family: 'Cormorant Garamond',
-    serif;
-  font-family: 'Roboto',
-    sans-serif;
+    serif !important;
+  /* font-family: 'Roboto',
+    sans-serif; */
   margin: 0px;
+}
+
+.MuiTypography-root {
+  font-family: 'Cormorant Garamond',
+    serif !important;
+  /* font-family: 'Roboto',
+    sans-serif !important; */
+
 }
 
 img {

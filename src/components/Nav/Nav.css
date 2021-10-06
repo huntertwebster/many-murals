@@ -6,6 +6,12 @@
 
 }
 
+.MuiButtonBase-root {
+  font-family: 'Cormorant Garamond',
+    serif;
+}
+
+
 .navLink {
   color: #000000;
   padding: 5px;
@@ -13,9 +19,14 @@
   font-size: 18px;
   cursor: pointer;
   outline: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Cormorant Garamond',
+    serif;
 }
 
+p {
+  font-family: 'Cormorant Garamond',
+    serif;
+}
 
 a:link {
   text-decoration: none;

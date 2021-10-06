@@ -64,7 +64,9 @@ function PostsByArtist() {
             startIcon={<AddIcon />}
             onClick={() => history.push(`/create`)}
             type="submit"
-            value="Submit">
+            value="Submit"
+            size="small">
+              
             Create a Post
           </Button>
       </Typography>
@@ -104,24 +106,26 @@ function PostsByArtist() {
                 
                   </Typography>
                               
-                  <Stack direction="row" spacing={1}>
+                  
                   <Button
                   variant="outlined"
                   startIcon={<DeleteIcon />}
                   size="small"
-                  fontSize="small"
                   onClick={() => deleteHandler(post)}>
-                  {post.title}
+                  Delete this post
                 </Button>
                               
                 <Button
                   variant="outlined"
+                  size="small"
                   startIcon={<EditIcon />}
                   onClick={() => history.push(`/edit/${post.id}`)}>
-                  {post.title}
-                  </Button>
+                  Edit this post
+              </Button>
+              
                 <Button
-                  style={{float: "right"}}
+                  
+                  size="small"
                   variant="outlined"
                   color="inherit"
                   startIcon={<AddIcon />}
@@ -130,7 +134,7 @@ function PostsByArtist() {
                   value="Submit">
                   Add an Image
                 </Button>
-                </Stack>
+                
                 </Paper>
             </Grid>
             

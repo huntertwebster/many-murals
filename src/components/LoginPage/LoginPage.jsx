@@ -12,6 +12,7 @@ function LoginPage() {
       <center>
         <button
           style={{
+            fontFamily: 'Cormorant Garamond',
             backgroundColor: "white",
           }}
           type="button"
