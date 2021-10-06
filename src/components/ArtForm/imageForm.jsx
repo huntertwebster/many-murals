@@ -96,7 +96,19 @@ function ImageForm() {
             <br />
         <form onSubmit={handleImageSubmit}>
 
-        
+        <Button
+        variant="outlined"
+        color="primary"
+        startIcon={<InsertPhotoIcon />}
+        onClick={openWidget}
+        type="button"
+        value="Submit"
+        size="small"
+        >
+        Choose File
+        </Button>
+            <br />
+                {inputImage.url && <p>The mural you're posting: <br /> <img src={inputImage.url} width={100} /></p>}
                 
     
         
@@ -110,8 +122,8 @@ function ImageForm() {
           onChange={(event) => setInputImage({ ...inputImage, featured_image: event.target.value })}
           value={inputImage.featured_image}
                 />
-
-
+        
+                
         <Button
         variant="outlined"
         color="primary"

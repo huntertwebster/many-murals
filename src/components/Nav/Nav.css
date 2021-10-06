@@ -1,20 +1,29 @@
 .nav-title {
-  font-size: 50px;
+  font-size: 60px;
   color: #000000;
   padding-left: 10px;
   margin: 0;
 
 }
 
-.MuiButtonBase-root {
+.MuiButtonBase-root,
+li.MuiMenuItem-root {
   font-family: 'Cormorant Garamond',
     serif;
 }
 
+#text {
+  font-family: 'Cormorant Garamond',
+    serif;
+}
+
+.btn.btn_asLink {
+  background-color: transparent;
+}
 
 .navLink {
   color: #000000;
-  padding: 5px;
+  /* padding: 5px; */
   text-decoration: none;
   font-size: 18px;
   cursor: pointer;

@@ -372,11 +372,11 @@ export default function PrimarySearchAppBar() {
     >
 
       <Link className="navLink" to="/profile">
-      <MenuItem onClick={handleMenuClose}>My Murals</MenuItem>
+      <MenuItem className="profileMenuItem" onClick={handleMenuClose}>My Murals</MenuItem>
       </Link>
       
       <Link className="navLink" to="/user">
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem className="profileMenuItem" onClick={handleMenuClose}>My account</MenuItem>
       </Link>
 
       
@@ -404,7 +404,6 @@ export default function PrimarySearchAppBar() {
     
       {/* Profile (MOBILE) */}
       {user.id && (
-        <>
         <MenuItem onClick={handleProfileMenuOpen}>
           <IconButton
             size="large"
@@ -415,11 +414,8 @@ export default function PrimarySearchAppBar() {
           >
             <Avatar alt={user.name} src={user.profile_image} />
           </IconButton>
-          <p>Profile</p>
+          <p>{user.name}</p>
         </MenuItem>
-        
-       
-          </>
       )}
     
     {/* About (MOBILE) */}
@@ -471,22 +467,24 @@ export default function PrimarySearchAppBar() {
       </Link>
 
       {/* Login (MOBILE) */}
-      <Link className="navLink" to="/login">
-        <MenuItem>
-          <IconButton
-          size="large"
-          
-          style={{fontSize: "20px"}}
-          aria-controls={menuId}
-          aria-haspopup="true"
+      {!user.id && (
+        <Link className="navLink" to="/login">
+          <MenuItem>
+            <IconButton
+              size="large"
+              style={{ fontSize: "14px" }}
+              color="default"
+              aria-controls={menuId}
+              aria-haspopup="true"
         >
           <Badge>
-            <LoginIcon />
+            <LoginIcon/>
           </Badge>
           </IconButton>
-          <p>Login</p>
-        </MenuItem>
-      </Link>
+             <p>Login</p>
+          </MenuItem>
+        </Link>
+            )}
       
     </Menu>
   );
@@ -552,7 +550,10 @@ export default function PrimarySearchAppBar() {
               </Link>
             </IconButton>
 
-               {/* Login (DESKTOP) */}
+              
+            
+            {/* Login (DESKTOP) */}
+            {!user.id && (
               <IconButton
               size="large"
               edge="end"
@@ -564,13 +565,17 @@ export default function PrimarySearchAppBar() {
               Login
               </Link>
             </IconButton>
+            )}
             
+
 
             {/* ----- IF USER IS LOGGED IN SHOW THIS (DESKTOP)----- */}
             {user.id && (
-                <>
+              <>
+              <IconButton size="large">
              <LogOutButton className="navLink" />
-              
+              </IconButton>
+
             <IconButton
               size="large"
               edge="end"
@@ -585,6 +590,10 @@ export default function PrimarySearchAppBar() {
               </>
             )}
             
+            
+
+
+
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <IconButton

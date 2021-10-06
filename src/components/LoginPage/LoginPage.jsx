@@ -13,7 +13,8 @@ function LoginPage() {
         <button
           style={{
             fontFamily: 'Cormorant Garamond',
-            backgroundColor: "white",
+            backgroundColor: "transparent",
+
           }}
           type="button"
           className="btn btn_asLink"

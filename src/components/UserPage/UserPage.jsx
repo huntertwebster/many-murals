@@ -11,7 +11,6 @@ function UserPage() {
       
       <p>Your username is: {user.username}</p>
       <p>Your email is: {user.email_address}</p>
-      <p>Your phone number is: {user.phone_number}</p>
  
       <LogOutButton className="btn" />
     </div>
