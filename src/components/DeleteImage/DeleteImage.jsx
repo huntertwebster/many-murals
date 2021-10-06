@@ -35,8 +35,8 @@ function DeleteImage() {
         dispatch({
             type: 'DELETE_PICTURE',
             payload: {
-                id: image[0].id,
-                art_item_id: image[0].art_item_id
+                id: image[0]?.id,
+                art_item_id: image[0]?.art_item_id
             }
         });
         };

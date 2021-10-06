@@ -28,7 +28,7 @@ import AdminView from '../AdminView/AdminView';
 import Map from '../Map/Map'
 import CreateAPost from '../CreatePost/CreateAPost';
 import ImageForm from '../ArtForm/imageForm';
-import Cloud from '../ArtForm/cloud';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -126,13 +126,6 @@ function App() {
             <ImageForm/>
           </ProtectedRoute>
 
-          <ProtectedRoute
-            // logged in shows cloud form
-            exact
-            path="/cloud"
-          >
-            <Cloud/>
-          </ProtectedRoute>
 
           <ProtectedRoute
             // logged in shows Edit else shows Edit

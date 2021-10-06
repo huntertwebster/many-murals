@@ -5,7 +5,6 @@ import { useEffect } from 'react';
 import { useHistory } from 'react-router';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import Cloud from './cloud';
 import { useScript } from '../../hooks/useScript';
 
 //MUI
@@ -28,10 +27,10 @@ function ImageForm() {
     const gallery = useSelector(store => store.gallery);
 
 
- useEffect(() => {
-      dispatch({ type: 'FETCH_PROFILE' });
-      dispatch({ type: 'FETCH_GALLERY' });
-     }, []);
+//  useEffect(() => {
+//       dispatch({ type: 'FETCH_PROFILE' });
+//       dispatch({ type: 'FETCH_GALLERY' });
+//      }, []);
 
     // GALLERY: using paramaters 
     let params = useParams();
@@ -114,14 +113,14 @@ function ImageForm() {
      
         
         {/* Featured Image  */}
-        <TextField
+        {/* <TextField
           id="filled-textarea"
           label="Your featured image.."
           placeholder="Do you want this to be the cover?"
           variant="filled"
           onChange={(event) => setInputImage({ ...inputImage, featured_image: event.target.value })}
           value={inputImage.featured_image}
-        />       
+        />        */}
 
         {/* button to submit image  */}
         <Button

@@ -63,7 +63,7 @@ function* addPicture(action) {
     console.log("----Inside the ADD_PICTURE SAGA----", action);
     try {
         // passes all items from the server to the payload 
-        yield axios.post('/api/gallery/image', action.payload);
+        yield axios.post(`/api/gallery/addImage/${action.payload.id}`, action.payload);
         // automatically console.log items after action
         yield put({ type: 'FETCH_GALLERY' });
         yield put({ type: 'FETCH_PROFILE' });
