@@ -13,9 +13,8 @@ import mapStyles from './mapStyles';
 
 
 const containerStyle = {
-  width: '100%',
-  height: '800px',
-  justifyContent: 'center'
+  height: "100vh",
+  width: "100%"
 };
 
 const center = {

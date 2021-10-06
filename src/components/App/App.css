@@ -39,7 +39,9 @@ Button
 
 .btn {
   font-family: 'Roboto', sans-serif;
-  background-color: white;
+  background-color: transparent;
+  color: black;
+  text-emphasis-color: black;
   padding: 10px 20px;
   border-radius: 4px;
   border-width: 1px;

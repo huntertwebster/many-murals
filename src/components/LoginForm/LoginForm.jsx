@@ -36,6 +36,7 @@ function LoginForm() {
         <label htmlFor="username">
           Username:
           <input
+            style={{fontFamily: "Cormorant Garamond"}}
             type="text"
             name="username"
             required
@@ -48,6 +49,7 @@ function LoginForm() {
         <label htmlFor="password">
           Password:
           <input
+            style={{fontFamily: "Cormorant Garamond"}}
             type="password"
             name="password"
             required
@@ -57,7 +59,7 @@ function LoginForm() {
         </label>
       </div>
       <div>
-        <input className="btn" type="submit" name="submit" value="Log In" />
+        <button style={{fontFamily: "Cormorant Garamond", color: "black"}} className="btn" type="submit" name="submit" value="Log In" />
       </div>
     </form>
   );

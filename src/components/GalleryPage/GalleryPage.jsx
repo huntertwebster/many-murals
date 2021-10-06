@@ -35,7 +35,9 @@ function GalleryPage() {
     {gallery.map(item => (
         <Grid item key={item.id} xs={12} sm={6} md={4} lg={3}>
             <Paper elevation={0}>
-                <img className="galleryImage" src={item.images[0].url} alt={item.title} />
+                <img className="galleryImage" src={item.images[0].url} alt={item.title}  
+                    onClick={() => {window.open(`https://www.google.com/maps/@${parseFloat(item.latitude)},${parseFloat(item.longitude)},${16}z`, "_blank")}}
+                />
                 <div className='artItemText'>
                 <h4>{item.title} by {item.user_name}</h4>
                 <p>{item.description}</p>
