@@ -26,11 +26,11 @@ router.get('/', (req, res) => {
 });
 
 // POST for an individual picture
-router.post('/image', rejectUnauthenticated, (req, res) => {
+router.post('/image/:id', rejectUnauthenticated, (req, res) => {
   console.log('art item id:', req.params.id);
   let userId = NaN;
-  const authText = `SELECT "user_id" FROM "art_item" WHERE "art_item"."id" = $1;`
-  console.log('PUT PARAMS:', req.params.id)
+  const authText = `SELECT "user_id" FROM "art_item" WHERE "art_item"."id" = (SELECT "art_item_id" FROM "images" WHERE "images"."id" = $1);`
+  console.log('POST PARAMS:', req.params.id)
   pool.query(authText, [req.params.id])
     .then((result) => {
       if (userId === req.user.id || req.user.type === 'admin') {
@@ -58,14 +58,14 @@ router.post('/image', rejectUnauthenticated, (req, res) => {
 router.delete('/image/:id', rejectUnauthenticated, (req, res) => {
   console.log('image id:', req.params.id);
   let userId = NaN;
-  const authText = `SELECT "user_id" FROM "art_item" WHERE "art_item"."id" = (SELECT "art_item_id" FROM "images" WHERE "images"."id" = $1);`
+  const authText = `SELECT "user_id" FROM "art_item" WHERE "art_item"."id" = $1;`
   pool.query(authText, [req.params.id])
     .then((result) => {
-      userId = result.rows[0].user_id
       console.log('this is the user_id', userId)
       console.log('this is the result', result.rows)
       console.log('these are my params in image delete', (req.params.id));
       if (userId === req.user.id || req.user.type === 'admin') {
+        userId = result.rows[0].user_id
         const queryText = 'DELETE FROM "images" WHERE "id" = $1';
         pool.query(queryText, [req.params.id])
           .then((result) => { res.sendStatus(200); })
@@ -109,17 +109,18 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
   console.log('art item id:', req.params.id);
   let userId = NaN;
   const authText = `SELECT "user_id" FROM "art_item" WHERE "art_item"."id" = $1;`
-  console.log('PUT PARAMS:', req.params.id)
+  console.log('Delete entire post params:', req.params.id)
   pool.query(authText, [req.params.id])
     .then((result) => {
-      userId = result.rows[0].user_id
+      console.log('this is the result', result.rows)
       console.log('this is the user_id', userId)
       if (userId === req.user.id || req.user.type === 'admin') {
-        const queryText = 'DELETE FROM "art_item" WHERE "id" =$1';
+        userId = result.rows[0].user_id
+        const queryText = 'DELETE FROM "art_item" WHERE "id" = $1';
         pool.query(queryText, [req.params.id])
-          .then(() => { res.sendStatus(204); })
+          .then(() => { res.sendStatus(200); })
           .catch((err) => {
-            console.log('Error deleting from art_item', err);
+            console.log('ROUTER, DELETE POST: Error deleting from art_item', err);
             res.sendStatus(500);
           });
       } else {

@@ -6,6 +6,7 @@ import { useHistory } from 'react-router';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Cloud from './cloud';
+import { useScript } from '../../hooks/useScript';
 
 //MUI
 import Typography from '@mui/material/Typography';
@@ -58,8 +59,35 @@ function ImageForm() {
         history.push('/profile')
     };
     
+
+//cloudinary - open widget
+  const openWidget = () => {
+      // Currently there is a bug with the Cloudinary <Widget /> component
+      // where the button defaults to a non type="button" which causes the form
+      // to submit when clicked. So for now just using the standard widget that
+      // is available on window.cloudinary
+      // See docs: https://cloudinary.com/documentation/upload_widget#look_and_feel_customization
+      !!window.cloudinary && window.cloudinary.createUploadWidget(
+         {
+            sources: ['local', 'url', 'camera'],
+            cloudName: process.env.REACT_APP_CLOUDINARY_NAME,
+            uploadPreset: process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET
+         },
+         (error, result) => {
+            if (!error && result && result.event === "success") {
+               // When an upload is successful, save the uploaded URL to local state!
+            setInputImage({ ...inputImage, url: result.info.secure_url})
+            }
+         },
+      ).open();
+   }
+
+
+
+
     return (
         <>
+     {useScript('https://widget.cloudinary.com/v2.0/global/all.js')}       
     <Typography
         variant='h6'
     >
@@ -69,7 +97,7 @@ function ImageForm() {
         <form onSubmit={handleImageSubmit}>
         {/* {'this is my input image:', inputImage.url}     */}
         {/* Url */}
-        <TextField
+        {/* <TextField
           id="filled-textarea"
           label="Url"
           placeholder="Insert the url.."    
@@ -77,10 +105,13 @@ function ImageForm() {
           variant="filled"
           onChange={(event) => setInputImage({ ...inputImage, url: event.target.value })}
           value={inputImage.url}
-        />       
-        
-        {/* cloudinary */}
-        <Cloud setInputImage={setInputImage}/>
+                /> */}
+                
+        File to upload: <button type="button" onClick={openWidget}>Pick File</button>
+            <br />
+                {inputImage.url && <p>Uploaded Image URL: {inputImage.url} <br />The mural you're posting: <img src={inputImage.url} width={100} /></p>}
+                
+     
         
         {/* Featured Image  */}
         <TextField
