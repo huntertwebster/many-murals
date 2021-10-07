@@ -36,7 +36,7 @@ function GalleryPage() {
     {gallery.map(item => (
         <Grid item key={item.id} xs={12} sm={6} md={4} lg={3}>
             <Paper elevation={0}>
-                <img className="galleryImage" src={item.images[0].url} alt={item.title}  
+                <img className="galleryImage" src={item.images[0].url} alt={item.title}  style={{height:"300px", width: "300px"}}
                     // onClick={() => { window.open(`https://www.google.com/maps/@${parseFloat(item.latitude)},${parseFloat(item.longitude)},${16}z`, "_blank") }}
                     onClick={() => { window.open(`http://maps.google.com/maps?q=${item.latitude},${item.longitude}`, "_blank") }}
                 />

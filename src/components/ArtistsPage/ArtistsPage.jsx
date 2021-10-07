@@ -40,7 +40,7 @@ function ArtistsPage() {
                             Meet {artist.name}!  
                         </Typography>
                         
-                    <img className="imageOfArtist" src={artist.profile_image} alt={artist.name} />
+                    <img className="imageOfArtist" src={artist.profile_image} alt={artist.name} style={{ width: "100%"}} />
                     
                     <Typography
                             variant="p"

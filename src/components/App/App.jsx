@@ -41,7 +41,8 @@ function App() {
 
   return (
     <Router>
-      <div>
+      <div
+      style={{overflow: "hidden"}}>
         <Nav />
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
@@ -181,7 +182,21 @@ function App() {
             <h1>404</h1>
           </Route>
         </Switch>
-        <Footer />
+
+        
+        {/* switch for map, if route is exactly map, don't render a footer! */}
+        <Switch>
+          <Route
+            // shows Map at all times (logged in or not)
+            exact
+            path="/map"
+          >
+          </Route>
+
+          <Route>
+            <Footer />
+          </Route>
+        </Switch>
       </div>
     </Router>
   );

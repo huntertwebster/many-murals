@@ -14,7 +14,7 @@ import mapStyles from './mapStyles';
 
 const containerStyle = {
   width: '100%',
-  height: '650px',
+  height: '90vh',
 };
 
 const center = {
@@ -41,6 +41,7 @@ function Map() {
 //   });
   useEffect(() => {
     dispatch({ type: 'FETCH_GALLERY' });
+    dispatch({ type: 'FETCH_MAP' });
   }, []);
   
   const { isLoaded } = useJsApiLoader({
@@ -67,6 +68,7 @@ function Map() {
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
+        style={{fontFamily: "Cormorant Garamond"}}
         zoom={12}
         onUnmount={onUnmount}
       >
@@ -96,8 +98,13 @@ function Map() {
             }}
           >
             <div>
-              <h2>{selectedMural.title}</h2>
-              <img src={selectedMural?.images[0]?.url} alt={selectedMural?.title}/>
+              <h2 style={{fontFamily: "Cormorant Garamond" }}>{selectedMural.title}</h2>
+              <p>Click the image to go to it's location!</p>
+              <img 
+                src={selectedMural?.images[0]?.url}
+                style={{ width: "200px", height: "150px", fontFamily: "Cormorant Garamond" }}
+                alt={selectedMural?.title}
+              onClick={() => { window.open(`http://maps.google.com/maps?q=${selectedMural.latitude},${selectedMural.longitude}`, "_blank") }}/>
             </div>
             </InfoWindow>
         )}

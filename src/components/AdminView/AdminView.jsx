@@ -9,7 +9,6 @@ import { useParams } from 'react-router-dom';
 // import CSS for the profile here
 // import { useHistory } from 'react-router';
 
-// let result = result1.filter(o1 => result2.some(o2 => o1.id === o2.id));
 
 
 function AdminView() {
@@ -23,8 +22,8 @@ function AdminView() {
     const profile = useSelector(store => store.profile);
     
     // filter
-    const result = gallery.filter(item => artists.some(artist => item.id === artist.id))
-    console.log('This is the number of items in the gallery:', Number(result));
+    // const result = gallery.filter(item => artists.some(artist => item.id === artist.id))
+    // console.log('This is the number of items in the gallery:', Number(result));
 
     // useEffect
     useEffect(() => {
@@ -50,7 +49,6 @@ return (
                     return (
                         <div className="artistItem" key={artist.id}>
                             <ul>
-                                <li>{artist.name}: {result}</li>
                                 {/* display the number of items each artist has */}
                                 <button onClick={() => deleteArtist(artist.id)}>Delete {artist.name}'s profile</button>
 

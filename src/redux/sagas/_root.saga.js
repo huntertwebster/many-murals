@@ -5,7 +5,7 @@ import userSaga from './user.saga';
 import gallerySaga from './gallery.saga';
 import artistSaga from './artist.saga';
 import profileSaga from './profile.saga';
-
+import mapSaga from './map.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -16,6 +16,7 @@ import profileSaga from './profile.saga';
 // and login triggers setting the user
 function* rootSaga() {
   yield all([
+    mapSaga(), // stores all data on the map
     artistSaga(), // stores all data on the artist
     profileSaga(), // stores all the data on the artist's information 
     gallerySaga(), // stores all the data on the art

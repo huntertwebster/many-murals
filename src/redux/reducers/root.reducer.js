@@ -4,6 +4,7 @@ import user from '../reducers/user.reducer';
 import gallery from '../reducers/gallery.reducer';
 import artists from '../reducers/artists.reducer';
 import profile from '../reducers/profile.reducer'
+import map from './map.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -12,6 +13,7 @@ import profile from '../reducers/profile.reducer'
 // Lets make a bigger object for our store, with the objects from our reducers.
 // This is what we get when we use 'state' inside of 'mapStateToProps'
 const rootReducer = combineReducers({
+  map, // contains all map data
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
   gallery, // contains all the gallery data

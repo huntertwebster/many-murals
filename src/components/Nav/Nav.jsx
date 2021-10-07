@@ -328,6 +328,7 @@ import InfoIcon from '@mui/icons-material/Info';
 import Avatar from '@mui/material/Avatar';
 import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 
 export default function PrimarySearchAppBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -484,7 +485,28 @@ export default function PrimarySearchAppBar() {
              <p>Login</p>
           </MenuItem>
         </Link>
-            )}
+      )}
+      
+      {/* Admin (MOBILE) */}
+    {user?.type === "admin" && (
+        <Link className="navLink" to="/adminView">
+          <MenuItem>
+            <IconButton
+              size="large"
+              style={{ fontSize: "14px" }}
+              color="default"
+              aria-controls={menuId}
+              aria-haspopup="true"
+        >
+          <Badge>
+            <AdminPanelSettingsIcon/>
+          </Badge>
+          </IconButton>
+             <p>Admin</p>
+          </MenuItem>
+        </Link>
+      )}
+
       
     </Menu>
   );
@@ -497,7 +519,8 @@ export default function PrimarySearchAppBar() {
           color: 'black',
           boxShadow: 'none',
         }}>
-        <Toolbar>
+        <Toolbar
+        style={{minHeight: "10vh"}}>
           
           <Typography
             variant="h6"
