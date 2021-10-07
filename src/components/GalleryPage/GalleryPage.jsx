@@ -23,7 +23,8 @@ function GalleryPage() {
 
     return ( 
     <Container>
-    <h1>Welcome to Many Murals</h1>
+            <h1>Welcome to Many Murals</h1>
+            <p>Click on an image to see it's location!</p>
         <Grid
             container
             spacing={3}

@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 function LogOutButton(props) {
   const dispatch = useDispatch();
   return (
+    <>
     <button
       // This button shows up in multiple locations and is styled differently
       // because it's styled differently depending on where it is used, the className
@@ -18,7 +19,8 @@ function LogOutButton(props) {
       onClick={() => dispatch({ type: 'LOGOUT' })}
     >
       Log Out
-    </button>
+      </button>
+      </>
   );
 }
 

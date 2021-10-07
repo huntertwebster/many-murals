@@ -13,8 +13,8 @@ import mapStyles from './mapStyles';
 
 
 const containerStyle = {
-  height: "100vh",
-  width: "100%"
+  width: '100%',
+  height: '650px',
 };
 
 const center = {
@@ -34,8 +34,6 @@ function Map() {
   const [selectedMural, setSelectedMural] = useState(null);
   // getting data from the gallery store for latiude and longitude
   const gallery = useSelector(store => store.gallery)
-  console.log('this is the lat:', gallery?.latitude);
-  console.log('this is the long:', gallery?.longitude);
 
 // const infowindow = new google.maps.InfoWindow({
 //     content: contentString,
