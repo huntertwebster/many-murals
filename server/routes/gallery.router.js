@@ -114,8 +114,8 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
     .then((result) => {
       console.log('this is the result', result.rows)
       console.log('this is the user_id', userId)
+      userId = result.rows[0]?.user_id
       if (userId === req.user.id || req.user.type === 'admin') {
-        userId = result.rows[0].user_id
         const queryText = 'DELETE FROM "art_item" WHERE "id" = $1';
         pool.query(queryText, [req.params.id])
           .then(() => { res.sendStatus(200); })
@@ -124,7 +124,7 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
             res.sendStatus(500);
           });
       } else {
-        res.sendStatus((403), 'ERROR: you are not authorized to delete this post!')
+        res.status(403).send('ERROR: you are not authorized to delete this post!')
       }
     }).catch((err) => {
       console.log('Could not find user_id with this art_item..', err);
