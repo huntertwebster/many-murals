@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
+import { Button } from '@mui/material';
 
 function LoginForm() {
   const [username, setUsername] = useState('');
@@ -59,7 +60,22 @@ function LoginForm() {
         </label>
       </div>
       <div>
-        <button style={{fontFamily: "Cormorant Garamond", color: "black"}} className="btn" type="submit" name="submit" value="Log In" />
+        <Button
+          type="submit"
+          color="inherit"
+          className="btn"
+          name="submit"
+          size="small"
+          style={{
+            fontFamily: "Cormorant Garamond",
+            border: "1px",
+            borderRadius:"2px",
+          }}
+          variant="outlined"
+        >
+        Log In
+        </Button>
+        {/* <button style={{fontFamily: "Cormorant Garamond"}} className="btn" type="submit" name="submit" value="Log In" /> */}
       </div>
     </form>
   );

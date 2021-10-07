@@ -103,7 +103,7 @@ function Form() {
           required
           id="filled-textarea"
           label="Date of creation"
-          placeholder="Date of creation.."
+          placeholder="YYYY/MM/DD"
           multiline
           type="date"
           variant="filled"

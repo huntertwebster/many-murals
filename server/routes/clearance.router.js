@@ -13,7 +13,7 @@ JOIN art_item ON public.user.id = art_item.user_id
 LEFT JOIN images on art_item.id = images.art_item_id
 WHERE "art_item"."user_id" = $1
 GROUP BY art_item.id, art_item.user_id, art_item.title, art_item.latitude, art_item.longitude, art_item.description, art_item.date;`
-    console.log('req.user:', req.user.id);
+    // console.log('req.user:', req.user.id);
     if (req.isAuthenticated()) {
         pool.query(access, [req.user.id])
             .then((results) => res.send(results.rows))
