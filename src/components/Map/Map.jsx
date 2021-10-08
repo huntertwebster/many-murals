@@ -69,7 +69,7 @@ function Map() {
         mapContainerStyle={containerStyle}
         center={center}
         style={{fontFamily: "Cormorant Garamond"}}
-        zoom={12}
+        zoom={11}
         onUnmount={onUnmount}
       >
         {gallery.map(mural => (
