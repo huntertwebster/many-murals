@@ -80,7 +80,7 @@ function EditPost() {
                 color="initial"
             >Edit your post!
             </Typography>
-           
+           <br />
         <form onSubmit={editHandler} >
                 
                 {/* edit title */} 

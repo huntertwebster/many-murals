@@ -11,13 +11,13 @@ import SendIcon from '@mui/icons-material/Send';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import { Container, Paper } from '@mui/material';
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
 // MUI for date picker *stretch*
 import MobileDatePicker from '@mui/lab/MobileDatePicker';
 import DatePicker from '@mui/lab/DatePicker';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
-
 
 function Form() {
   const dispatch = useDispatch();
@@ -44,13 +44,15 @@ function Form() {
   return (
       <div className="createForm"> 
       <Container>
+        
          <Grid
             container
             spacing={3}
             justify="center"
             alignItems="center"
             
-            >
+        >
+          
           <form onSubmit={handleSubmit} style={{ textAlign: "center" }}>
 
             <Typography

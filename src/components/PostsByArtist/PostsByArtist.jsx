@@ -20,6 +20,7 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 
 
+
 function PostsByArtist() {
   //for moment.js
   const moment = require('moment');
@@ -68,7 +69,9 @@ function PostsByArtist() {
             size="small">
               
             Create a Post
-          </Button>
+        </Button>
+        
+       
       </Typography>
 
       

@@ -39,7 +39,7 @@ function ArtistsPage() {
                 <Grid item key={artist.id} xs={12} sm={6} md={4} lg={3}>
                     <Paper  elevation={0}>
                         <Typography
-                            variant="h6"
+                            variant="h5"
                         >
                             Meet {artist.name}!  
                         </Typography>
