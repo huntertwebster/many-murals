@@ -23,7 +23,8 @@ function GalleryPage() {
     }, []);
 
     return ( 
-        <Container >
+      <Container >
+        <h1>Gallery</h1>
             <p>Click on an image to see it's location!</p>
         <Grid
             container
@@ -35,7 +36,9 @@ function GalleryPage() {
         >
     {gallery.map(item => (
         <Grid item key={item.id} xs={12} sm={6} md={4} lg={3}>
-            <Paper elevation={0} >
+        <Paper elevation={0} >
+          <br />
+          <br />
                 <img className="galleryImage" src={item.images[0].url} alt={item.title}  style={{height:"100%", width: "300px", paddingLeft: "22px"}}
                     // onClick={() => { window.open(`https://www.google.com/maps/@${parseFloat(item.latitude)},${parseFloat(item.longitude)},${16}z`, "_blank") }}
                     onClick={() => { window.open(`http://maps.google.com/maps?q=${item.latitude},${item.longitude}`, "_blank") }}

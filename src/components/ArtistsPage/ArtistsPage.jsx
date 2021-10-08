@@ -24,7 +24,8 @@ function ArtistsPage() {
 
     return (
    
-    <Container>
+        <Container>
+            <h1>Our Artists</h1>
         <Grid
             container
             spacing={3}

@@ -130,8 +130,8 @@ function RegisterForm() {
         <label htmlFor="profile image">
           Upload an avatar: 
           <Button
-        variant="outlined"
-        color="primary"
+
+        style={{ color: "black", fontFamily: "Cormorant Garamond" }}
         startIcon={<InsertPhotoIcon />}
         onClick={openWidget}
         type="button"
@@ -144,9 +144,18 @@ function RegisterForm() {
                 {profile_image.url && <p>Your profile picture: <br /> <img src={profile_image.url} width={100} /></p>}
 
         </label>
+        <br />
+          <Button
+        value="Register"
+        name="submit"
+        type="submit"
+      style={{
+            fontFamily: 'Cormorant Garamond' ,
+            color: "black" }}
+      > Register
+      </Button>
       </div>
       <div>
-        <input className="btn" type="submit" name="submit" value="Register" />
       </div>
     </form>
   );
