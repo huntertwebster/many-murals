@@ -9,7 +9,9 @@ import { useParams } from 'react-router-dom';
 // import CSS for the profile here
 // import { useHistory } from 'react-router';
 
-
+// MUI
+import Grid from '@mui/material/Grid';
+import { Button, Container, Paper } from '@mui/material';
 
 function AdminView() {
     const history = useHistory();
@@ -40,25 +42,39 @@ function AdminView() {
     };
 
 return (
-      <main>    
-          <section className="artists">
-            <p>hello, admin!</p>
-            <p>below are all the artists</p>
-            {artists.map(artist => {
-                   
-                    return (
-                        <div className="artistItem" key={artist.id}>
-                            <ul>
-                                {/* display the number of items each artist has */}
-                                <button onClick={() => deleteArtist(artist.id)}>Delete {artist.name}'s profile</button>
+    <Container>
+        <p>hello, admin!</p>
+        <p>below are all the artists</p>
+        <Grid
+            container
+            spacing={3}
+            justify="center"
+            alignItems="center"
+            className="artists"
+        >
 
-                            </ul>
-                        </div>
-                    );
+            {artists.map(artist => (
+                   
+
+                        <Grid item key={artist.id} xs={12} sm={6} md={4} lg={3}>
+
+                                {/* display the number of items each artist has */}
+                    <Button
+                        variant="contained"
+                        color="error"
+                        style={{fontFamily: "Cormorant Garamond"}}
+                        onClick={() => deleteArtist(artist.id)}
+                    >
+                        Delete {artist.name}'s profile
+                    </Button>
+
+                            
+                        </Grid>
+
                     
-                })}
-            </section>
-        </main>
+            ))}
+            </Grid>
+        </Container>
   );
 }
 

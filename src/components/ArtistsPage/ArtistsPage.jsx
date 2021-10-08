@@ -13,6 +13,7 @@ function ArtistsPage() {
     const history = useHistory();
     const dispatch = useDispatch();
     const artists = useSelector(store => store.artists);
+    const user = useSelector(store => store.user)
     // used for when clicked on a poster, movie data is recieved 
     // sends us to /details too
     console.log(artists);
@@ -22,6 +23,7 @@ function ArtistsPage() {
     }, []);
 
     return (
+   
     <Container>
         <Grid
             container
@@ -29,8 +31,10 @@ function ArtistsPage() {
             justify="center"
             alignItems="center"
             
-        >
-        {artists.map(artist => (
+            >
+                
+                { 
+                    artists.map(artist => (
                 
                 <Grid item key={artist.id} xs={12} sm={6} md={4} lg={3}>
                     <Paper  elevation={0}>
@@ -39,9 +43,7 @@ function ArtistsPage() {
                         >
                             Meet {artist.name}!  
                         </Typography>
-                        
                     <img className="imageOfArtist" src={artist.profile_image} alt={artist.name} style={{ width: "100%"}} />
-                    
                     <Typography
                             variant="p"
                         >
@@ -49,7 +51,7 @@ function ArtistsPage() {
                         </Typography>
                         </Paper>
                    </Grid>
-                    ))}  
+                    ))}
         </Grid>
     </Container>
     );

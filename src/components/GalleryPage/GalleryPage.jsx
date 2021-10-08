@@ -7,6 +7,7 @@ import moment from 'moment';
 // MUI
 import Grid from '@mui/material/Grid';
 import { Container, Paper } from '@mui/material';
+import Typography from '@mui/material/Typography';
 
 function GalleryPage() {
     const history = useHistory();
@@ -22,8 +23,7 @@ function GalleryPage() {
     }, []);
 
     return ( 
-    <Container>
-            <h1>Welcome to Many Murals</h1>
+        <Container >
             <p>Click on an image to see it's location!</p>
         <Grid
             container
@@ -35,16 +35,39 @@ function GalleryPage() {
         >
     {gallery.map(item => (
         <Grid item key={item.id} xs={12} sm={6} md={4} lg={3}>
-            <Paper elevation={0}>
-                <img className="galleryImage" src={item.images[0].url} alt={item.title}  style={{height:"300px", width: "300px"}}
+            <Paper elevation={0} >
+                <img className="galleryImage" src={item.images[0].url} alt={item.title}  style={{height:"100%", width: "300px", paddingLeft: "22px"}}
                     // onClick={() => { window.open(`https://www.google.com/maps/@${parseFloat(item.latitude)},${parseFloat(item.longitude)},${16}z`, "_blank") }}
                     onClick={() => { window.open(`http://maps.google.com/maps?q=${item.latitude},${item.longitude}`, "_blank") }}
                 />
-                <div className='artItemText'>
-                <h4>{item.title} by {item.user_name}</h4>
-                <p>{item.description}</p>
-                Created {moment(`${item.date}`).fromNow()}
+
+                <div style={{paddingLeft: "22px"}}>
+                <Typography
+                    style={{ fontSize: "14px" }}
+                  variant="p">
+                    Created {moment(`${item.date}`).fromNow()}
+                </Typography>
+                
+                <Typography
+                  variant="h4">
+                    {item.title}
+                </Typography>
+                
+                <Typography
+                  variant="h6">
+                    by {item.user_name}
+                  </Typography>
+
+                
+                <Typography
+                  variant="p"
+                  style={{paddingRight: "10px"}}>
+                    {item.description}
+                  </Typography>
                 </div>
+                
+                
+
             </Paper>
         </Grid>
     ))}

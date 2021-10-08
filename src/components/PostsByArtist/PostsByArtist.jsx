@@ -1,12 +1,12 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from "react";
+
 // import { NavLink } from 'react-router-dom';
 // import CSS for the profile here
 import { useHistory } from 'react-router';
-import DeleteImage from '../DeleteImage/DeleteImage';
-import moment from 'moment';
+
+
 
 
 //MUI
@@ -18,7 +18,7 @@ import AddIcon from '@mui/icons-material/Add';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import Stack from '@mui/material/Stack';
+
 
 function PostsByArtist() {
   //for moment.js
@@ -87,7 +87,6 @@ function PostsByArtist() {
                <Grid item key={post.id} xs={12} sm={6} md={4} lg={3}>
                 <Paper elevation = {0}>
                   <img src={post?.images[0]?.url} alt={"Please upload an image of your mural!"}
-                  // onClick={() => history.push(`/details/${item.id}`)}
                   />
                   <Typography
                   variant="h6">

@@ -8,9 +8,9 @@ function* fetchMap() {
         const map = yield axios.get('/api/map');
         console.log('THE MAP :', map.data);
         // automatically console.log items after action
-        yield put({ type: 'SET_map', payload: map.data });
+        yield put({ type: 'SET_MAP', payload: map.data });
     } catch (error) {
-        console.log('FETCH_map: Error with getting all items from the map:', error);
+        console.log('FETCH_MAP: Error with getting all items from the map:', error);
     }
 
 };

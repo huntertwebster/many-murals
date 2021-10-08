@@ -590,7 +590,25 @@ export default function PrimarySearchAppBar() {
             </IconButton>
             )}
             
-
+                  {/* Admin (DESKTOP) */}
+              {user?.type === "admin" && (
+                <Link className="navLink" to="/adminView">
+                <MenuItem>
+                  <IconButton
+                    size="large"
+                    style={{ fontSize: "14px" }}
+                    color="default"
+                    aria-controls={menuId}
+                    aria-haspopup="true"
+                  >
+                    <Badge>
+                     <AdminPanelSettingsIcon/>
+                    </Badge>
+                   </IconButton>
+                      <p>Admin</p>
+                </MenuItem>
+               </Link>
+               )}
 
             {/* ----- IF USER IS LOGGED IN SHOW THIS (DESKTOP)----- */}
             {user.id && (

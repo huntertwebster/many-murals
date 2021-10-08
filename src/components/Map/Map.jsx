@@ -7,8 +7,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useState } from "react";
 import '../Map/Map.css';
-import axios from 'axios';
-import mapStyles from './mapStyles';
+
 
 
 
@@ -46,7 +45,8 @@ function Map() {
   
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: `AIzaSyA-QtKQd-BOP2ny5XYcHSSFb8TYEd3grKg`
+    googleMapsApiKey: `${process.env.REACT_APP_GOOGLE_KEY}`
+
   })
 
   const [map, setMap] = React.useState(null)

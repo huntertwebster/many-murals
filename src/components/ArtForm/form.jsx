@@ -9,13 +9,22 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import SendIcon from '@mui/icons-material/Send';
 import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import { Container, Paper } from '@mui/material';
+
+// MUI for date picker *stretch*
+import MobileDatePicker from '@mui/lab/MobileDatePicker';
+import DatePicker from '@mui/lab/DatePicker';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
 
 
 function Form() {
   const dispatch = useDispatch();
   const history = useHistory();
     const [inputPost, setInputPost] = useState({ title: '', latitude: '', longitude: '', description: '', date: ''});
-
+    // const [dateInput, setDateInput] = React.useState(new Date());
+  
     const handleSubmit = (event) => {
         console.log("Title input is:", inputPost.title);
         console.log("Latitude input is:", inputPost.latitude);
@@ -33,14 +42,22 @@ function Form() {
     };
 
     return (
-        <>
+      <Container>
+         <Grid
+            container
+            spacing={3}
+            justify="center"
+            alignItems="center"
+            
+            >
             <Typography
                 variant='h6'
             >
             Create a new post!  
             </Typography>
         
-    <form onSubmit={handleSubmit}>     
+    <form onSubmit={handleSubmit} style={{textAlign: "center"}}>     
+    <Grid item xs={12} sm={6} md={4} lg={3}>
         {/* title */} 
           <TextField
           required
@@ -104,17 +121,34 @@ function Form() {
           id="filled-textarea"
           label="Date of creation"
           placeholder="YYYY/MM/DD"
+          format={'YYYY/MM/DD'}
           multiline
           type="date"
           variant="filled"
           onChange={(event) => setInputPost({ ...inputPost, date: event.target.value })}
           value={inputPost.date}
         />
-      
-                                
+          
+      {/* <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <DatePicker
+          required
+          disableFuture
+          variant="filled"
+          label="Date of creation"
+          openTo="year"
+          views={['year', 'month', 'day']}
+          value={dateInput}
+          onChange={(newValue) => {
+            setDateInput(newValue);
+          }}
+          renderInput={(params) => <TextField {...params} />}
+        />
+      </LocalizationProvider> */}
+          
+        <br />
         {/* button to submit post */}
         <Button
-          variant="outlined"
+          variant="filled"
           color="inherit"
           startIcon={<SendIcon />}
           onClick={handleSubmit}
@@ -122,8 +156,11 @@ function Form() {
           value="Submit">
           Submit
         </Button>
+
+              </Grid>
             </form>
-            </>
+        </Grid>
+    </Container>
     )
 }
 export default Form;
