@@ -96,8 +96,8 @@ function ImageForm() {
             <br />
         <form onSubmit={handleImageSubmit}>
                 
-        {/* Featured Image  */}
-            <TextField
+        {/*  */}
+            {/* <TextField
                 required
           id="filled-textarea"
           label="Do you want this displayed first?"
@@ -105,12 +105,12 @@ function ImageForm() {
           variant="filled"
           onChange={(event) => setInputImage({ ...inputImage, featured_image: event.target.value })}
           value={inputImage.featured_image}
-                />
+                /> */}
         
                 
         <Button
-        variant="outlined"
-        color="primary"
+        style={{fontFamily: "Cormorant Garamond"}}
+        color="inherit"
         startIcon={<InsertPhotoIcon />}
         onClick={openWidget}
         type="button"
@@ -120,15 +120,15 @@ function ImageForm() {
         Choose File
         </Button>
             <br />
-                {inputImage.url && <p>The mural you're posting: <br /> <img src={inputImage.url} width={100} /></p>}
+                {inputImage.url && <p>The mural you're uploading: <br /> <img src={inputImage.url} width={100} /></p>}
 
 
 
         {/* button to submit image  */}
         <Button
-        // style={{float: "left"}}
-        variant="outlined"
-        color="primary"
+        style={{fontFamily: "Cormorant Garamond"}}
+        
+        color="inherit"
         startIcon={<SendIcon />}
         onClick={handleImageSubmit}
         type="submit"

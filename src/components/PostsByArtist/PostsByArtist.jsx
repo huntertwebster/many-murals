@@ -58,8 +58,8 @@ function PostsByArtist() {
         <br />
         <br />
          <Button
-            style={{float: "right"}}
-            variant="outlined"
+            style={{float: "right", fontFamily: "Cormorant Garmond"}}
+            varitant="text"
             color="inherit"
             startIcon={<AddIcon />}
             onClick={() => history.push(`/create`)}
@@ -107,15 +107,17 @@ function PostsByArtist() {
                               
                   
                   <Button
-                  variant="outlined"
+                  color="inherit"
+                  style={{fontFamily: "Cormorant Garamond"}}
                   startIcon={<DeleteIcon />}
                   size="small"
                   onClick={() => deleteHandler(post)}>
                   Delete this post
                 </Button>
                               
-                <Button
-                  variant="outlined"
+              <Button
+                style={{fontFamily: "Cormorant Garamond"}}
+                  color="inherit"
                   size="small"
                   startIcon={<EditIcon />}
                   onClick={() => history.push(`/edit/${post.id}`)}>
@@ -123,9 +125,8 @@ function PostsByArtist() {
               </Button>
               
                 <Button
-                  
                   size="small"
-                  variant="outlined"
+                  style={{fontFamily: "Cormorant Garamond"}}
                   color="inherit"
                   startIcon={<AddIcon />}
                   onClick={() => history.push(`/addImage/${post.id}`)}
