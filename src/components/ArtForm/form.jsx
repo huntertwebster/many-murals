@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router';
-
+import '../ArtForm/form.css';
 //MUI
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
@@ -41,7 +41,8 @@ function Form() {
         history.push('/profile')
     };
 
-    return (
+  return (
+      <div className="createForm"> 
       <Container>
          <Grid
             container
@@ -50,22 +51,24 @@ function Form() {
             alignItems="center"
             
             >
+          <form onSubmit={handleSubmit} style={{ textAlign: "center" }}>
+
             <Typography
-                variant='h6'
+            variant='h6'
+            style={{textAlign: "center"}}
             >
             Create a new post!  
             </Typography>
-        
-    <form onSubmit={handleSubmit} style={{textAlign: "center"}}>     
+
     <Grid item xs={12} sm={6} md={4} lg={3}>
         {/* title */} 
           <TextField
           required
-          id="filled-textarea"
+          id="outlined-textarea"
           label="Title"
           placeholder="Your mural's title.."
           multiline
-          variant="filled"
+          variant="outlined"
           onChange={(event) => setInputPost({ ...inputPost, title: event.target.value })}
           value={inputPost.title}
         />
@@ -75,11 +78,11 @@ function Form() {
         {/* latitude */}
           <TextField
           required
-          id="filled-textarea"
+          id="outlined-textarea"
           label="Latitude"
           placeholder="Insert the latitude.."
           multiline
-          variant="filled"
+          variant="outlined"
           onChange={(event) => setInputPost({ ...inputPost, latitude: event.target.value })}
           value={inputPost.latitude}
         />
@@ -89,11 +92,11 @@ function Form() {
         {/* longitude */}
           <TextField
           required
-          id="filled-textarea"
+          id="outlined-textarea"
           label="Longitude"
           placeholder="Insert the longitude.."
           multiline
-          variant="filled"
+          variant="outlined"
           onChange={(event) => setInputPost({ ...inputPost, longitude: event.target.value })}
           value={inputPost.longitude}
         />        
@@ -103,13 +106,13 @@ function Form() {
         {/* description */}
           <TextField
           required
-          id="filled-multiline-static"
+          id="outlined-multiline-static"
           label="Description"
           placeholder="Give a description of your mural..."
           multiline
           rows={4}
           type='text'
-          variant="filled"
+          variant="outlined"
           onChange={(event) => setInputPost({ ...inputPost, description: event.target.value })}
           value={inputPost.description}
         />
@@ -117,14 +120,15 @@ function Form() {
 
         {/* date */}
           <TextField
-          required
-          id="filled-textarea"
+            required
+                style={{ fontFamily: "Cormorant Garamond" }}
+            id="outlined-textarea" 
           label="Date of creation"
           placeholder="YYYY/MM/DD"
           format={'YYYY/MM/DD'}
           multiline
           type="date"
-          variant="filled"
+          variant="outlined"
           onChange={(event) => setInputPost({ ...inputPost, date: event.target.value })}
           value={inputPost.date}
         />
@@ -133,7 +137,7 @@ function Form() {
             <DatePicker
           required
           disableFuture
-          variant="filled"
+          variant="outlined"
           label="Date of creation"
           openTo="year"
           views={['year', 'month', 'day']}
@@ -144,11 +148,12 @@ function Form() {
           renderInput={(params) => <TextField {...params} />}
         />
       </LocalizationProvider> */}
-          
+          <br />
         <br />
         {/* button to submit post */}
         <Button
-          variant="filled"
+          style={{fontFamily: "Cormorant Garamond"}}
+
           color="inherit"
           startIcon={<SendIcon />}
           onClick={handleSubmit}
@@ -160,7 +165,8 @@ function Form() {
               </Grid>
             </form>
         </Grid>
-    </Container>
+      </Container>
+      </div>
     )
 }
 export default Form;

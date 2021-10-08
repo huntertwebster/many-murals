@@ -529,7 +529,7 @@ export default function PrimarySearchAppBar() {
             // sx={{ display: { xs: 'none', sm: 'block' } }}
           >
             <Link to="/gallery"
-            style={{color: "black"}}>
+            style={{color: "black", fontSize:"24px"}}>
             Many Murals
             </Link>
           </Typography>

@@ -29,7 +29,7 @@ function LoginForm() {
     
     <form className="formPanel" onSubmit={login}>
       <h2
-        style={{float: "left"}}
+        
       >
         Login</h2>
       {errors.loginMessage && (
@@ -73,7 +73,8 @@ function LoginForm() {
           style={{
             fontFamily: "Cormorant Garamond",
             border: "1px",
-            borderRadius:"2px",
+            borderRadius: "2px",
+            fontSize: "15px"
           }}
           variant="outlined"
         >

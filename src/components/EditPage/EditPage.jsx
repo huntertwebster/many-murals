@@ -6,7 +6,7 @@ import { useHistory } from 'react-router';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import DeleteImage from '../DeleteImage/DeleteImage';
-
+import '../EditPage/EditPage.css';
 // MUI
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
@@ -73,22 +73,24 @@ function EditPost() {
     }
 
     return (
-        <div>
-            <Typography
-                variant="h6"
+        <div className="editForm">
+        <Typography
+                style={{textAlign: "center"}}
+                variant="h5"
                 color="initial"
             >Edit your post!
             </Typography>
            
-        <form onSubmit={editHandler}>
+        <form onSubmit={editHandler} >
                 
                 {/* edit title */} 
-        <TextField
-          id="filled-textarea"
+          <TextField
+          style={{paddingBottom:"8px"}} 
+          id="outlined-textarea"
           label="Title"
           placeholder="Edit your mural's title.."
           multiline
-          variant="filled"
+          variant="outlined"
           onChange={(event) => setEditPost({ ...editPost, title: event.target.value })}
           value={editPost.title}
         />
@@ -96,12 +98,13 @@ function EditPost() {
                 
 
         {/* edit latitude */}
-        <TextField
-          id="filled-textarea"
+          <TextField
+          style={{paddingBottom:"8px"}} 
+          id="outlined-textarea"
           label="Latitude"
           placeholder="Edit the latitude.."
           multiline
-          variant="filled"
+          variant="outlined"
           onChange={(event) => setEditPost({ ...editPost, latitude: event.target.value })}
           value={editPost.latitude}
         />
@@ -109,12 +112,13 @@ function EditPost() {
                 
 
         {/* edit longitude */}
-        <TextField
-          id="filled-textarea"
+          <TextField
+          style={{paddingBottom:"8px"}} 
+          id="outlined-textarea"
           label="Longitude"
           placeholder="Edit the longitude.."
           multiline
-          variant="filled"
+          variant="outlined"
           onChange={(event) => setEditPost({ ...editPost, longitude: event.target.value })}
           value={editPost.longitude}
         />        
@@ -122,32 +126,35 @@ function EditPost() {
                 
 
         {/* edit description */}
-        <TextField
-          id="filled-multiline-static"
+          <TextField
+          style={{paddingBottom:"8px"}} 
+          id="outlined-multiline-static"
           label="Description"
           placeholder="Edit the description of your mural..."
           multiline
           rows={4}
           type='text'
-          variant="filled"
+          variant="outlined"
           onChange={(event) => setEditPost({ ...editPost, description: event.target.value })}
           value={editPost.description}
         />
       
 
         {/* edit date */}
-        <TextField
-          id="filled-textarea"
+          <TextField
+          style={{paddingBottom:"8px"}} 
+          id="outlined-textarea"
           label="Date"
           placeholder="Edit the date of creation.."
           multiline
-          variant="filled"
+          variant="outlined"
           onChange={(event) => setEditPost({ ...editPost, date: event.target.value })}
           value={editPost.date}
                 />
-                <br />
+          <br />
+          <br />
         <Button
-          variant="outlined"
+
           color="inherit"
           startIcon={<SendIcon />}
           type="submit"

@@ -107,7 +107,8 @@ function ImageForm() {
           value={inputImage.featured_image}
                 /> */}
         
-                
+        <br />
+
         <Button
         style={{fontFamily: "Cormorant Garamond"}}
         color="inherit"

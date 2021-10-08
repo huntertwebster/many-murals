@@ -18,7 +18,7 @@ function AboutPage() {
          <Typography
             variant="h5">
           There are so many murals in the Fargo/Moorhead area, yet not a great method of finding them.
-          Many Murals is meant to make the process of finding the mural and finding the local artists that do them,
+          Many Murals is meant to make the process of finding the mural and the local artists that do them,
           an easy and enjoyable one. To find the location of a mural, tap on the image of your choice in the gallery to
           open google maps and start exploring. 
           </Typography>

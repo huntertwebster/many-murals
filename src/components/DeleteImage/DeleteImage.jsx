@@ -56,7 +56,9 @@ function DeleteImage() {
                             
                             <br/>
                             <Button
-                              variant=" outlined "
+                               style={{fontFamily: "Cormorant Garmond"}} 
+                                variant=" outlined "
+                                size="small"
                             startIcon={<DeleteIcon />}
                               onClick={() => deletePicture(post.images)}>
                               {post.title}
