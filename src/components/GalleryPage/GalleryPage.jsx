@@ -14,15 +14,13 @@ function GalleryPage() {
     const dispatch = useDispatch();
     const gallery = useSelector(store => store.gallery);
     const moment = require('moment');
-    // used for when clicked on a poster, movie data is recieved 
-    // sends us to /details too
 
-    // when page loads, get all the movies
+    // when page loads, get all the gallery items
     useEffect(() => {
         dispatch({ type: 'FETCH_GALLERY' });
     }, []);
 
-    return ( 
+    return (
       <Container >
         <h1>Gallery</h1>
             <p>Click on an image to see it's location!</p>
@@ -31,8 +29,6 @@ function GalleryPage() {
             spacing={3}
             justify="center"
             alignItems="center"
-            
-
         >
     {gallery.map(item => (
         <Grid item key={item.id} xs={12} sm={6} md={4} lg={3}>
@@ -50,26 +46,26 @@ function GalleryPage() {
                   variant="p">
                     Created {moment(`${item.date}`).fromNow()}
                 </Typography>
-                
+
                 <Typography
                   variant="h4">
                     {item.title}
                 </Typography>
-                
+
                 <Typography
                   variant="h6">
                     by {item.user_name}
                   </Typography>
 
-                
+
                 <Typography
                   variant="p"
                   style={{paddingRight: "10px"}}>
                     {item.description}
                   </Typography>
                 </div>
-                
-                
+
+
 
             </Paper>
         </Grid>
