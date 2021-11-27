@@ -8,3 +8,7 @@ body {
         serif;
     margin: 0px;
 }
+
+.popupImage {
+    cursor: pointer;
+}
