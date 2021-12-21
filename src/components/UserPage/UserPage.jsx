@@ -1,7 +1,8 @@
 import React from "react";
 import LogOutButton from "../LogOutButton/LogOutButton";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useSelector } from "react-redux";
-import { Button } from "@mui/material";
+import { Button, Container } from "@mui/material";
 import { useHistory } from "react-router";
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -9,7 +10,7 @@ function UserPage() {
   const history = useHistory();
   return (
     <>
-      <div className="container">
+      <Container className="container">
         <h1>Hello, {user.name}!</h1>
 
         <p>Your username is: {user.username}</p>
@@ -18,14 +19,14 @@ function UserPage() {
         <Button
           style={{ fontFamily: "Cormorant Garamond" }}
           color="inherit"
-          // startIcon={<SendIcon />} ADD ACCOUNT ICON
+          startIcon={<AccountCircleIcon />}
           onClick={() => history.push("/accountInfo")}
           value="Submit"
         >
           Account Information
         </Button>
         <LogOutButton className="btn" />
-      </div>
+      </Container>
     </>
   );
 }
