@@ -85,63 +85,63 @@ function AccountInfo() {
         </Typography>
         <br />
         <form onSubmit={editHandler}>
-          {/* edit title */}
+          {/* edit username */}
           <TextField
             style={{ paddingBottom: "8px" }}
             id="outlined-textarea"
-            label="Title"
-            placeholder="Edit your mural's title.."
-            multiline
-            variant="outlined"
-            onChange={(event) =>
-              setAccountInfo({ ...editAccountInfo, title: event.target.value })
-            }
-            value={editAccountInfo.title}
-          />
-
-          {/* edit latitude */}
-          <TextField
-            style={{ paddingBottom: "8px" }}
-            id="outlined-textarea"
-            label="Latitude"
-            placeholder="Edit the latitude.."
+            label="Username"
+            placeholder="Edit your username.."
             multiline
             variant="outlined"
             onChange={(event) =>
               setAccountInfo({
                 ...editAccountInfo,
-                latitude: event.target.value,
+                username: event.target.value,
               })
             }
-            value={editAccountInfo.latitude}
+            value={editAccountInfo.username}
           />
-
-          {/* edit longitude */}
-          <TextField
+          {/* edit password */}
+          {/* <TextField
             style={{ paddingBottom: "8px" }}
             id="outlined-textarea"
-            label="Longitude"
-            placeholder="Edit the longitude.."
+            label="Password"
+            placeholder="Edit your password.."
             multiline
             variant="outlined"
             onChange={(event) =>
               setAccountInfo({
                 ...editAccountInfo,
-                longitude: event.target.value,
+                password: event.target.value,
               })
             }
-            value={editAccountInfo.longitude}
+            value={editAccountInfo.password}
+          /> */}
+          {/* edit email address */}
+          <TextField
+            style={{ paddingBottom: "8px" }}
+            id="outlined-textarea"
+            label="Email Address"
+            placeholder="Edit your email address.."
+            multiline
+            variant="outlined"
+            onChange={(event) =>
+              setAccountInfo({
+                ...editAccountInfo,
+                email_address: event.target.value,
+              })
+            }
+            value={editAccountInfo.email_address}
           />
 
           {/* edit description */}
           <TextField
             style={{ paddingBottom: "8px" }}
-            id="outlined-multiline-static"
+            id="outlined-textarea"
             label="Description"
-            placeholder="Edit the description of your mural..."
+            placeholder="Edit your description of yourself.."
             multiline
-            rows={4}
-            type="text"
+            rows={5}
             variant="outlined"
             onChange={(event) =>
               setAccountInfo({
@@ -152,18 +152,39 @@ function AccountInfo() {
             value={editAccountInfo.description}
           />
 
-          {/* edit date */}
+          {/* edit name */}
+          <TextField
+            style={{ paddingBottom: "8px" }}
+            id="outlined-multiline-static"
+            label="Your name"
+            placeholder="Edit your name..."
+            multiline
+            type="text"
+            variant="outlined"
+            onChange={(event) =>
+              setAccountInfo({
+                ...editAccountInfo,
+                name: event.target.value,
+              })
+            }
+            value={editAccountInfo.name}
+          />
+
+          {/* edit profile image */}
           <TextField
             style={{ paddingBottom: "8px" }}
             id="outlined-textarea"
-            label="Date"
-            placeholder="Edit the date of creation.."
+            label="Profile Picture"
+            placeholder="Edit your profile picture.."
             multiline
             variant="outlined"
             onChange={(event) =>
-              setAccountInfo({ ...editAccountInfo, date: event.target.value })
+              setAccountInfo({
+                ...editAccountInfo,
+                profile_image: event.target.value,
+              })
             }
-            value={editAccountInfo.date}
+            value={editAccountInfo.profile_image}
           />
           <br />
           <br />
