@@ -1,48 +1,47 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 import {
   HashRouter as Router,
   Redirect,
   Route,
   Switch,
-} from 'react-router-dom';
+} from "react-router-dom";
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 
-import Nav from '../Nav/Nav';
-import Footer from '../Footer/Footer';
+import Nav from "../Nav/Nav";
+import Footer from "../Footer/Footer";
 
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
-import AboutPage from '../AboutPage/AboutPage';
-import UserPage from '../UserPage/UserPage';
-import InfoPage from '../ProfilePage/ProfilePage';
-import LandingPage from '../LandingPage/LandingPage';
-import LoginPage from '../LoginPage/LoginPage';
-import RegisterPage from '../RegisterPage/RegisterPage';
-import './App.css';
-import GalleryPage from '../GalleryPage/GalleryPage';
-import ArtistsPage from '../ArtistsPage/ArtistsPage';
-import ProfilePage from '../ProfilePage/ProfilePage';
-import EditPost from '../EditPage/EditPage';
-import AdminView from '../AdminView/AdminView';
-import Map from '../Map/Map'
-import CreateAPost from '../CreatePost/CreateAPost';
-import ImageForm from '../ArtForm/imageForm';
-
+import AboutPage from "../AboutPage/AboutPage";
+import UserPage from "../UserPage/UserPage";
+import InfoPage from "../ProfilePage/ProfilePage";
+import LandingPage from "../LandingPage/LandingPage";
+import LoginPage from "../LoginPage/LoginPage";
+import RegisterPage from "../RegisterPage/RegisterPage";
+import "./App.css";
+import GalleryPage from "../GalleryPage/GalleryPage";
+import ArtistsPage from "../ArtistsPage/ArtistsPage";
+import ProfilePage from "../ProfilePage/ProfilePage";
+import EditPost from "../EditPage/EditPage";
+import AdminView from "../AdminView/AdminView";
+import Map from "../Map/Map";
+import CreateAPost from "../CreatePost/CreateAPost";
+import ImageForm from "../ArtForm/imageForm";
+import AccountInfo from "../AccountInfo/AccountInfo";
 
 function App() {
   const dispatch = useDispatch();
 
-  const user = useSelector(store => store.user);
+  const user = useSelector((store) => store.user);
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_USER' });
+    dispatch({ type: "FETCH_USER" });
   }, [dispatch]);
 
   return (
     <Router>
-      <div
-      >
+      <div>
         <Nav />
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
@@ -63,7 +62,6 @@ function App() {
             path="/gallery"
           >
             <GalleryPage />
-
           </Route>
           <Route
             // shows ArtistsPage at all times (logged in or not)
@@ -79,8 +77,6 @@ function App() {
           >
             <Map />
           </Route>
-
-          
 
           {/* Visible to a artist after login */}
           {/* For protected routes, the view could show one of several things on the same route.
@@ -108,7 +104,7 @@ function App() {
             exact
             path="/edit/:editId"
           >
-            <EditPost/>
+            <EditPost />
           </ProtectedRoute>
 
           <ProtectedRoute
@@ -116,7 +112,7 @@ function App() {
             exact
             path="/create"
           >
-            <CreateAPost/>
+            <CreateAPost />
           </ProtectedRoute>
 
           <ProtectedRoute
@@ -124,60 +120,58 @@ function App() {
             exact
             path="/addImage/:addImageId"
           >
-            <ImageForm/>
+            <ImageForm />
           </ProtectedRoute>
 
+          <ProtectedRoute
+            // logged in shows account Information
+            exact
+            path="/accountInfo"
+          >
+            <AccountInfo />
+          </ProtectedRoute>
 
-          {user?.type === "admin" &&
+          {user?.type === "admin" && (
             <ProtectedRoute
-            // logged in shows Edit else shows Edit
-            exact
-            path="/adminView"
-          >
-            <AdminView/>
-          </ProtectedRoute>
-          }
-          
-          <Route
-            exact
-            path="/login"
-          >
-            {user.id ?
-              // If the user is already logged in, 
+              // logged in shows Edit else shows Edit
+              exact
+              path="/adminView"
+            >
+              <AdminView />
+            </ProtectedRoute>
+          )}
+
+          <Route exact path="/login">
+            {user.id ? (
+              // If the user is already logged in,
               // redirect to the /user page
               <Redirect to="/user" />
-              :
+            ) : (
               // Otherwise, show the login page
               <LoginPage />
-            }
+            )}
           </Route>
 
-          <Route
-            exact
-            path="/registration"
-          >
-            {user.id ?
-              // If the user is already logged in, 
+          <Route exact path="/registration">
+            {user.id ? (
+              // If the user is already logged in,
               // redirect them to the /user page
               <Redirect to="/user" />
-              :
+            ) : (
               // Otherwise, show the registration page
               <RegisterPage />
-            }
+            )}
           </Route>
 
-          <Route
-            exact
-            path="/home"
-          >
-            {user.id ?
-              // If the user is already logged in, 
+          <Route exact path="/home">
+            {user.id ? (
+              // If the user is already logged in,
               // redirect them to the /user page
               <Redirect to="/user" />
-              :
+            ) : (
               // Otherwise, show the Landing page
               <LandingPage />
-            }
+            )}
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
@@ -186,15 +180,13 @@ function App() {
           </Route>
         </Switch>
 
-        
         {/* switch for map, if route is exactly map, don't render a footer! */}
         <Switch>
           <Route
             // shows Map at all times (logged in or not)
             exact
             path="/map"
-          >
-          </Route>
+          ></Route>
 
           <Route>
             <Footer />
