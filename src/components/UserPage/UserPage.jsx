@@ -19,7 +19,7 @@ function UserPage() {
           style={{ fontFamily: "Cormorant Garamond" }}
           color="inherit"
           // startIcon={<SendIcon />} ADD ACCOUNT ICON
-          onClick={() => history.push("/profile")}
+          onClick={() => history.push("/accountInfo")}
           value="Submit"
         >
           Account Information
