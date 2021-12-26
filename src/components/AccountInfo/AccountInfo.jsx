@@ -9,17 +9,14 @@ import { useParams } from "react-router";
 import { useEffect } from "react";
 import { useState } from "react";
 
-//this page exisits to allow an artist to edit their personal information
+//this page exists to allow an artist to edit their personal information
 function AccountInfo() {
   const dispatch = useDispatch();
   const history = useHistory();
   const profile = useSelector((store) => store.profile);
   const user = useSelector((store) => store.user);
-  const artists = useSelector((store) => store.artists);
+  // const artists = useSelector((store) => store.artists);
   console.log("this is user information:", user);
-  console.log("this is profile information:", profile);
-  console.log("this is artists information:", artists);
-  // const artists = useSelector(store = store.artists);
   let params = useParams();
   console.log("these be the params:", params);
 
@@ -33,8 +30,8 @@ function AccountInfo() {
   const imageId = accountInfo?.images[0].id;
   const image = accountInfo?.images[0];
   // const imageUrl = accountInfo?.images[0].url;
-  console.log("this is the WHOLE IMAGE:", image);
-  console.log("this is the image ID:", imageId);
+  // console.log("this is the WHOLE IMAGE:", image);
+  // console.log("this is the image ID:", imageId);
   console.log("this is the art_item_id:", accountInfo?.id);
 
   const [editAccountInfo, setAccountInfo] = useState({
@@ -48,7 +45,7 @@ function AccountInfo() {
 
   function editHandler() {
     dispatch({
-      type: "EDIT_POST",
+      type: "SET_USER",
       payload: {
         id: accountInfo.id,
         username: editAccountInfo.username,
@@ -199,7 +196,6 @@ function AccountInfo() {
         </form>
         <></>
       </div>
-      );
     </Container>
   );
 }

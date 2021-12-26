@@ -21,17 +21,19 @@ router.get('/', (req, res) => {
 });
 
 
-// PUT art_item from the artist profile so the artist can edit their posts
-router.put('/:id', rejectUnauthenticated, (req, res) => {
-    console.log('THESE ARE MY PARAMS id:', req.params.id);
-    console.log('user id:', req.user.id)
-    console.log('art item id:', req.params.id);
-    let userId = NaN;
-    const authText = `SELECT "user_id" FROM "art_item" WHERE "art_item"."id" = $1;`
-    console.log('PUT PARAMS:', req.params.id)
-    pool.query(authText, [req.params.id])
-        .then((result) => {
-            if (userId === req.user.id || req.user.type === 'admin') {
+// PUT Artist to edit their USER information (email, username, password etc.)
+router.put('/:id',
+    // rejectUnauthenticated,
+    (req, res) => {
+        console.log('THESE ARE MY PARAMS id:', req.params.id);
+        console.log('user id:', req.user.id)
+        console.log('art item id:', req.params.id);
+        let userId = NaN;
+        const authText = `SELECT "user_id" FROM "art_item" WHERE "art_item"."id" = $1;`
+        console.log('PUT PARAMS:', req.params.id)
+        pool.query(authText, [req.params.id])
+            .then((result) => {
+                // if (userId === req.user.id || req.user.type === 'admin') {
                 console.log('this is the user id can edit', userId)
 
                 const updateUserInfo = req.body;
@@ -43,8 +45,8 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
                 "email_address" = $3, 
                 "username" = $4, 
                 "password" = $5, 
-                "phone_number" = $6,
-                "profile_image" = $7
+                "profile_image" = $6,
+                "phone_number" = $7
                 WHERE id=$8;`;
 
                 const queryValues = [
@@ -65,39 +67,39 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
                         console.log('Error editing a user profile!', err);
                         res.sendStatus(500);
                     });
-            } else {
-                res.sendStatus((403), 'ERROR: you are not authorized to edit this user profile!')
-            }
-        }).catch((err) => {
-            console.log('Could not find user_id with this art_item..', err);
-        });
-});
+                // } else {
+                //     res.sendStatus((403), 'ERROR: you are not authorized to edit this user profile!')
+                // }
+            }).catch((err) => {
+                console.log('Could not find user_id with this art_item..', err);
+            });
+    });
 
 
 
-// DELETE artist profile (admin)
-router.delete('/:id', rejectUnauthenticated, (req, res) => {
-    console.log('art item id:', req.params.id);
-    let userId = NaN;
-    const authText = `SELECT * FROM "user" WHERE "id" = $1;`
-    console.log('PUT PARAMS:', req.params.id)
-    pool.query(authText, [req.params.id])
-        .then((result) => {
-            if (req.user.type === 'admin') {
-                const queryText = `DELETE FROM "user" WHERE "id" = $1;`;
-                pool.query(queryText, [req.params.id])
-                    .then(() => { res.sendStatus(200); })
-                    .catch((err) => {
-                        console.log('DELETE ROUTER: Error deleting artist from user', err);
-                        res.sendStatus(500);
-                    });
-            } else {
-                res.sendStatus((403), 'ERROR: you are not authorized to delete this picture!')
-            }
-        }).catch((err) => {
-            console.log('Could not find user_id with this art_item..', err);
-        });
-});
+// // DELETE artist profile (admin)
+// router.delete('/:id', rejectUnauthenticated, (req, res) => {
+//     console.log('art item id:', req.params.id);
+//     let userId = NaN;
+//     const authText = `SELECT * FROM "user" WHERE "id" = $1;`
+//     console.log('PUT PARAMS:', req.params.id)
+//     pool.query(authText, [req.params.id])
+//         .then((result) => {
+//             if (req.user.type === 'admin') {
+//                 const queryText = `DELETE FROM "user" WHERE "id" = $1;`;
+//                 pool.query(queryText, [req.params.id])
+//                     .then(() => { res.sendStatus(200); })
+//                     .catch((err) => {
+//                         console.log('DELETE ROUTER: Error deleting artist from user', err);
+//                         res.sendStatus(500);
+//                     });
+//             } else {
+//                 res.sendStatus((403), 'ERROR: you are not authorized to delete this picture!')
+//             }
+//         }).catch((err) => {
+//             console.log('Could not find user_id with this art_item..', err);
+//         });
+// });
 
 
 module.exports = router;
