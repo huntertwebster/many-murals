@@ -1,13 +1,13 @@
 import React from "react";
-
-// MUI
-import Typography from "@mui/material/Typography";
-import { Button, Container, Paper, TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { useParams } from "react-router";
 import { useEffect } from "react";
 import { useState } from "react";
+
+// MUI
+import Typography from "@mui/material/Typography";
+import { Button, Container, TextField } from "@mui/material";
 
 //this page exists to allow an artist to edit their personal information
 function AccountInfo() {
@@ -20,49 +20,46 @@ function AccountInfo() {
   let params = useParams();
   console.log("these be the params:", params);
 
+  useEffect(() => {
+    dispatch({ type: "FETCH_PROFILE" });
+    dispatch({ type: "FETCH_GALLERY" });
+  }, []);
+
   // USER: using paramaters
-  let artistId = params.artistId;
-  console.log(artistId);
-  let accountInfo = profile.find(
-    (accountInfo) => accountInfo.id === Number(artistId)
-  );
-  console.log(`found accountInfo to edit: `, accountInfo);
-  const imageId = accountInfo?.images[0].id;
-  const image = accountInfo?.images[0];
-  // const imageUrl = accountInfo?.images[0].url;
-  // console.log("this is the WHOLE IMAGE:", image);
-  // console.log("this is the image ID:", imageId);
-  console.log("this is the art_item_id:", accountInfo?.id);
+  // let userId = params.userId;
+  // console.log(userId);
+  // let accountInfo = user.find(
+  //   (accountInfo) => accountInfo.id === Number(userId)
+  // );
+  // console.log(`found the account to edit: `, accountInfo);
+  // console.log("this is the art_item_id:", accountInfo?.id);
 
   const [editAccountInfo, setAccountInfo] = useState({
-    username: accountInfo?.username,
-    description: accountInfo?.description,
-    email_address: accountInfo?.email_address,
-    name: accountInfo?.name,
-    profile_image: accountInfo?.profile_image,
+    username: editAccountInfo?.username,
+    description: editAccountInfo?.description,
+    email_address: editAccountInfo?.email_address,
+    name: editAccountInfo?.name,
+    profile_image: editAccountInfo?.profile_image,
     // password: accountInfo?.password,
+    phone_number: editAccountInfo?.phone_number,
   });
 
   function editHandler() {
     dispatch({
       type: "SET_USER",
       payload: {
-        id: accountInfo.id,
+        id: user.id,
         username: editAccountInfo.username,
         description: editAccountInfo.description,
         email_address: editAccountInfo.email_address,
         name: editAccountInfo.name,
         profile_image: editAccountInfo.profile_image,
-        // password: editAccountInfo.password
+        password: editAccountInfo.password,
+        phone_number: editAccountInfo.phone_number,
       },
     });
     history.push("/profile");
   }
-
-  useEffect(() => {
-    dispatch({ type: "FETCH_PROFILE" });
-    dispatch({ type: "FETCH_GALLERY" });
-  }, []);
 
   //    Bail out early with a message if the Account Info isnt found
   // if (!accountInfo) {
@@ -98,6 +95,7 @@ function AccountInfo() {
             }
             value={editAccountInfo.username}
           />
+
           {/* edit password */}
           {/* <TextField
             style={{ paddingBottom: "8px" }}
@@ -114,6 +112,7 @@ function AccountInfo() {
             }
             value={editAccountInfo.password}
           /> */}
+
           {/* edit email address */}
           <TextField
             style={{ paddingBottom: "8px" }}
@@ -182,6 +181,22 @@ function AccountInfo() {
               })
             }
             value={editAccountInfo.profile_image}
+          />
+          {/* edit phone number */}
+          <TextField
+            style={{ paddingBottom: "8px" }}
+            id="outlined-textarea"
+            label="Phone Number"
+            placeholder="Edit your phone number.."
+            multiline
+            variant="outlined"
+            onChange={(event) =>
+              setAccountInfo({
+                ...editAccountInfo,
+                phone_number: event.target.value,
+              })
+            }
+            value={editAccountInfo.phone_number}
           />
           <br />
           <br />
