@@ -28,6 +28,7 @@ import AdminView from "../AdminView/AdminView";
 import Map from "../Map/Map";
 import CreateAPost from "../CreatePost/CreateAPost";
 import ImageForm from "../ArtForm/imageForm";
+import AccountInfo from "../AccountInfo/AccountInfo";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,6 +38,12 @@ function App() {
   useEffect(() => {
     dispatch({ type: "FETCH_USER" });
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch({ type: "FETCH_GALLERY" });
+    dispatch({ type: "FETCH_ARTISTS" });
+    dispatch({ type: "FETCH_PROFILE" });
+  }, []);
 
   return (
     <Router>
@@ -121,6 +128,15 @@ function App() {
           >
             <ImageForm />
           </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows account Information
+            exact
+            path="/accountInfo"
+          >
+            <AccountInfo />
+          </ProtectedRoute>
+
 
           {user?.type === "admin" && (
             <ProtectedRoute
