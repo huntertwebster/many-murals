@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import DeleteImage from "../DeleteImage/DeleteImage";
 import "../EditPage/EditPage.css";
+import { makeStyles } from "@mui/styles";
 // MUI
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
@@ -14,6 +15,7 @@ import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
+import Container from "@mui/material/Container";
 import { width } from "@mui/system";
 
 function EditPost() {
@@ -67,8 +69,20 @@ function EditPost() {
     history.push("/profile");
   }
 
+  // MUI STYLES
+
+  const useStyles = makeStyles((theme) => ({
+    textField: {
+      border: "1px solid blue",
+      "&:focus": {
+        background: "#f00",
+      },
+    },
+  }));
+
+  const classes = useStyles();
   return (
-    <div className="editForm">
+    <Container className="editForm">
       <Typography style={{ textAlign: "center" }} variant="h5" color="initial">
         Edit your post!
       </Typography>
@@ -78,6 +92,7 @@ function EditPost() {
           <Grid item xs={12} sm={3} md={3} lg={3} xl={3}>
             {/* edit title */}
             <TextField
+              className={classes.textField}
               fullWidth
               id="outlined-textarea"
               label="Title"
@@ -140,7 +155,7 @@ function EditPost() {
             {/* edit description */}
             <TextField
               fullWidth
-              id="outlined-multiline-static"
+              id="outlined-textarea"
               label="Description"
               placeholder="Edit the description of your mural..."
               multiline
@@ -169,7 +184,7 @@ function EditPost() {
         </Grid>
       </form>
       <></>
-    </div>
+    </Container>
   );
 }
 export default EditPost;

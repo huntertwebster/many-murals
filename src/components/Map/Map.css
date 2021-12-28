@@ -1,7 +1,7 @@
-/* .map {
-    height: 100px;
-    max-width: 100px;
-} */
+.map {
+    font-family: 'Cormorant Garamond',
+        serif;
+}
 
 body {
     font-family: 'Cormorant Garamond',
@@ -11,4 +11,15 @@ body {
 
 .popupImage {
     cursor: pointer;
+}
+
+#67EB94CA-4FA0-43C6-ABDE-EB7A8329C099 {
+    font-family: 'Cormorant Garamond',
+        serif !important;
+}
+
+.gm-style-mtc {
+    font-family: 'Cormorant Garamond',
+        serif !important;
+    color: red;
 }

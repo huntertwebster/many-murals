@@ -3,3 +3,27 @@
     text-align: center;
     margin: 20px;
 }
+
+
+/* Label */
+#outlined-textarea-label {
+    font-family: 'Cormorant Garamond',
+        serif !important;
+    color: black;
+}
+
+#outlined-textarea {
+    border-color: black !important;
+    font-family: 'Cormorant Garamond',
+        serif !important;
+}
+
+
+
+/* .MuiFormControl-root.MuiFormControl-fullWidth.MuiTextField-root.css-wb57ya-MuiFormControl-root-MuiTextField-root {
+    border-color: red !important;
+} */
+
+.css-wb57ya-MuiFormControl-root-MuiTextField-root:focus {
+    border-color: red !important;
+}
