@@ -50,7 +50,7 @@ function EditPost() {
     latitude: item?.latitude,
     longitude: item?.longitude,
     description: item?.description,
-    date: item?.date,
+    date: item?.date.substr(0, 10),
   });
   // create a map to look over all the images when there are multiple images to be able to update multiple
 
