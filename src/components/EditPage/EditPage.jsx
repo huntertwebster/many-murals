@@ -18,7 +18,7 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Container from "@mui/material/Container";
 import { width } from "@mui/system";
-
+import { purple } from "@mui/material/colors";
 function EditPost() {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -91,6 +91,10 @@ function EditPost() {
       },
     },
   });
+
+  const StyledButton = styled(Button)(({ theme }) => ({
+    fontFamily: "Cormorant Garamond",
+  }));
 
   // const classes = useStyles();
   return (
@@ -184,14 +188,14 @@ function EditPost() {
           <br />
           <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
             {/* edit button */}
-            <Button
+            <StyledButton
               color="inherit"
               startIcon={<SendIcon />}
               type="submit"
               value="Submit"
             >
               Submit
-            </Button>
+            </StyledButton>
           </Grid>
         </Grid>
       </form>
