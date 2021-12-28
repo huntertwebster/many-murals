@@ -1,3 +1,7 @@
 .artItemText {
     padding-left: 22px;
 }
+
+.galleryImage {
+    cursor: pointer;
+}

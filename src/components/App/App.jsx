@@ -137,6 +137,7 @@ function App() {
             <AccountInfo />
           </ProtectedRoute>
 
+
           {user?.type === "admin" && (
             <ProtectedRoute
               // logged in shows Edit else shows Edit

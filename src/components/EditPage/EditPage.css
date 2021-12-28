@@ -1,7 +1,5 @@
 .editForm {
-    padding-top: 80px;
-    padding-left: 15px;
-    justify-content: center;
-    align-items: center;
+    padding: 50px;
     text-align: center;
+    margin: 20px;
 }

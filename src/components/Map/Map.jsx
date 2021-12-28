@@ -93,6 +93,9 @@ function Map() {
               </h2>
               <p>Click the image to go to it's location!</p>
               <img
+
+                className="popupImage"
+
                 src={selectedMural?.images[0]?.url}
                 style={{
                   width: "200px",
