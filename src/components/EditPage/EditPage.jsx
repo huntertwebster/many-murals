@@ -72,15 +72,6 @@ function EditPost() {
 
   // MUI STYLES
 
-  // const useStyles = makeStyles((theme) => ({
-  //   textField: {
-  //     outlinedTextarea: "1px solid blue",
-  //     "&$:focus": {
-  //       borderColor: "#f00",
-  //     },
-  //   },
-  // }));
-
   const StyledTextField = styled(TextField)({
     "& label.Mui-focused": {
       color: "black",
@@ -90,7 +81,7 @@ function EditPost() {
     },
     "& .MuiOutlinedInput-root": {
       "& fieldset": {
-        borderColor: "grey",
+        borderColor: "rgb(190, 190, 190)",
       },
       "&:hover fieldset": {
         borderColor: "black",
