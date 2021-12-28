@@ -6,8 +6,9 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import DeleteImage from "../DeleteImage/DeleteImage";
 import "../EditPage/EditPage.css";
-import { makeStyles } from "@mui/styles";
 // MUI
+import { makeStyles } from "@mui/styles";
+import { alpha, styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import SendIcon from "@mui/icons-material/Send";
@@ -71,16 +72,36 @@ function EditPost() {
 
   // MUI STYLES
 
-  const useStyles = makeStyles((theme) => ({
-    textField: {
-      border: "1px solid blue",
-      "&:focus": {
-        background: "#f00",
+  // const useStyles = makeStyles((theme) => ({
+  //   textField: {
+  //     outlinedTextarea: "1px solid blue",
+  //     "&$:focus": {
+  //       borderColor: "#f00",
+  //     },
+  //   },
+  // }));
+
+  const StyledTextField = styled(TextField)({
+    "& label.Mui-focused": {
+      color: "black",
+    },
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "black",
+    },
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "grey",
+      },
+      "&:hover fieldset": {
+        borderColor: "black",
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: "black",
       },
     },
-  }));
+  });
 
-  const classes = useStyles();
+  // const classes = useStyles();
   return (
     <Container className="editForm">
       <Typography style={{ textAlign: "center" }} variant="h5" color="initial">
@@ -91,8 +112,8 @@ function EditPost() {
         <Grid container spacing={{ xs: 2, sm: 2, md: 2, lg: 2, xl: 2 }}>
           <Grid item xs={12} sm={3} md={3} lg={3} xl={3}>
             {/* edit title */}
-            <TextField
-              className={classes.textField}
+            <StyledTextField
+              // className={classes.textField}
               fullWidth
               id="outlined-textarea"
               label="Title"
@@ -107,7 +128,7 @@ function EditPost() {
           </Grid>
           <Grid item xs={12} sm={3} md={3} lg={3} xl={3}>
             {/* edit latitude */}
-            <TextField
+            <StyledTextField
               fullWidth
               id="outlined-textarea"
               label="Latitude"
@@ -122,7 +143,7 @@ function EditPost() {
           </Grid>
           <Grid item xs={12} sm={3} md={3} lg={3} xl={3}>
             {/* edit longitude */}
-            <TextField
+            <StyledTextField
               fullWidth
               id="outlined-textarea"
               label="Longitude"
@@ -138,7 +159,7 @@ function EditPost() {
 
           <Grid item xs={12} sm={3} md={3} lg={3} xl={3}>
             {/* edit date */}
-            <TextField
+            <StyledTextField
               fullWidth
               id="outlined-textarea"
               label="Date"
@@ -153,7 +174,7 @@ function EditPost() {
           </Grid>
           <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
             {/* edit description */}
-            <TextField
+            <StyledTextField
               fullWidth
               id="outlined-textarea"
               label="Description"
