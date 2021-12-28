@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
 import { useHistory } from "react-router";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -21,11 +20,6 @@ function EditPost() {
   // const artists = useSelector(store = store.artists);
   let params = useParams();
   console.log("these be the params:", params);
-
-  useEffect(() => {
-    dispatch({ type: "FETCH_PROFILE" });
-    dispatch({ type: "FETCH_GALLERY" });
-  }, []);
 
   // GALLERY: using paramaters
   let editId = params.editId;

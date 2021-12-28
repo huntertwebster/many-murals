@@ -2,7 +2,6 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { useParams } from "react-router";
-import { useEffect } from "react";
 import { useState } from "react";
 
 // MUI
@@ -19,11 +18,6 @@ function AccountInfo() {
   console.log("this is user information:", user);
   let params = useParams();
   console.log("these be the params:", params);
-
-  useEffect(() => {
-    dispatch({ type: "FETCH_PROFILE" });
-    dispatch({ type: "FETCH_GALLERY" });
-  }, []);
 
   // USER: using paramaters
   // let userId = params.userId;

@@ -39,6 +39,12 @@ function App() {
     dispatch({ type: "FETCH_USER" });
   }, [dispatch]);
 
+  useEffect(() => {
+    dispatch({ type: "FETCH_GALLERY" });
+    dispatch({ type: "FETCH_ARTISTS" });
+    dispatch({ type: "FETCH_PROFILE" });
+  }, []);
+
   return (
     <Router>
       <div>
