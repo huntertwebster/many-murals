@@ -19,6 +19,34 @@ import Paper from "@mui/material/Paper";
 import Container from "@mui/material/Container";
 import { width } from "@mui/system";
 import { purple } from "@mui/material/colors";
+
+// MUI STYLED COMPONENTS
+
+const StyledTextField = styled(TextField)({
+  "& label.Mui-focused": {
+    color: "black",
+  },
+  "& .MuiInput-underline:after": {
+    borderBottomColor: "black",
+  },
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderColor: "rgb(190, 190, 190)",
+    },
+    "&:hover fieldset": {
+      borderColor: "black",
+    },
+    "&.Mui-focused fieldset": {
+      borderColor: "black",
+      borderWidth: "thin",
+    },
+  },
+});
+
+const StyledButton = styled(Button)(({ theme }) => ({
+  fontFamily: "Cormorant Garamond",
+}));
+
 function EditPost() {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -70,32 +98,6 @@ function EditPost() {
     history.push("/profile");
   }
 
-  // MUI STYLES
-
-  const StyledTextField = styled(TextField)({
-    "& label.Mui-focused": {
-      color: "black",
-    },
-    "& .MuiInput-underline:after": {
-      borderBottomColor: "black",
-    },
-    "& .MuiOutlinedInput-root": {
-      "& fieldset": {
-        borderColor: "rgb(190, 190, 190)",
-      },
-      "&:hover fieldset": {
-        borderColor: "black",
-      },
-      "&.Mui-focused fieldset": {
-        borderColor: "black",
-      },
-    },
-  });
-
-  const StyledButton = styled(Button)(({ theme }) => ({
-    fontFamily: "Cormorant Garamond",
-  }));
-
   // const classes = useStyles();
   return (
     <Container className="editForm">
@@ -108,7 +110,6 @@ function EditPost() {
           <Grid item xs={12} sm={3} md={3} lg={3} xl={3}>
             {/* edit title */}
             <StyledTextField
-              // className={classes.textField}
               fullWidth
               id="outlined-textarea"
               label="Title"

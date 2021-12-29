@@ -24,8 +24,22 @@ function* fetchUser() {
   }
 }
 
+// EDIT USER: updating user account information
+function* updateAccountInfo(action) {
+  console.log("----Inside the EDIT_ACCOUNT_INFO SAGA----", action);
+  try {
+    // passes all items from the server to the payload 
+    yield axios.put(`/api/artist/${action.payload}`);
+    // automatically console.log items after action
+    yield put({ type: 'FETCH_USER' });
+  } catch (error) {
+    console.log('updateArtistInfo: Error with editing user account info:', error);
+  }
+}
+
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
+  yield takeLatest('EDIT_ACCOUNT_INFO', updateAccountInfo);
 }
 
 export default userSaga;

@@ -13,6 +13,31 @@ import SendIcon from "@mui/icons-material/Send";
 import Grid from "@mui/material/Grid";
 import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
 
+// MUI STYLED COMPONENTS
+const StyledTextField = styled(TextField)({
+  "& label.Mui-focused": {
+    color: "black",
+  },
+  "& .MuiInput-underline:after": {
+    borderBottomColor: "black",
+  },
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderColor: "rgb(190, 190, 190)",
+    },
+    "&:hover fieldset": {
+      borderColor: "black",
+    },
+    "&.Mui-focused fieldset": {
+      borderColor: "black",
+    },
+  },
+});
+
+const StyledButton = styled(Button)(({ theme }) => ({
+  fontFamily: "Cormorant Garamond",
+}));
+
 //this page exists to allow an artist to edit their personal information
 function AccountInfo() {
   const dispatch = useDispatch();
@@ -46,7 +71,7 @@ function AccountInfo() {
 
   function editHandler() {
     dispatch({
-      type: "SET_USER",
+      type: "EDIT_ACCOUNT_INFO",
       payload: {
         id: user.id,
         username: editAccountInfo.username,
@@ -58,7 +83,7 @@ function AccountInfo() {
         profile_image: profile_image.url,
       },
     });
-    history.push("/profile");
+    // history.push("/profile");
   }
 
   //    Bail out early with a message if the Account Info isnt found
@@ -93,31 +118,6 @@ function AccountInfo() {
         )
         .open();
   };
-
-  // MUI
-  const StyledTextField = styled(TextField)({
-    "& label.Mui-focused": {
-      color: "black",
-    },
-    "& .MuiInput-underline:after": {
-      borderBottomColor: "black",
-    },
-    "& .MuiOutlinedInput-root": {
-      "& fieldset": {
-        borderColor: "rgb(190, 190, 190)",
-      },
-      "&:hover fieldset": {
-        borderColor: "black",
-      },
-      "&.Mui-focused fieldset": {
-        borderColor: "black",
-      },
-    },
-  });
-
-  const StyledButton = styled(Button)(({ theme }) => ({
-    fontFamily: "Cormorant Garamond",
-  }));
 
   return (
     <Container className="editForm">

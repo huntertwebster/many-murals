@@ -15,17 +15,17 @@ function UserPage() {
 
         <p>Your username is: {user.username}</p>
         <p>Your email is: {user.email_address}</p>
-        <p>Edit your account information below:</p>
         <Button
+          className="btn"
           style={{ fontFamily: "Cormorant Garamond" }}
           color="inherit"
           startIcon={<AccountCircleIcon />}
           onClick={() => history.push("/accountInfo")}
           value="Submit"
         >
-          Account Information
+          Edit Account Information
         </Button>
-        <LogOutButton className="btn" />
+        {/* <LogOutButton className="btn" /> */}
       </Container>
     </>
   );
