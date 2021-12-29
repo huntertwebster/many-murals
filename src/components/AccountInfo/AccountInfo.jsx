@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { useParams } from "react-router";
 import { useState } from "react";
-
+import { useScript } from "../../hooks/useScript";
 // MUI
 import Typography from "@mui/material/Typography";
 import { Button, Container, TextField } from "@mui/material";
@@ -126,6 +126,7 @@ function AccountInfo() {
       </Typography>
       <br />
       <form onSubmit={editHandler}>
+        {useScript("https://widget.cloudinary.com/v2.0/global/all.js")}
         <Grid container spacing={{ xs: 2, sm: 2, md: 2, lg: 2, xl: 2 }}>
           <Grid item xs={12} sm={3} md={3} lg={3} xl={3}>
             {/* edit username */}

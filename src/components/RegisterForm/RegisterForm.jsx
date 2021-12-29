@@ -12,6 +12,7 @@ function RegisterForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [profile_image, setProfile_Image] = useState({ url: "" });
+  const [phone_number, setPhone_Number] = useState("");
 
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
@@ -128,6 +129,18 @@ function RegisterForm() {
             value={email_address}
             required
             onChange={(event) => setEmail_Address(event.target.value)}
+          />
+        </label>
+        <br />
+        {/* phone number */}
+        <label htmlFor="Phone Number">
+          Your Phone Number:
+          <input
+            type="text"
+            name="Phone Number"
+            placeholder="(XXX)-XXX-XXXX"
+            value={phone_number}
+            onChange={(event) => setPhone_Number(event.target.value)}
           />
         </label>
         <br />
