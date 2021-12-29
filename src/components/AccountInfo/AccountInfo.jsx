@@ -48,23 +48,22 @@ function AccountInfo() {
   console.log("this is user information:", user);
   let params = useParams();
   console.log("these be the params:", params);
-
   // USER: using paramaters
   // let userId = params.userId;
   // console.log(userId);
-  // let accountInfo = user.find(
+  // let accountInfo = user.map(
   //   (accountInfo) => accountInfo.id === Number(userId)
   // );
   // console.log(`found the account to edit: `, accountInfo);
   // console.log("this is the art_item_id:", accountInfo?.id);
 
   const [editAccountInfo, setAccountInfo] = useState({
-    username: editAccountInfo?.username,
-    description: editAccountInfo?.description,
-    email_address: editAccountInfo?.email_address,
-    name: editAccountInfo?.name,
+    username: user?.username,
+    description: user?.description,
+    email_address: user?.email_address,
+    name: user?.name,
     // password: accountInfo?.password,
-    phone_number: editAccountInfo?.phone_number,
+    phone_number: user?.phone_number,
   });
 
   const [profile_image, setProfile_Image] = useState({ url: "" });
