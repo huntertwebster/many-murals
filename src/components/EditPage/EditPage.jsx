@@ -98,7 +98,6 @@ function EditPost() {
     history.push("/profile");
   }
 
-  // const classes = useStyles();
   return (
     <Container className="editForm">
       <Typography style={{ textAlign: "center" }} variant="h5" color="initial">

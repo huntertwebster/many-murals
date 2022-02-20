@@ -88,7 +88,7 @@ function AccountInfo() {
   //    Bail out early with a message if the Account Info isnt found
   // if (!accountInfo) {
   //         return <h2>Invalid Account Information ID</h2>;
-  //     }
+  //     }`
 
   //cloudinary - open widget
   const openWidget = () => {
@@ -126,7 +126,9 @@ function AccountInfo() {
       </Typography>
       <br />
       <form onSubmit={editHandler}>
+        {/* for cloudinary's widget to open */}
         {useScript("https://widget.cloudinary.com/v2.0/global/all.js")}
+
         <Grid container spacing={{ xs: 2, sm: 2, md: 2, lg: 2, xl: 2 }}>
           <Grid item xs={12} sm={3} md={3} lg={3} xl={3}>
             {/* edit username */}
@@ -281,8 +283,8 @@ function AccountInfo() {
               </Button>
               {profile_image.url && (
                 <p>
-                  Your profile picture: <br />{" "}
-                  <img src={profile_image.url} width={100} />
+                  Your new profile picture: <br />{" "}
+                  <img src={profile_image.url} width={150} />
                 </p>
               )}
             </label>
