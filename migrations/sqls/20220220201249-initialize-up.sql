@@ -1,4 +1,8 @@
 /* Replace with your SQL commands */
+-- Table: public.art_item
+
+-- DROP TABLE public."art_item";
+
 
 CREATE TABLE public."art_item" 
 (

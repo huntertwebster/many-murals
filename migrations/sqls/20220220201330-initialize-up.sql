@@ -1,5 +1,10 @@
 /* Replace with your SQL commands */
 
+-- Table: public.images
+
+-- DROP TABLE public."images";
+
+
 CREATE TABLE public."images" (
 	id serial primary key NOT NULL,
     url character NOT NULL varying COLLATE pg_catalog."default",
