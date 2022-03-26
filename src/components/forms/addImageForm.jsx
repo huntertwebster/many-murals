@@ -5,7 +5,7 @@ import { useHistory } from "react-router";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useScript } from "../../hooks/useScript";
-import "../ArtForm/imageForm.css";
+import "../forms/addImageForm.css";
 //MUI
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";

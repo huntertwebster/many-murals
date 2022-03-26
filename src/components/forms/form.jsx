@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
-import "../ArtForm/form.css";
+import "../forms/form.css";
 //MUI
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";

@@ -15,7 +15,7 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 
-function PostsByArtist() {
+function MyMurals() {
   //for moment.js
   const moment = require("moment");
 
@@ -115,4 +115,4 @@ function PostsByArtist() {
   );
 }
 
-export default PostsByArtist;
+export default MyMurals;

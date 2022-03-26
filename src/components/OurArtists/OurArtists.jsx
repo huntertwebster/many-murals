@@ -1,8 +1,7 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import "../ArtistsPage/ArtistsPage.css";
-import { useHistory } from "react-router";
+import "./OurArtists.css";
 import Typography from "@mui/material/Typography";
 
 // MUI
@@ -10,12 +9,8 @@ import Grid from "@mui/material/Grid";
 import { Container, Paper } from "@mui/material";
 
 function ArtistsPage() {
-  const history = useHistory();
-  const dispatch = useDispatch();
   const artists = useSelector((store) => store.artists);
-  const user = useSelector((store) => store.user);
-  // used for when clicked on a poster, movie data is recieved
-  // sends us to /details too
+
   console.log(artists);
 
   return (

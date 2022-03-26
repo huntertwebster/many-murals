@@ -13,21 +13,21 @@ import Footer from "../Footer/Footer";
 
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
-import AboutPage from "../AboutPage/AboutPage";
+import AboutPage from "../About/About";
 import UserPage from "../UserPage/UserPage";
 import InfoPage from "../ProfilePage/ProfilePage";
 import LandingPage from "../LandingPage/LandingPage";
-import LoginPage from "../LoginPage/LoginPage";
-import RegisterPage from "../RegisterPage/RegisterPage";
+import LoginPage from "../Login/LoginForm/LoginPage";
+import RegisterPage from "../Registration/RegisterPage";
 import "./App.css";
 import GalleryPage from "../GalleryPage/GalleryPage";
-import ArtistsPage from "../ArtistsPage/ArtistsPage";
+import ArtistsPage from "../OurArtists/OurArtists";
 import ProfilePage from "../ProfilePage/ProfilePage";
 import EditPost from "../EditPage/EditPage";
-import AdminView from "../AdminView/AdminView";
+import AdminView from "../Admin/Admin";
 import Map from "../Map/Map";
-import CreateAPost from "../CreatePost/CreateAPost";
-import ImageForm from "../ArtForm/imageForm";
+import CreateAPost from "../forms/CreateAPost";
+import ImageForm from "../forms/addImageForm";
 import AccountInfo from "../AccountInfo/AccountInfo";
 
 function App() {
@@ -136,7 +136,6 @@ function App() {
           >
             <AccountInfo />
           </ProtectedRoute>
-
 
           {user?.type === "admin" && (
             <ProtectedRoute

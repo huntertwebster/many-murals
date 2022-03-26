@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import Form from "../ArtForm/form";
-import ImageForm from "../ArtForm/imageForm";
+import Form from "./form";
+import ImageForm from "./addImageForm";
 // import CSS for the profile here
 
 import Box from "@mui/material/Box";
