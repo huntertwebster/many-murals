@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-function ImageComponent() {
+function Image() {
   const profile = useSelector((store) => store.profile);
   console.log("This is the data for one image:", profile);
 
@@ -16,4 +16,4 @@ function ImageComponent() {
   );
 }
 
-export default ImageComponent;
+export default Image;

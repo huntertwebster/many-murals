@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import "../GalleryPage/GalleryPage.css";
+import "./GalleryPage.css";
 import { useHistory } from "react-router";
 import moment from "moment";
 // MUI

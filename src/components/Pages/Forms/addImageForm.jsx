@@ -4,8 +4,8 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useScript } from "../../hooks/useScript";
-import "../forms/addImageForm.css";
+import { useScript } from "../../../hooks/useScript";
+import "./addImageForm.css";
 //MUI
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";

@@ -1,5 +1,4 @@
 import React from "react";
-import LogOutButton from "../Login/LoginForm/LogOutButton";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useSelector } from "react-redux";
 import { Button, Container } from "@mui/material";

@@ -4,8 +4,8 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import DeleteImage from "../DeleteImage/DeleteImage";
-import "../EditPage/EditPage.css";
+import DeleteImage from "../../Images/DeleteImage";
+import "./EditPage.css";
 // MUI
 import { makeStyles } from "@mui/styles";
 import { alpha, styled } from "@mui/material/styles";

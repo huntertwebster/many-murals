@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
-import "../forms/form.css";
+import "./form.css";
 //MUI
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
@@ -12,7 +12,7 @@ import Grid from "@mui/material/Grid";
 import { Container, Paper } from "@mui/material";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 
-// MUI for date picker *stretch*
+// MUI for date picker *stretch goal*
 import MobileDatePicker from "@mui/lab/MobileDatePicker";
 import DatePicker from "@mui/lab/DatePicker";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";

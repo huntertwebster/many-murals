@@ -1,6 +1,5 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -8,11 +7,9 @@ import { useSelector } from "react-redux";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from "@mui/icons-material/Edit";
 
 function DeleteImage() {
   const dispatch = useDispatch();
-  const history = useHistory();
   const profile = useSelector((store) => store.profile);
   let params = useParams();
   console.log("these be the params:", params);

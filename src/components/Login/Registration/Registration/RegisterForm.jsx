@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useScript } from "../../hooks/useScript";
+import { useScript } from "../../../../hooks/useScript";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";

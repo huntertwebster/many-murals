@@ -1,7 +1,7 @@
-import React from 'react';
-import LoginForm from '../LoginForm/LoginForm';
-import { useHistory } from 'react-router-dom';
-import Button from '@mui/material/Button';
+import React from "react";
+import LoginForm from "../Login/LoginForm";
+import { useHistory } from "react-router-dom";
+import Button from "@mui/material/Button";
 function LoginPage() {
   const history = useHistory();
 
@@ -12,13 +12,11 @@ function LoginPage() {
       <center>
         <Button
           style={{
-            fontFamily: 'Cormorant Garamond' ,
-            color: "black"
-
+            fontFamily: "Cormorant Garamond",
+            color: "black",
           }}
-
           onClick={() => {
-            history.push('/registration');
+            history.push("/registration");
           }}
         >
           Register

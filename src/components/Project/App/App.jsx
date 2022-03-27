@@ -11,24 +11,24 @@ import { useDispatch, useSelector } from "react-redux";
 import Nav from "../Nav/Nav";
 import Footer from "../Footer/Footer";
 
-import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import ProtectedRoute from "../Nav/ProtectedRoute";
 
-import AboutPage from "../About/About";
-import UserPage from "../UserPage/UserPage";
-import InfoPage from "../ProfilePage/ProfilePage";
-import LandingPage from "../LandingPage/LandingPage";
-import LoginPage from "../Login/LoginForm/LoginPage";
-import RegisterPage from "../Registration/RegisterPage";
+import AboutPage from "../../Pages/About";
+import UserPage from "../../Pages/ArtistsAccount/UserPage";
+import InfoPage from "../../Pages/ArtistsAccount/ProfilePage";
+import LandingPage from "../../Login/Registration/LandingPage/LandingPage";
+import LoginPage from "../../Login/Registration/Login/LoginPage";
+import RegisterPage from "../../Login/Registration/Registration/RegisterPage";
 import "./App.css";
-import GalleryPage from "../GalleryPage/GalleryPage";
-import ArtistsPage from "../OurArtists/OurArtists";
-import ProfilePage from "../ProfilePage/ProfilePage";
-import EditPost from "../EditPage/EditPage";
-import AdminView from "../Admin/Admin";
-import Map from "../Map/Map";
-import CreateAPost from "../forms/CreateAPost";
-import ImageForm from "../forms/addImageForm";
-import AccountInfo from "../AccountInfo/AccountInfo";
+import GalleryPage from "../../Pages/Gallery/GalleryPage";
+import ArtistsPage from "../../Pages/OurArtists/OurArtists";
+import ProfilePage from "../../Pages/ArtistsAccount/ProfilePage";
+import EditPost from "../../Pages/Forms/EditPage";
+import AdminView from "../../Pages/Admin";
+import Map from "../../Pages/Map/Map";
+import d from "../../Pages/Forms/CreateAPost";
+import ImageForm from "../../Pages/Forms/addImageForm";
+import AccountInfo from "../../Pages/ArtistsAccount/AccountInfo";
 
 function App() {
   const dispatch = useDispatch();

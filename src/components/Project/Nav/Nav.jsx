@@ -1,7 +1,7 @@
 import * as React from "react";
 import "./Nav.css";
 import { useSelector } from "react-redux";
-import LogOutButton from "../Login/LoginForm/LogOutButton";
+import LogOutButton from "../../Login/Registration/Login/LogOutButton";
 
 // MUI
 import { styled, alpha } from "@mui/material/styles";

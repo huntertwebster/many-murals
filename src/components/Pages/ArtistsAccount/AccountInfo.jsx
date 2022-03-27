@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { useParams } from "react-router";
 import { useState } from "react";
-import { useScript } from "../../hooks/useScript";
+import { useScript } from "../../../hooks/useScript";
 // MUI
 import Typography from "@mui/material/Typography";
 import { Button, Container, TextField } from "@mui/material";
