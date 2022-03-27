@@ -14,21 +14,21 @@ import Footer from "../Footer/Footer";
 import ProtectedRoute from "../Nav/ProtectedRoute";
 
 import AboutPage from "../../Pages/About";
-import UserPage from "../../Pages/ArtistsAccount/UserPage";
-import InfoPage from "../../Pages/ArtistsAccount/ProfilePage";
+import Profile from "../../Pages/ArtistsAccount/Profile";
+import InfoPage from "../../Pages/ArtistsAccount/ProfileMount";
 import LandingPage from "../../Login/Registration/LandingPage/LandingPage";
 import LoginPage from "../../Login/Registration/Login/LoginPage";
 import RegisterPage from "../../Login/Registration/Registration/RegisterPage";
 import "./App.css";
 import GalleryPage from "../../Pages/Gallery/GalleryPage";
 import ArtistsPage from "../../Pages/OurArtists/OurArtists";
-import ProfilePage from "../../Pages/ArtistsAccount/ProfilePage";
-import EditPost from "../../Pages/Forms/EditPage";
+import ProfilePage from "../../Pages/ArtistsAccount/ProfileMount";
+import EditPost from "../../Pages/Forms/EditArtItem";
 import AdminView from "../../Pages/Admin";
 import Map from "../../Pages/Map/Map";
-import d from "../../Pages/Forms/CreateAPost";
-import ImageForm from "../../Pages/Forms/addImageForm";
-import AccountInfo from "../../Pages/ArtistsAccount/AccountInfo";
+import CreateAPost from "../../Pages/Forms/CreateArtItem";
+import AddImageToArtItem from "../../Pages/Forms/AddImageToArtItem";
+import AccountInfo from "../../Pages/ArtistsAccount/EditAccountInformation";
 
 function App() {
   const dispatch = useDispatch();
@@ -86,15 +86,15 @@ function App() {
 
           {/* Visible to a artist after login */}
           {/* For protected routes, the view could show one of several things on the same route.
-            Visiting localhost:3000/user will show the UserPage if the user is logged in.
+            Visiting localhost:3000/user will show the Profile if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
             Even though it seems like they are different pages, the user is always on localhost:3000/user */}
           <ProtectedRoute
-            // logged in shows UserPage else shows LoginPage
+            // logged in shows Profile else shows LoginPage
             exact
             path="/user"
           >
-            <UserPage />
+            <Profile />
           </ProtectedRoute>
 
           <ProtectedRoute
@@ -126,7 +126,7 @@ function App() {
             exact
             path="/addImage/:addImageId"
           >
-            <ImageForm />
+            <AddImageToArtItem />
           </ProtectedRoute>
 
           <ProtectedRoute

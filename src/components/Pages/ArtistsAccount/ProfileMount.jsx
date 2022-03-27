@@ -1,7 +1,7 @@
 import React from "react";
 import MyMurals from "./MyMurals";
 import DeleteImage from "../../Images/DeleteImage";
-import Image from "../../Images/imageComponent";
+import Image from "../../Images/Image";
 
 function ProfilePage() {
   return (

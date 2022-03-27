@@ -39,7 +39,7 @@ const StyledButton = styled(Button)(({ theme }) => ({
 }));
 
 //this page exists to allow an artist to edit their personal information
-function AccountInfo() {
+function EditAccountInformation() {
   const dispatch = useDispatch();
   const history = useHistory();
   const profile = useSelector((store) => store.profile);
@@ -308,4 +308,4 @@ function AccountInfo() {
   );
 }
 
-export default AccountInfo;
+export default EditAccountInformation;

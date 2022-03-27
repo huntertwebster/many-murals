@@ -1,5 +1,5 @@
 import React from "react";
-import Form from "./Forms/form";
+import Form from "./Forms/CreateArtItemForm";
 import { useHistory } from "react-router";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";

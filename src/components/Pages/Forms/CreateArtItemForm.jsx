@@ -2,7 +2,8 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
-import "./form.css";
+import "./CreateArtItemForm.css";
+
 //MUI
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
@@ -18,7 +19,7 @@ import DatePicker from "@mui/lab/DatePicker";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 
-function Form() {
+function CreateArtItemForm() {
   const dispatch = useDispatch();
   const history = useHistory();
   const [inputPost, setInputPost] = useState({
@@ -175,4 +176,4 @@ function Form() {
     </div>
   );
 }
-export default Form;
+export default CreateArtItemForm;

@@ -1,8 +1,5 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-// import { NavLink } from 'react-router-dom';
-// import CSS for the profile here
 import { useHistory } from "react-router";
 
 //MUI
@@ -16,15 +13,13 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 
 function MyMurals() {
-  //for moment.js
   const moment = require("moment");
-
   const history = useHistory();
   const dispatch = useDispatch();
   const profile = useSelector((store) => store.profile);
   console.log("This is the data for one user:", profile);
 
-  // deletes the entire post
+  // deletes the entire post and image associated with it
   function deleteHandler(post) {
     console.log("This is my post that I want to delete:", post);
     dispatch({

@@ -5,7 +5,7 @@ import { useHistory } from "react-router";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import DeleteImage from "../../Images/DeleteImage";
-import "./EditPage.css";
+import "./EditArtItem.css";
 // MUI
 import { makeStyles } from "@mui/styles";
 import { alpha, styled } from "@mui/material/styles";
@@ -47,7 +47,7 @@ const StyledButton = styled(Button)(({ theme }) => ({
   fontFamily: "Cormorant Garamond",
 }));
 
-function EditPost() {
+function EditArtItem() {
   const dispatch = useDispatch();
   const history = useHistory();
   const gallery = useSelector((store) => store.gallery);
@@ -80,7 +80,8 @@ function EditPost() {
     description: item?.description,
     date: item?.date.substr(0, 10),
   });
-  // create a map to look over all the images when there are multiple images to be able to update multiple
+
+  // Multiple Image note: create a map to look over all the images when there are multiple images to be able to update multiple
 
   // edits the post
   function editHandler() {
@@ -203,4 +204,4 @@ function EditPost() {
     </Container>
   );
 }
-export default EditPost;
+export default EditArtItem;

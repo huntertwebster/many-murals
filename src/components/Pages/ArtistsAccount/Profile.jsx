@@ -3,8 +3,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useSelector } from "react-redux";
 import { Button, Container } from "@mui/material";
 import { useHistory } from "react-router";
-function UserPage() {
-  // this component doesn't do much to start, just renders some user reducer info to the DOM
+function Profile() {
   const user = useSelector((store) => store.user);
   const history = useHistory();
   return (
@@ -24,11 +23,9 @@ function UserPage() {
         >
           Edit Account Information
         </Button>
-        {/* <LogOutButton className="btn" /> */}
       </Container>
     </>
   );
 }
 
-// this allows us to use <App /> in index.js
-export default UserPage;
+export default Profile;

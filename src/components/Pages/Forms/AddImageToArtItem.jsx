@@ -5,22 +5,21 @@ import { useHistory } from "react-router";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useScript } from "../../../hooks/useScript";
-import "./addImageForm.css";
+import "./AddImageToArtItem.css";
 //MUI
 import Typography from "@mui/material/Typography";
-import TextField from "@mui/material/TextField";
 import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 
-function ImageForm() {
+function AddImageToArtItem() {
   const dispatch = useDispatch();
   const history = useHistory();
+
   const [inputImage, setInputImage] = useState({
     url: "",
     featured_image: "false",
   });
-  const gallery = useSelector((store) => store.gallery);
 
   // GALLERY: using paramaters
   let params = useParams();
@@ -129,4 +128,4 @@ function ImageForm() {
     </div>
   );
 }
-export default ImageForm;
+export default AddImageToArtItem;
