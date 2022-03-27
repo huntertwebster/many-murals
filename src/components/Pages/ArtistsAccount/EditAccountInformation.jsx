@@ -82,7 +82,7 @@ function EditAccountInformation() {
         profile_image: profile_image.url,
       },
     });
-    // history.push("/profile");
+    // history.push("/mymurals");
   }
 
   //    Bail out early with a message if the Account Info isnt found

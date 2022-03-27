@@ -50,7 +50,7 @@ function CreateArtItemForm() {
       description: "",
       date: "",
     });
-    history.push("/profile");
+    history.push("/mymurals");
   };
 
   return (

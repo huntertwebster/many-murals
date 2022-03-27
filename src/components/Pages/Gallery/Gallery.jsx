@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import "./GalleryPage.css";
+import "./Gallery.css";
 import { useHistory } from "react-router";
 import moment from "moment";
 // MUI
@@ -9,7 +9,7 @@ import Grid from "@mui/material/Grid";
 import { Container, Paper } from "@mui/material";
 import Typography from "@mui/material/Typography";
 
-function GalleryPage() {
+function Gallery() {
   const history = useHistory();
   const dispatch = useDispatch();
   const gallery = useSelector((store) => store.gallery);
@@ -60,4 +60,4 @@ function GalleryPage() {
   );
 }
 
-export default GalleryPage;
+export default Gallery;

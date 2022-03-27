@@ -4,7 +4,7 @@ import React from "react";
 import Typography from "@mui/material/Typography";
 import { Container } from "@mui/material";
 
-function AboutPage() {
+function About() {
   return (
     <Container>
       <div>
@@ -26,4 +26,4 @@ function AboutPage() {
   );
 }
 
-export default AboutPage;
+export default About;

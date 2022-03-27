@@ -44,7 +44,7 @@ function AddImageToArtItem() {
       },
     });
     setInputImage({ url: "", featured_image: "false" });
-    history.push("/profile");
+    history.push("/myaccount");
   };
 
   //cloudinary - open widget

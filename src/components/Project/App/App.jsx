@@ -20,15 +20,22 @@ import LandingPage from "../../Login/Registration/LandingPage/LandingPage";
 import LoginPage from "../../Login/Registration/Login/LoginPage";
 import RegisterPage from "../../Login/Registration/Registration/RegisterPage";
 import "./App.css";
-import GalleryPage from "../../Pages/Gallery/GalleryPage";
-import ArtistsPage from "../../Pages/OurArtists/OurArtists";
+import GalleryPage from "../../Pages/Gallery/Gallery";
+import ArtistsPage from "../../Pages/Artists/Artists";
 import ProfilePage from "../../Pages/ArtistsAccount/ProfileMount";
-import EditPost from "../../Pages/Forms/EditArtItem";
+import EditArtItem from "../../Pages/Forms/EditArtItem";
 import AdminView from "../../Pages/Admin";
 import Map from "../../Pages/Map/Map";
 import CreateAPost from "../../Pages/Forms/CreateArtItem";
 import AddImageToArtItem from "../../Pages/Forms/AddImageToArtItem";
 import AccountInfo from "../../Pages/ArtistsAccount/EditAccountInformation";
+import CreateArtItem from "../../Pages/Forms/CreateArtItem";
+import EditAccountInformation from "../../Pages/ArtistsAccount/EditAccountInformation";
+import Admin from "../../Pages/Admin";
+import Gallery from "../../Pages/Gallery/Gallery";
+import About from "../../Pages/About";
+import Artists from "../../Pages/Artists/Artists";
+import MyMurals from "../../Pages/ArtistsAccount/MyMurals";
 
 function App() {
   const dispatch = useDispatch();
@@ -60,21 +67,21 @@ function App() {
             exact
             path="/about"
           >
-            <AboutPage />
+            <About />
           </Route>
           <Route
             // shows GalleryPage at all times (logged in or not)
             exact
             path="/gallery"
           >
-            <GalleryPage />
+            <Gallery />
           </Route>
           <Route
             // shows ArtistsPage at all times (logged in or not)
             exact
             path="/artists"
           >
-            <ArtistsPage />
+            <Artists />
           </Route>
           <Route
             // shows Map at all times (logged in or not)
@@ -86,13 +93,13 @@ function App() {
 
           {/* Visible to a artist after login */}
           {/* For protected routes, the view could show one of several things on the same route.
-            Visiting localhost:3000/user will show the Profile if the user is logged in.
+            Visiting localhost:3000/myaccount will show the Profile if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
-            Even though it seems like they are different pages, the user is always on localhost:3000/user */}
+            Even though it seems like they are different pages, the user is always on localhost:3000/myaccount */}
           <ProtectedRoute
             // logged in shows Profile else shows LoginPage
             exact
-            path="/user"
+            path="/myaccount"
           >
             <Profile />
           </ProtectedRoute>
@@ -100,9 +107,9 @@ function App() {
           <ProtectedRoute
             // logged in shows Profile else shows Profile
             exact
-            path="/profile"
+            path="/mymurals"
           >
-            <ProfilePage />
+            <MyMurals />
           </ProtectedRoute>
 
           <ProtectedRoute
@@ -110,7 +117,7 @@ function App() {
             exact
             path="/edit/:editId"
           >
-            <EditPost />
+            <EditArtItem />
           </ProtectedRoute>
 
           <ProtectedRoute
@@ -118,7 +125,7 @@ function App() {
             exact
             path="/create"
           >
-            <CreateAPost />
+            <CreateArtItem />
           </ProtectedRoute>
 
           <ProtectedRoute
@@ -134,7 +141,7 @@ function App() {
             exact
             path="/accountInfo"
           >
-            <AccountInfo />
+            <EditAccountInformation />
           </ProtectedRoute>
 
           {user?.type === "admin" && (
@@ -143,15 +150,15 @@ function App() {
               exact
               path="/adminView"
             >
-              <AdminView />
+              <Admin />
             </ProtectedRoute>
           )}
 
           <Route exact path="/login">
             {user.id ? (
               // If the user is already logged in,
-              // redirect to the /user page
-              <Redirect to="/user" />
+              // redirect to the /myaccount page
+              <Redirect to="/myaccount" />
             ) : (
               // Otherwise, show the login page
               <LoginPage />
@@ -161,8 +168,8 @@ function App() {
           <Route exact path="/registration">
             {user.id ? (
               // If the user is already logged in,
-              // redirect them to the /user page
-              <Redirect to="/user" />
+              // redirect them to the /myaccount page
+              <Redirect to="/myaccount" />
             ) : (
               // Otherwise, show the registration page
               <RegisterPage />
@@ -172,8 +179,8 @@ function App() {
           <Route exact path="/home">
             {user.id ? (
               // If the user is already logged in,
-              // redirect them to the /user page
-              <Redirect to="/user" />
+              // redirect them to the /myaccount page
+              <Redirect to="/myaccount" />
             ) : (
               // Otherwise, show the Landing page
               <LandingPage />
@@ -182,7 +189,9 @@ function App() {
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
-            <h1>404</h1>
+            <center>
+              <h1>404</h1>
+            </center>
           </Route>
         </Switch>
 

@@ -1,17 +1,17 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import "./OurArtists.css";
+import "./Artists.css";
 import Typography from "@mui/material/Typography";
 
 // MUI
 import Grid from "@mui/material/Grid";
 import { Container, Paper } from "@mui/material";
 
-function ArtistsPage() {
+function Artists() {
   const artists = useSelector((store) => store.artists);
 
-  console.log(artists);
+  console.log("These are the artists", artists);
 
   return (
     <Container>
@@ -36,4 +36,4 @@ function ArtistsPage() {
   );
 }
 
-export default ArtistsPage;
+export default Artists;

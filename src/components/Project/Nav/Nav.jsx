@@ -64,13 +64,13 @@ export default function PrimarySearchAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <Link className="navLink" to="/profile">
+      <Link className="navLink" to="/mymurals">
         <MenuItem className="profileMenuItem" onClick={handleMenuClose}>
           My Murals
         </MenuItem>
       </Link>
 
-      <Link className="navLink" to="/user">
+      <Link className="navLink" to="/myaccount">
         <MenuItem className="profileMenuItem" onClick={handleMenuClose}>
           My account
         </MenuItem>

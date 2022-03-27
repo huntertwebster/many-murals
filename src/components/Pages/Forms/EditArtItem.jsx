@@ -96,7 +96,7 @@ function EditArtItem() {
         date: editPost.date,
       },
     });
-    history.push("/profile");
+    history.push("/myaccount");
   }
 
   return (
