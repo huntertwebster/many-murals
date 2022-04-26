@@ -1,7 +1,7 @@
 import * as React from "react";
 import "./Nav.css";
 import { useSelector } from "react-redux";
-import LogOutButton from "../LogOutButton/LogOutButton";
+import LogOutButton from "../../Login/Registration/Login/LogOutButton";
 
 // MUI
 import { styled, alpha } from "@mui/material/styles";
@@ -64,13 +64,13 @@ export default function PrimarySearchAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <Link className="navLink" to="/profile">
+      <Link className="navLink" to="/mymurals">
         <MenuItem className="profileMenuItem" onClick={handleMenuClose}>
           My Murals
         </MenuItem>
       </Link>
 
-      <Link className="navLink" to="/user">
+      <Link className="navLink" to="/myaccount">
         <MenuItem className="profileMenuItem" onClick={handleMenuClose}>
           My account
         </MenuItem>

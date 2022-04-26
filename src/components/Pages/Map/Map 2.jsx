@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import "../Map/Map.css";
+import "./Map.css";
 
 const containerStyle = {
   width: "100%",
