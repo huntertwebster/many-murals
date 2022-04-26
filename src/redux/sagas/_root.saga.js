@@ -21,7 +21,7 @@ function* rootSaga() {
     profileSaga(), // stores all the data on the artist's information 
     gallerySaga(), // stores all the data on the art
     loginSaga(), // login saga is now registered
-    registrationSaga(),
+    registrationSaga(), // registration saga
     userSaga()
   ]);
 }
